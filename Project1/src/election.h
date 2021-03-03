@@ -20,6 +20,7 @@ class Election{
         int IncrementVotesForParty(string party_name);
         int GetNumberOfSeats();
         int SetNumberOfSeats(int num);
+        int SetNumberOfBallots(int num);
         int GetQuota();
         int SetQuota(int quota);
         string GetElectionType();

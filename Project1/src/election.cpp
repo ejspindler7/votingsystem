@@ -43,6 +43,12 @@ int Election::SetNumberOfSeats(int num){
     return 0;
 }
 
+// Sets the number of ballots
+int Election::SetNumberOfBallots(int num){
+    numberOfBallots = num;
+    return 0;
+}
+
 // Sets election type
 int Election::SetElectionType(string type){
     electionType = type;

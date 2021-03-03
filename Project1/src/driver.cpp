@@ -118,10 +118,29 @@ int Driver::ReadInBallots(){
 }
 
 int Driver::ReadInNumberOfBallots(){
+    int num_ballots= -1;
+    std::string input;
+
+    if (fileHandle.is_open()){
+        getline(fileHandle, input);
+        num_ballots= std::stoi(input);    
+        election.SetNumberOfBallots(num_ballots);
+        std::cout << "Num ballots: " << num_ballots<< std::endl;
+    }
     return 0;
 }
 
-int Driver::ReadNumberOfSeats(){
+int Driver::ReadInNumberOfSeats(){
+    int num_seats= -1;
+    std::string input;
+
+    if (fileHandle.is_open()){
+        getline(fileHandle, input);
+        num_seats= std::stoi(input);    
+        election.SetNumberOfSeats(num_seats);
+        std::cout << "Num seats: " << num_seats<< std::endl;
+    }
+
     return 0;
 }
 
@@ -138,6 +157,16 @@ int Driver::ProcessCSV(){
     ReadInElectionType();   
     ReadInNumCandidates();
     ReadInCandidates();
+    if (election.GetElectionType() == "OPL"){
+        ReadInNumberOfSeats();
+        ReadInNumberOfBallots();
+    }
+    else if (election.GetElectionType() == "IR"){
+        ReadInNumberOfBallots();
+    }
+    else{
+        std::cout << "Election type not recognized." << std::endl;
+    }
     return 0;
 }
 

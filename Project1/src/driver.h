@@ -14,7 +14,7 @@ class Driver{
         int ReadInCandidates(void);
         int ReadInBallots(void);
         int ReadInNumberOfBallots(void);
-        int ReadNumberOfSeats(void);
+        int ReadInNumberOfSeats(void);
         int ProcessCSV(void);
         int SetFileName(std::string string);
         std::string GetFileName(void);
