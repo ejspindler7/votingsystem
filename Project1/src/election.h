@@ -15,6 +15,8 @@ class Election{
         Election();
         int GetVotesForParty(string party_name);
         int SetVotesForParty(string party_name, int num_votes);
+        int SetElectionType(string election_type);
+        int SetNumberOfCandidates(int num);
         int IncrementVotesForParty(string party_name);
         int GetNumberOfSeats();
         int SetNumberOfSeats(int num);
@@ -28,7 +30,7 @@ class Election{
         int RunElection();
         int ComputeIRElection();
         int ComputeOPLElection();
-        int AddCandidate(Candidate candidate);
+        int AddCandidate(Candidate &candidate);
         int RemoveCandidate(string name);
         string FindCandidateToRemove();
         int AddBallot(Ballot balllot);

@@ -18,7 +18,8 @@ class Driver{
         int ProcessCSV(void);
         int SetFileName(std::string string);
         std::string GetFileName(void);
-        std::vector<std::string> ParseLine(std::string line);
+        //std::vector<std::string> ParseLine(std::string line, std::vector<std::string> words);
+        void ParseLine(std::string line, std::vector<std::string> &words, char delim);
 
     private:
         std::string fileName;
