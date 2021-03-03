@@ -23,7 +23,7 @@ class Driver{
     private:
         std::string fileName;
         std::ifstream fileHandle;
-        //Election election;
+        Election election;
 };
 
 

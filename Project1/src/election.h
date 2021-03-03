@@ -3,14 +3,17 @@
 
 #include <string>
 #include <map>
-#include "candidate.h"
-#include "report.h"
+//#include "candidate.h"
+//#include "report.h"
+#include <vector>
 
 using namespace std;
 
 
 class Election{
     public:
+        Election();
+        /*
         int GetVotesForParty(string party_name);
         int SetVotesForParty(string party_name, int num_votes);
         int IncrementVotesForParty(string party_name);
@@ -34,23 +37,26 @@ class Election{
         int RedistributeBallots();
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
+        */
 
 
 
     private:
+        /*
         string electionType;
         int numberOfCandidates;
         int numberOfBallots;
-        //vector<Candidate> candidates;
+        vector<Candidate> candidates;
         int numberOfSeats;
         int quota;
-        //Report report;
+        Report report;
         vector<string> parties;
         map<string, int> seatsPerPartyWholeNumber;
         map<string, int> seatsPerPartyRemainder;
         map<string, int> numVotesForParty;
-        //map<string, vector<Candidate>> candidateRankings;
+        map<string, vector<Candidate>> candidateRankings;
         map<string, vector<int>> candidateRoundCountVotes;
+        */
 
 };
 

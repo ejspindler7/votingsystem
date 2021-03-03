@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class Ballot{
         void AddCandidate(string name);
         int GetCurrDis();
         int GetId();
-        string GetCandidate(int idx): 
+        string GetCandidate(int idx);
     private:
         int currentDistribution;
         int id;

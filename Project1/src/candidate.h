@@ -10,6 +10,7 @@ using namespace std;
 
 class Candidate{
     public:
+        Candidate();
         int SetParty(string party);
         string GetParty();
         string GetName();
