@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include "candidate.h"
+#include "ballot.h"
 
 Driver::Driver(std::string file){
     fileName = file;
@@ -114,6 +115,39 @@ int Driver::ReadInCandidates(){
 }
 
 int Driver::ReadInBallots(){
+    std::string line;
+    std::vector<std::string> votes;
+    int ballot_id = 1;
+    if (fileHandle.is_open()){
+        while(getline(fileHandle, line)){
+            Ballot* ballot = new Ballot(ballot_id);
+            if (election.GetElectionType() == "OPL"){
+                int candidate_idx = this->GetOPLVote(line);
+                ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
+                (election.GetCandidate(candidate_idx)).AddBallot(ballot);
+
+            }
+            else if (election.GetElectionType() == "IR"){
+                ParseLine(line, votes, ',');
+                // Adds candidates to ballot file
+                for(int i = 0; i < votes.size(); i++){
+                    ballot->AddCandidate((election.GetCandidate(std::stoi(votes.at(i))).GetName()));
+                }
+                //ballot->Print();
+
+
+            }
+            else{
+                std::cout << "Did not recognize election type." << std::endl;
+                exit(1);
+            }
+            ballot_id++;
+        }
+    }
+    else{
+        std::cout << "FIle not open." << std::endl;
+        return -1;
+    }
     return 0;
 }
 
@@ -167,6 +201,7 @@ int Driver::ProcessCSV(){
     else{
         std::cout << "Election type not recognized." << std::endl;
     }
+    ReadInBallots();
     return 0;
 }
 
@@ -183,6 +218,15 @@ void Driver::ParseLine(std::string line, std::vector<std::string> &words, char d
        words.push_back(tmp);
     }
     return;
+}
+
+int Driver::GetOPLVote(std::string line){
+    for(int i = 0; i < line.size(); i++){
+        if(line.at(i) == '1'){
+            return i;
+         }
+    }
+    return -1;
 }
 
 

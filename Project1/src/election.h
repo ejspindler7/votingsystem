@@ -39,6 +39,7 @@ class Election{
         int RedistributeBallots();
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
+        Candidate GetCandidate(int idx);
 
 
     private:

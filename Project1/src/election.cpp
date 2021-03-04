@@ -162,7 +162,9 @@ int Election::RunElection(){
     return 0;
 }
 
-
+Candidate Election::GetCandidate(int idx){
+    return candidates.at(idx);
+}
 
 
 

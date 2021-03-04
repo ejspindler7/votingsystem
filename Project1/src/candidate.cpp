@@ -32,8 +32,8 @@ int Candidate::SetName(string name){
     candidateName = name;
     return 0;
 }
-int Candidate::AddBallot(Ballot){
-    
+int Candidate::AddBallot(Ballot *ballot){
+    ballots.push_back(ballot);    
     return 0;    
 }
 Ballot* Candidate::RemoveBallot(){

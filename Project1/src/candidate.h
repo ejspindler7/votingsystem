@@ -15,14 +15,14 @@ class Candidate{
         string GetParty();
         string GetName();
         int SetName(string name); 
-        int AddBallot(Ballot);
+        int AddBallot(Ballot *ballot);
         Ballot* RemoveBallot();
         int GetBallotListSize();
 
     private:
         string party;
         string candidateName;
-        vector<Ballot> ballots;
+        vector<Ballot*> ballots;
 
 };
 
