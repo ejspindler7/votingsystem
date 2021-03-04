@@ -99,8 +99,6 @@ int Election::IncreaseNumberOfBallots(){
     return 0;
 }
 
-
-
 int Election::AddCandidate(Candidate &candidate){    
     cout << "Added candidate: " << candidate.GetName() << endl; 
     candidates.push_back(candidate);

@@ -34,19 +34,6 @@ TEST_F(ElectionTests, GetElectionType){
 
 
 
-// SetElectionType 
-TEST_F(ElectionTests, SetElectionType){
-	electionOPL.SetElectionType("OPL"); 
-	electionIR.SetElectionType("IR");
-
-	std::string expected_OPL = "OPL";
-	std::string expected_IR= "IR";
-    EXPECT_EQ(electionOPL.GetElectionType(), expected_OPL) << "Expecting OPL"; 
-    EXPECT_EQ(electionIR.GetElectionType(), expected_IR) << "Expecting IR"; 
-}
-
-
-
 
 
 
