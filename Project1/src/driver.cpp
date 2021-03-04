@@ -125,15 +125,24 @@ int Driver::ReadInBallots(){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
+                // OPL REPORT HERE
 
             }
             else if (election.GetElectionType() == "IR"){
                 ParseLine(line, votes, ',');
-                // Adds candidates to ballot file
+                int first_candidate = -1;
                 for(int i = 0; i < votes.size(); i++){
-                    ballot->AddCandidate((election.GetCandidate(std::stoi(votes.at(i))).GetName()));
+                    int candidate_idx = (std::stoi(votes.at(i))) - 1;
+                    if (first_candidate < 0){
+                        first_candidate = candidate_idx;
+                    }
+                    ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 }
-                //ballot->Print();
+                // Giving ballot to favoriate candiate
+                (election.GetCandidate(first_candidate)).AddBallot(ballot);
+                // IR REPORT HERE
+                votes.clear();
+                ballot->Print();
 
 
             }
@@ -215,8 +224,11 @@ void Driver::ParseLine(std::string line, std::vector<std::string> &words, char d
     // Iterate through line, deliminating by ','
     while(std::getline(s_tmp, tmp, delim)){
        tmp.erase(remove(tmp.begin(), tmp.end(), ' '), tmp.end());
-       words.push_back(tmp);
+       if (!tmp.empty()){
+           words.push_back(tmp);
+       }
     }
+    
     return;
 }
 
@@ -224,7 +236,7 @@ int Driver::GetOPLVote(std::string line){
     for(int i = 0; i < line.size(); i++){
         if(line.at(i) == '1'){
             return i;
-         }
+        }
     }
     return -1;
 }
