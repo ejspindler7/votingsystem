@@ -105,8 +105,6 @@ int Election::IncreaseNumberOfBallots(){
     return 0;
 }
 
-
-
 int Election::AddCandidate(Candidate &candidate){    
     candidates.push_back(candidate);
     return 0; 
