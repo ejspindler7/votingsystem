@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "candidate.h"
 #include "ballot.h"
+#include <assert.h>
 
 Driver::Driver(std::string file){
     fileName = file;
@@ -45,7 +46,6 @@ int Driver::ReadInNumCandidates(){
 // Parses and creates candidates from CSV file
 int Driver::ReadInCandidates(){
     if (election.GetElectionType() == "OPL"){
-        std::cout << "READING in candidates for OPL " << std::endl;
         std::vector<std::string> candidates; 
         if (fileHandle.is_open()){
             std::string tmp;
@@ -63,7 +63,7 @@ int Driver::ReadInCandidates(){
             for(int i = 0; i < candidates.size(); i++){
                 if (i % 2 == 1){
                     party = candidates.at(i);
-                    std::cout << "Adding Candidates: " << name << "(" << party << ")" << std::endl;
+                    election.AddParty(party);
                     Candidate* candidate = new Candidate(name, party);
                     election.AddCandidate(*candidate);
                 }
@@ -72,10 +72,6 @@ int Driver::ReadInCandidates(){
                 }
             }
 
-            // Prints out the candidates
-            for(int i = 0; i < candidates.size(); i++){
-                std::cout<< candidates.at(i) << std::endl;
-            }
         }
         else{
             std::cout << "File handle is not open." << std::endl;
@@ -121,8 +117,10 @@ int Driver::ReadInBallots(){
     if (fileHandle.is_open()){
         while(getline(fileHandle, line)){
             Ballot* ballot = new Ballot(ballot_id);
+            assert(ballot!=NULL);
             if (election.GetElectionType() == "OPL"){
                 int candidate_idx = this->GetOPLVote(line);
+                ballot->Print();
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
                 // OPL REPORT HERE
@@ -241,7 +239,10 @@ int Driver::GetOPLVote(std::string line){
     return -1;
 }
 
-
+int Driver::ComputeElection(){
+    election.RunElection();
+    return 0;
+}
 
 
 

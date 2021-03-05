@@ -14,12 +14,18 @@ Election::Election(){
     numberOfBallots         = -1;
     numberOfSeats           = -1;
     quota                   = -1;
-    // TODO
 }
 
 int Election::GetVotesForParty(string party_name){
-    // TODO
-    return 0;
+    int total_votes = 0;
+    for (int i = 0; i < candidates.size(); i++){
+        if (candidates.at(i).GetParty() == party_name){
+            total_votes+= candidates.at(i).GetBallotListSize();
+        }
+    }
+    cout << "Party_name: " << party_name <<  "has : " << total_votes<<endl;
+    
+    return total_votes;
 }
 
 
@@ -102,7 +108,6 @@ int Election::IncreaseNumberOfBallots(){
 
 
 int Election::AddCandidate(Candidate &candidate){    
-    cout << "Added candidate: " << candidate.GetName() << endl; 
     candidates.push_back(candidate);
     return 0; 
 }
@@ -117,8 +122,24 @@ string Election::FindCandidateToRemove(){
     return "AASDF";
 }
     
-int ElectionAddBallot(Ballot balllot){
+int Election::AddBallot(Ballot balllot){
     // TODO
+    return 0;
+}
+
+int Election::AddParty(string party_name){
+    bool party_already_exists = false;
+
+    for(int i = 0; i < parties.size(); i++){
+        if (party_name == parties.at(i)){
+            party_already_exists = true;
+            break;
+        }
+    }
+    
+    if (!party_already_exists){
+        parties.push_back(party_name);
+    }
     return 0;
 }
 /*
@@ -153,16 +174,33 @@ int Election::ComputeIRElection(){
 
 // Computes results for OPL election
 int Election::ComputeOPLElection(){
-    // TODO
+    // Iterate through parties and get their total votes
+
+    for (int i = 0; i < parties.size(); i++){
+        int total_party_votes = GetVotesForParty(parties.at(i)); 
+        int whole_num_seats = total_party_votes / quota;
+        seatsPerPartyWholeNumber[parties.at(i)] = whole_num_seats;
+    }
+
     return 0;
 }
 // Computes election results
 int Election::RunElection(){
-    // TODO
+    if (electionType == "OPL"){
+        quota = numberOfBallots / numberOfSeats;
+        ComputeOPLElection();
+    }
+    else if (electionType == "IR"){
+        cout << "IR-> " << quota << endl;
+        ComputeIRElection(); 
+    }
+    else{
+        cout << "Didn't recognize election type." << endl;        
+    }
     return 0;
 }
 
-Candidate Election::GetCandidate(int idx){
+Candidate& Election::GetCandidate(int idx){
     return candidates.at(idx);
 }
 

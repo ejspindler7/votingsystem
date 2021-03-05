@@ -21,6 +21,7 @@ class Driver{
         //std::vector<std::string> ParseLine(std::string line, std::vector<std::string> words);
         void ParseLine(std::string line, std::vector<std::string> &words, char delim);
         int GetOPLVote(std::string line);
+        int ComputeElection();
 
     private:
         std::string fileName;

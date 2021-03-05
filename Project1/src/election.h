@@ -35,11 +35,12 @@ class Election{
         int RemoveCandidate(string name);
         string FindCandidateToRemove();
         int AddBallot(Ballot balllot);
+        int AddParty(string party_name);
         //Candidate CheckForMajority();
         int RedistributeBallots();
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
-        Candidate GetCandidate(int idx);
+        Candidate &GetCandidate(int idx);
 
 
     private:
