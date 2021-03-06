@@ -14,7 +14,7 @@ class Election{
     public:
         Election();
         int GetVotesForParty(string party_name);
-        int SetVotesForParty(string party_name, int num_votes);
+        int SetVotesForParties();
         int SetElectionType(string election_type);
         int SetNumberOfCandidates(int num);
         int IncrementVotesForParty(string party_name);
@@ -54,7 +54,9 @@ class Election{
         vector<string> parties;
         map<string, int> seatsPerPartyWholeNumber;
         map<string, int> seatsPerPartyRemainder;
+        map<string, int> finalPartySeats;
         map<string, int> numVotesForParty;
+        map<string, vector<int>> winningCandidates;
         map<string, vector<Candidate>> candidateRankings;
         map<string, vector<int>> candidateRoundCountVotes;
 
