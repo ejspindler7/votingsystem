@@ -26,16 +26,22 @@ TEST_F(ElectionTests, GetElectionType){
   EXPECT_EQ(electionOPL.GetElectionType(), expected_OPL) << "Expecting OPL"; 
   EXPECT_EQ(electionIR.GetElectionType(), expected_IR) << "Expecting IR"; 
 }
-
+/*
 //GetVotesForParty
 TEST_F(ElectionTests, GetVotesForParty){
-  EXPECT_EQ(electionOPL.GetVotesForParty(), 9) << "Expecting OPL: 9"; 
+  EXPECT_EQ(electionOPL.GetVotesForParty('D'), 5) << "Expecting OPL D votes: 5"; 
 }
 
 //SetVotesForParty
 TEST_F(ElectionTests, SetVotesForParties){
   electionOPL.SetVotesForParties();
-  EXPECT_EQ(electionOPL.GetVotesForParty(), 9) << "Expecting OPL: 9"; 
+  EXPECT_EQ(electionOPL.GetVotesForParty('D'), 5) << "Expecting OPL votes for D: 5"; 
+}
+
+//IncrementVotesForPArty
+TEST_F(ElectionTests, IncrementVotesForParty){
+  electionOPL.IncrementVotesForParty('D');
+  EXPECT_EQ(electionOPL.GetVotesForParty('D'),6) << "Expecting OPL votes D to imcrement to 6"; 
 }
 
 //SetElectionType
@@ -116,7 +122,7 @@ TEST_F(ElectionTests, IncreaseNumberOfBallots){
   EXPECT_EQ(electionOPL.GetNumberOfBallots(), 10) << "Expecting OPL"; 
 }
 
-//RunElection
+//RunElection?????
 TEST_F(ElectionTests, RunElection){
   electionOPL.RunElection();
 }
@@ -128,21 +134,28 @@ TEST_F(ElectionTests, ComputeIRElection){
   //writelinetoaudit/media?
   //findcandidatetoremove?
   //redistributeballots??
-  //removecandidate
-  //getparty
+  //removecandidate.
 
 }
 
 //ComputeOPLElection
 TEST_F(ElectionTests, ComputeOPLElection){
   electionOPL.ComputeOPLElection();
+  //setvotesforparties.
+  //writelinetoaudit
+  //writelinetomedia
+
 }
+
+
 
 //AddCandidate
 TEST_F(ElectionTests, AddCandidate){
   Candidate newCandidate = Candidate("Emma", "D");
   electionOPL.AddCandidate(newCandidate);
-  EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 8) << "Expecting OPL"; 
+  EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 8) << "Expecting OPL: 8"; 
+  electionIR.AddCandidate(newCandidate);
+  EXPECT_EQ(electionIR.GetNumberOfCandidates(), 7) << "Expecting IR: 7"; 
 
 }
 
@@ -150,6 +163,8 @@ TEST_F(ElectionTests, AddCandidate){
 TEST_F(ElectionTests, RemoveCandidate){
   electionOPL.RemoveCandidate("Emma");
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 7) << "Expecting OPL"; 
+   electionIR.RemoveCandidate("Emma");
+  EXPECT_EQ(electionIR.GetNumberOfCandidates(), 6) << "Expecting OPL"; 
 
 }
 
@@ -172,7 +187,7 @@ TEST_F(ElectionTests, AddParty){
 //CheckForMajority
 TEST_F(ElectionTests, CheckForMajority){
   int index = 0;
-  EXPECT_EQ(CheckForMajority(),index) << "Expecting IR: 0 index Rosen"; 
+  EXPECT_EQ(CheckForMajority(), index) << "Expecting IR: 0 index Rosen"; 
 
 }
 
@@ -183,7 +198,7 @@ TEST_F(ElectionTests, WriteLineToAudit){
 
 }
 //writelinetomedia
-TES_F(ElectionTests,WriteLineToMedia){
+TEST_F(ElectionTests,WriteLineToMedia){
 
 }
 
@@ -194,7 +209,8 @@ TEST_F(ElectionTests, UpdateBallotCurrDis){
 
 //RedistributeBallots
 TEST_F(ElectionTests, RedistributeBallots){
-  
+  electionOPL.RedistributeBallots(5);
+  EXPECT_EQ(electionOPL.GetNumberOfCandidates(),5);
 }
 
 //SetCandidateRoundCountVotesElement
@@ -204,13 +220,20 @@ TEST_F(ElectionTests, SetCandidateRoundCountVotesElement){
 
 //ResolveTie
 TEST_F(ElectionTests, ResolveTie){
-  
+  //how to test because literally returns randomnumber
 }
 
 //&GetCandidate
 TEST_F(ElectionTests, &GetCandidate){
-  
+  Candidate rosen = Candidate('Rosen','D');
+  Candidate pike = Candidate('Pike','D');
+  EXPECT_EQ(electionOPL.GetCandidate(0),pike) << "Expecting OPL: Pike";
+  EXPECT_EQ(electionIR.GetCandidate(0),rosen) << "Expecting IR: Rosen";
 }
+
+//closereports
+//getdateandtime
+*/
 
 
 
