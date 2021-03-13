@@ -6,6 +6,9 @@
 #include "candidate.h"
 #include "report.h"
 #include <vector>
+#include "ballot.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -32,25 +35,30 @@ class Election{
         int ComputeIRElection();
         int ComputeOPLElection();
         int AddCandidate(Candidate &candidate);
-        int RemoveCandidate(string name);
-        string FindCandidateToRemove();
-        int AddBallot(Ballot balllot);
+        int RemoveCandidate(int idx);
+        int FindCandidateToRemove();
         int AddParty(string party_name);
-        //Candidate CheckForMajority();
-        int RedistributeBallots();
+        int CheckForMajority();
+        int RedistributeBallots(int eliminated_candidate);
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
+        int UpdateBallotCurrDis(Ballot *ballot);
+        int WriteLineToAudit(string line);
+        int WriteLineToMedia(string line);
+        int CloseReports();
+        string GetDateAndTime();
         Candidate &GetCandidate(int idx);
 
 
     private:
+        ofstream audit;
+        ofstream media;
         string electionType;
         int numberOfCandidates;
         int numberOfBallots;
         vector<Candidate> candidates;
         int numberOfSeats;
         int quota;
-        //Report report;
         vector<string> parties;
         map<string, int> seatsPerPartyWholeNumber;
         map<string, int> seatsPerPartyRemainder;
@@ -58,7 +66,7 @@ class Election{
         map<string, int> numVotesForParty;
         map<string, vector<int>> winningCandidates;
         map<string, vector<Candidate>> candidateRankings;
-        map<string, vector<int>> candidateRoundCountVotes;
+        map<string, vector<int>> candidateRoundCountVotes; // Used for reporting
 
 };
 

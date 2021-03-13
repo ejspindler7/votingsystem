@@ -3,8 +3,9 @@
 
 
 #include <string>
+#include <iostream>
+#include <fstream>
 #include "election.h"
-#include "candidate.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Report{
         string GetMediaReportName();
         int SetMediaReportName(string name);
         int WriteLineToAuditReport(string line);
+        int WriteLineToMediaReport(string line);
         /*
         int WriteOPLAuditReport(Election& election);
         int WriteOPLMediaReport(Election& election);
@@ -31,6 +33,8 @@ class Report{
     private:
         string auditReportName;
         string mediaReportName;
+        ofstream auditReport;
+        ofstream mediaReport;
         vector<Candidate> originalCandidates;
 };
 

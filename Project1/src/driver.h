@@ -5,6 +5,7 @@
 #include "election.h"
 #include <vector>
 #include <fstream>
+#include "report.h"
 
 class Driver{
     public:
@@ -20,6 +21,7 @@ class Driver{
         std::string GetFileName(void);
         //std::vector<std::string> ParseLine(std::string line, std::vector<std::string> words);
         void ParseLine(std::string line, std::vector<std::string> &words, char delim);
+        void ParseLine2(std::string line, std::vector<std::string> &words, char delim);
         int GetOPLVote(std::string line);
         int ComputeElection();
 
