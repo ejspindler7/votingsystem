@@ -3,33 +3,49 @@
 #include <string>
 #include "election.h"
 #include "candidate.h"
+#include <iostream>
+#include <ctime>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
 
 Report::Report(){
-    auditReportName = "NONE";
-    mediaReportName = "NONE";
+    string time = GetDateAndTime();
+    auditReportName = "AuditReport_" + time;
+    mediaReportName = "MediaReport" + time;
+    auditReport.open(auditReportName);
+    mediaReport.open(mediaReportName);
 }
 
 string Report::GetAuditReportName(){
-    return "ASDF";
+    return auditReportName;
 }
 
 int Report::SetAuditReportName(string name){
+    auditReportName = name;
     return 0;
 }
 
 string Report::GetMediaReportName(){
-    return "asdf";
+    return mediaReportName;
 }
 
 int Report::SetMediaReportName(string name){
+    mediaReportName = name;
     return 0;
 }
 int Report::WriteLineToAuditReport(string line){
+    auditReport << line << endl;      
     return 0;
 }
+
+int Report::WriteLineToMediaReport(string line){
+    mediaReport<< line << endl;      
+    return 0;
+}
+
 /*
 int Report::WriteOPLAuditReport(Election& election){
     return 0;
@@ -52,10 +68,16 @@ int Report::WriteIRToScreen(Election& election){
 */
  
 int Report::CloseReports(){
+    auditReport.close();
+    mediaReport.close();
     return 0;
 }
 string Report::GetDateAndTime(){
-    return "asdf";
+    // Got idea from: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
+    time_t now = time(0); // Grabs current time.
+    char* dt = ctime(&now); // Converts to string form
+    string str(dt);         // Converts time to string object
+    return dt;
 }
 
 

@@ -103,6 +103,7 @@ int Driver::ReadInCandidates(){
 }
 
 int Driver::ReadInBallots(){
+    cout << " === Ballot Distribution ====" << endl;
     std::string line;
     std::vector<std::string> votes;
     int ballot_id = 1;
@@ -114,6 +115,9 @@ int Driver::ReadInBallots(){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
+                cout << "Ballit: " << ballot->GetId() << " goes towards " 
+                    << election.GetCandidate(candidate_idx).GetName() << " (" 
+                    << election.GetCandidate(candidate_idx).GetParty() << ")" << endl;
                 // OPL REPORT HERE
 
             }

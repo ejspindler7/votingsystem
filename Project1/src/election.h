@@ -51,7 +51,6 @@ class Election{
         vector<Candidate> candidates;
         int numberOfSeats;
         int quota;
-        //Report report;
         vector<string> parties;
         map<string, int> seatsPerPartyWholeNumber;
         map<string, int> seatsPerPartyRemainder;

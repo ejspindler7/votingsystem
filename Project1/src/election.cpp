@@ -1,23 +1,23 @@
 #include <string>
 #include <map>
 #include "candidate.h"
-#include "report.h"
 #include <vector>
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
 #include "ballot.h"
 #include <climits>
+#include "report.h"
 
 using namespace std;
 
 
 Election::Election(){
-    electionType            = "NONE";
-    numberOfCandidates      = -1;
-    numberOfBallots         = -1;
-    numberOfSeats           = -1;
-    quota                   = -1;
+    electionType       = "NONE";
+    numberOfCandidates = -1;
+    numberOfBallots    = -1;
+    numberOfSeats      = -1;
+    quota              = -1;
 }
 
 int Election::GetVotesForParty(string party_name){
@@ -377,18 +377,28 @@ int Election::ComputeOPLElection(){
 
     // Distribute seats to candidates
     cout << "=== Whole Number Seats ===" << endl;
-
+    for (int i = 0; i < parties.size(); i++){
+        cout << "Party: " << parties.at(i) << " recieved " <<
+            seatsPerPartyWholeNumber[parties.at(i)] << " seats." << endl;
+    }
 
 
     cout << "=== Remainder Seat Number ===" << endl;
+    for (int i = 0; i < parties.size(); i++){
+        cout << "Party: " << parties.at(i) << " recieved " <<
+            seatsPerPartyRemainder[parties.at(i)] << " seats." << endl;
+    }
+
+    cout << "=== Total Seat Number ===" << endl;
+    for (int i = 0; i < parties.size(); i++){
+        cout << "Party: " << parties.at(i) << " recieved " <<
+            finalPartySeats[parties.at(i)] << " total seats." << endl;
+    }
 
 
 
     vector<int> c_winners;
-    cout << endl <<c_winners.size() << endl;
-    cout << "====== Results ======" << endl;
     for (int party = 0; party < parties.size(); party++){
-        cout << "Party: " << parties.at(party) << endl;
         int seats_to_give = finalPartySeats[parties.at(party)];
         int winner_idx = 0;
         int winner_votes = -1;
@@ -412,9 +422,10 @@ int Election::ComputeOPLElection(){
 
         }
     }
-    cout << "Results" << endl;
+    cout << "====== WINNERS  ======" << endl;
     for (int winner = 0; winner < c_winners.size(); winner++){
-        cout << candidates.at(winner).GetName() << endl;
+        cout << winner << ". " <<candidates.at(winner).GetName() << 
+            "(" << candidates.at(winner).GetParty() << ")"  << endl;
     }
 
  return 0;
@@ -437,6 +448,7 @@ int Election::RunElection(){
     else{
         cout << "Didn't recognize election type." << endl;        
     }
+
     return 0;
 }
 
