@@ -14,3 +14,6 @@ votingsystem: $(OBJ)
 
 clean:
 	rm *.o
+	rm Media*
+	rm Audit*
+

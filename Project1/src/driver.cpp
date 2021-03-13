@@ -19,8 +19,11 @@ int Driver::ReadInElectionType(){
     if (fileHandle.is_open()){
         getline(fileHandle, tmp);
         election.SetElectionType(tmp);
-        
-        std::cout << election.GetElectionType() << std::endl;
+
+        string line = "Compute " + tmp + " election.";
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+        cout << line << endl;
     }
     else{
         std::cout << "File Handle is not open for Election Type." << std::endl;
@@ -37,7 +40,11 @@ int Driver::ReadInNumCandidates(){
         getline(fileHandle, input);
         num_candidates = std::stoi(input);    
         election.SetNumberOfCandidates(num_candidates);
-        std::cout << "Number of candidates: " << num_candidates << std::endl;
+        
+        string line = "Number of candidates: " + to_string(num_candidates);
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+        cout << line << endl;
     }
         
 
@@ -103,7 +110,9 @@ int Driver::ReadInCandidates(){
 }
 
 int Driver::ReadInBallots(){
-    cout << " === Ballot Distribution ====" << endl;
+    string ballDistribution = " === Ballot Distribution ====";
+    election.WriteLineToAudit(ballDistribution);
+    cout << ballDistribution << endl;
     std::string line;
     std::vector<std::string> votes;
     int ballot_id = 1;
@@ -115,9 +124,13 @@ int Driver::ReadInBallots(){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
-                cout << "Ballit: " << ballot->GetId() << " goes towards " 
-                    << election.GetCandidate(candidate_idx).GetName() << " (" 
-                    << election.GetCandidate(candidate_idx).GetParty() << ")" << endl;
+                string line = "Ballot: " + to_string(ballot->GetId()) + " goes towards " 
+                    + election.GetCandidate(candidate_idx).GetName() + " (" 
+                    + election.GetCandidate(candidate_idx).GetParty() + ")";
+
+                cout << line << endl;
+                election.WriteLineToAudit(line);
+
                 // OPL REPORT HERE
 
             }
@@ -179,7 +192,11 @@ int Driver::ReadInNumberOfBallots(){
         getline(fileHandle, input);
         num_ballots= std::stoi(input);    
         election.SetNumberOfBallots(num_ballots);
-        std::cout << "Number of ballots: " << num_ballots<< std::endl;
+        string line = "Number of ballots: " + to_string(num_ballots);
+        cout << line << endl;
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+
     }
     return 0;
 }
@@ -192,7 +209,10 @@ int Driver::ReadInNumberOfSeats(){
         getline(fileHandle, input);
         num_seats= std::stoi(input);    
         election.SetNumberOfSeats(num_seats);
-        std::cout << "Number of seats: " << num_seats<< std::endl;
+        string line = "Number of seats: " + to_string(num_seats);
+        cout << line << endl;
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
     }
 
     return 0;
@@ -202,6 +222,7 @@ int Driver::SetFileName(std::string name){
        fileName = name; 
        return 0;
 }
+
 
 std::string Driver::GetFileName(){
     return fileName;
@@ -267,6 +288,7 @@ int Driver::GetOPLVote(std::string line){
 
 int Driver::ComputeElection(){
     election.RunElection();
+    election.CloseReports();
     return 0;
 }
 

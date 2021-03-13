@@ -7,6 +7,8 @@
 #include "report.h"
 #include <vector>
 #include "ballot.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -41,10 +43,16 @@ class Election{
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
         int UpdateBallotCurrDis(Ballot *ballot);
+        int WriteLineToAudit(string line);
+        int WriteLineToMedia(string line);
+        int CloseReports();
+        string GetDateAndTime();
         Candidate &GetCandidate(int idx);
 
 
     private:
+        ofstream audit;
+        ofstream media;
         string electionType;
         int numberOfCandidates;
         int numberOfBallots;

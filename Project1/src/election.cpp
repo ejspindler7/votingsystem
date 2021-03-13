@@ -8,6 +8,7 @@
 #include "ballot.h"
 #include <climits>
 #include "report.h"
+#include <ctime>
 
 using namespace std;
 
@@ -18,6 +19,11 @@ Election::Election(){
     numberOfBallots    = -1;
     numberOfSeats      = -1;
     quota              = -1;
+    string time = GetDateAndTime();
+    string auditReportName = "AuditReport_" + time;
+    string mediaReportName = "MediaReport" + time;
+    audit.open(auditReportName);
+    media.open(mediaReportName);
 }
 
 int Election::GetVotesForParty(string party_name){
@@ -272,8 +278,6 @@ int Election::ResolveTie(int num_candidates){
 
 // Computes election results for IR election
 int Election::ComputeIRElection(){
-    cout << "Computing IR Election." << endl;
-
     // Ensures there are candidates
     if (candidates.size() <= 0){
         cout << "No candidates. " << endl; 
@@ -307,7 +311,7 @@ int Election::ComputeIRElection(){
 
 // Computes results for OPL election
 int Election::ComputeOPLElection(){
-    cout << "Computing OPL Election." << endl;
+
     // Sets up maps
     for (int i = 0; i < parties.size(); i++){
         seatsPerPartyWholeNumber[parties.at(i)] = 0;
@@ -376,23 +380,40 @@ int Election::ComputeOPLElection(){
 
 
     // Distribute seats to candidates
-    cout << "=== Whole Number Seats ===" << endl;
+    string wholeNumSeats = "=== Whole Number Seats ===";
+    cout << wholeNumSeats << endl;
+    WriteLineToAudit(wholeNumSeats);
+    WriteLineToMedia(wholeNumSeats);
     for (int i = 0; i < parties.size(); i++){
-        cout << "Party: " << parties.at(i) << " recieved " <<
-            seatsPerPartyWholeNumber[parties.at(i)] << " seats." << endl;
+        string line = "Party: " + parties.at(i) + " recieved " + 
+            to_string(seatsPerPartyWholeNumber[parties.at(i)]) + " seats.";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
     }
 
-
-    cout << "=== Remainder Seat Number ===" << endl;
+    string remainderNum= "=== Remainder Seat Number ===";
+    cout << remainderNum << endl;
+    WriteLineToAudit(remainderNum);
+    WriteLineToMedia(remainderNum);
     for (int i = 0; i < parties.size(); i++){
-        cout << "Party: " << parties.at(i) << " recieved " <<
-            seatsPerPartyRemainder[parties.at(i)] << " seats." << endl;
+        string line = "Party: " + parties.at(i) + " recieved " + 
+           to_string(seatsPerPartyRemainder[parties.at(i)]) + " seats.";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
     }
 
-    cout << "=== Total Seat Number ===" << endl;
+    string finalSeats = "=== Total Seat Number ===";
+    cout << finalSeats << endl;
+    WriteLineToAudit(finalSeats);
+    WriteLineToMedia(finalSeats);
     for (int i = 0; i < parties.size(); i++){
-        cout << "Party: " << parties.at(i) << " recieved " <<
-            finalPartySeats[parties.at(i)] << " total seats." << endl;
+        string line = "Party: " + parties.at(i) + " recieved " + 
+            to_string(finalPartySeats[parties.at(i)]) + " total seats.";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
     }
 
 
@@ -422,21 +443,33 @@ int Election::ComputeOPLElection(){
 
         }
     }
-    cout << "====== WINNERS  ======" << endl;
+
+    string winners = "====== WINNERS  ======";
+    cout << winners << endl;
+    WriteLineToAudit(winners);
+    WriteLineToMedia(winners);
     for (int winner = 0; winner < c_winners.size(); winner++){
-        cout << winner << ". " <<candidates.at(winner).GetName() << 
-            "(" << candidates.at(winner).GetParty() << ")"  << endl;
+        string line = to_string(winner + 1) + ". " + candidates.at(winner).GetName() + 
+            " (" + candidates.at(winner).GetParty() + ") ";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
     }
 
  return 0;
 }
 // Computes election results
 int Election::RunElection(){
+
     // Printing
     cout << "Candidates." << endl;
     for (int i = 0; i < candidates.size(); i++){
-        cout << candidates.at(i).GetName() << " (" << candidates.at(i).GetParty() << ")" << endl;;
+        string cands = candidates.at(i).GetName() + " (" + candidates.at(i).GetParty() + ") ";
+        cout << cands << endl;
+        WriteLineToAudit(cands);
+        WriteLineToMedia(cands);
     }
+
 
     if (electionType == "OPL"){
         quota = numberOfBallots / numberOfSeats;
@@ -455,6 +488,33 @@ int Election::RunElection(){
 Candidate& Election::GetCandidate(int idx){
     return candidates.at(idx);
 }
+
+string Election::GetDateAndTime(){
+    // Got idea from: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
+    time_t now = time(0); // Grabs current time.
+    char* dt = ctime(&now); // Converts to string form
+    string str(dt);         // Converts time to string object
+    return dt;
+}
+
+int Election::WriteLineToAudit(string line){
+    audit<<line + "\n" ;
+    return 0;
+}
+
+
+int Election::WriteLineToMedia(string line){
+    media<<line + "\n" ;
+    return 0;
+}
+
+int Election::CloseReports(){
+    audit.close();
+    media.close();
+    return 0;
+}
+
+
 
 
 

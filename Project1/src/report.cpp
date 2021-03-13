@@ -1,12 +1,12 @@
 
 
 #include <string>
-#include "election.h"
-#include "candidate.h"
 #include <iostream>
 #include <ctime>
 #include <iostream>
 #include <fstream>
+#include "report.h"
+#include "election.h"
 
 using namespace std;
 

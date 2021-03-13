@@ -3,10 +3,9 @@
 
 
 #include <string>
-#include "election.h"
-#include "candidate.h"
 #include <iostream>
 #include <fstream>
+#include "election.h"
 
 using namespace std;
 
