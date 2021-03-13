@@ -112,7 +112,6 @@ int Driver::ReadInCandidates(){
 int Driver::ReadInBallots(){
     string ballDistribution = " === Ballot Distribution ====";
     election.WriteLineToAudit(ballDistribution);
-    cout << ballDistribution << endl;
     std::string line;
     std::vector<std::string> votes;
     int ballot_id = 1;
@@ -124,12 +123,10 @@ int Driver::ReadInBallots(){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
-                string line = "Ballot: " + to_string(ballot->GetId()) + " goes towards " 
+                string data = "Ballot: " + to_string(ballot->GetId()) + " goes towards " 
                     + election.GetCandidate(candidate_idx).GetName() + " (" 
                     + election.GetCandidate(candidate_idx).GetParty() + ")";
-
-                cout << line << endl;
-                election.WriteLineToAudit(line);
+                election.WriteLineToAudit(data);
 
                 // OPL REPORT HERE
 
@@ -140,8 +137,6 @@ int Driver::ReadInBallots(){
                 bool setFirstCandidate = false;
                 int firstCandidate;
                 ParseLine2(line, votes, ',');
-
-                cout << "Reading in ballots." << endl;
 
                 for (int pos = 0; pos < votes.size(); pos++){
                     if (votes.at(pos) != ""){
@@ -158,10 +153,11 @@ int Driver::ReadInBallots(){
 
                 for (int i = 0; i < mapped.size(); i++){
                     if (mapped.at(i) == 0){
-                        // Add ballot to first choice candidate
-                        cout << "Ballot Id: " << ballot->GetId()  << " goes to " << 
-                            election.GetCandidate(vote_map[0]).GetName() << endl; 
+                        // Add ballot to first choice candidate 
                         (election.GetCandidate(vote_map[0])).AddBallot(ballot);
+                        string data = "Ballot Id: " + to_string(ballot->GetId()) + " goes to " + 
+                            election.GetCandidate(vote_map[0]).GetName();
+                        election.WriteLineToAudit(data);
                     }
                     // Update candidate list
                     ballot->AddCandidate(election.GetCandidate(vote_map[mapped.at(i)]).GetName());

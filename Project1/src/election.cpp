@@ -185,6 +185,12 @@ int Election::CheckForMajority(){
     }
 
     for (int i = 0; i < candidates.size(); i++){
+        string line = "Candidate " + candidates.at(i).GetName() + " now has " + 
+            to_string(candidates.at(i).GetBallotListSize()) + " ballots.";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
+
        if (candidates.at(i).GetBallotListSize() > majority){
             majority = candidates.at(i).GetBallotListSize();
             winning_idx = i;
@@ -233,7 +239,9 @@ int Election::UpdateBallotCurrDis(Ballot* ballot){
 
 
 int Election::RedistributeBallots(int eliminated_candidate){
-    cout << "--- Redistributing Ballots " << endl;
+    string line = "-- Redistributing Ballots ---";
+    WriteLineToAudit(line);
+
     Ballot *ballot = candidates.at(eliminated_candidate).RemoveBallot();
     while (ballot!= NULL){
         // Continue redistributing ballots
@@ -246,7 +254,9 @@ int Election::RedistributeBallots(int eliminated_candidate){
         // Add ballot to new candidate
         for (int i = 0; i < candidates.size(); i++){
             if (candidates.at(i).GetName() == ballot->GetCandidateName(ballot->GetCurrDis())){
-                cout << "Ballot Id: " << ballot->GetId() << " now goes to " << candidates.at(i).GetName() << endl;
+                string line = "Ballot Id; " + to_string(ballot->GetId()) + " now goes to " + candidates.at(i).GetName();
+                WriteLineToAudit(line);
+
                 candidates.at(i).AddBallot(ballot);
             }
         }
@@ -290,7 +300,10 @@ int Election::ComputeIRElection(){
     int winning_idx;
 
     while (!found_winner){
-        cout << "=========== Round " << round << " =========== " << endl;;
+        string line = "=========== Round " + to_string(round) + " =========== ";
+        cout << line << endl;
+        WriteLineToAudit(line);
+        WriteLineToMedia(line);
         winning_idx = CheckForMajority();
         if (winning_idx != -1){
             // winning Candidate idx is winning_idx
@@ -303,9 +316,15 @@ int Election::ComputeIRElection(){
         }
        round++;
     }
-    cout << "Winning Candidate: " << candidates.at(winning_idx).GetName() << 
-                             " (" << candidates.at(winning_idx).GetParty() <<
-                               ")" << endl;
+
+    string equal = "============================================";
+    string winningCandidate = "Winning Candidate: " + candidates.at(winning_idx).GetName() + " (" 
+        + candidates.at(winning_idx).GetParty() + ").";
+    cout << equal << endl;
+    cout << winningCandidate << endl;
+    WriteLineToMedia(equal);
+    WriteLineToMedia(winningCandidate);
+    WriteLineToAudit(winningCandidate);
     return 0;
 }
 
@@ -462,7 +481,12 @@ int Election::ComputeOPLElection(){
 int Election::RunElection(){
 
     // Printing
-    cout << "Candidates." << endl;
+    string line = "** Candidatse **";
+    cout << line << endl;
+    WriteLineToAudit(line);
+    WriteLineToMedia(line);
+
+
     for (int i = 0; i < candidates.size(); i++){
         string cands = candidates.at(i).GetName() + " (" + candidates.at(i).GetParty() + ") ";
         cout << cands << endl;
