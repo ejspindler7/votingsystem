@@ -203,50 +203,51 @@ int Election::CheckForMajority(){
     }
 }
 
+int Election::UpdateBallotCurrDis(Ballot* ballot){
+  int curDis = ballot->GetCurrDis();
+  int newDis = curDis + 1;
+
+  if (newDis >= ballot->GetCandidatesSize()){
+    return -1;  // Ran out of candidates
+  }
+
+  // Ensure the new name is a candidate stil alive in the election
+  while (newDis < ballot->GetCandidatesSize()){
+      for (int i = 0; i < candidates.size(); i++){
+        if (candidates.at(i).GetName() == ballot->GetCandidateName(newDis)){
+            ballot->SetCurrDis(newDis);
+            return 0;
+        }
+      }
+      newDis++;  // Try next distribution
+  }
+
+  return -1; // Did not find new candidate anywhere
+}
+
 
 int Election::RedistributeBallots(int eliminated_candidate){
-    cout << "===============  Redistributing Ballots ============= " << endl;
+    cout << "--- Redistributing Ballots " << endl;
     Ballot *ballot = candidates.at(eliminated_candidate).RemoveBallot();
-    bool updatedBallotDistribution;
-    bool shouldUpdateBallot;
-    string name;
-    // Redistribute the ballots
-    while (ballot != NULL){
-        updatedBallotDistribution =  false;
-        shouldUpdateBallot = false;
-        while(!updatedBallotDistribution){
-            // Update ballot distribution
-            ballot->SetCurrDis(ballot->GetCurrDis() + 1);
-            if (ballot->GetCurrDis() > ballot->GetCandidatesSize()){
-                // Ballot is out of candidates
-                shouldUpdateBallot = false;
-                updatedBallotDistribution = true;
-                break;
-            }
-           
-            // Make sure candidate has NOT been eliminated
-            name = ballot->GetCandidateName(ballot->GetCurrDis());
-            for (int i = 0; i < candidates.size(); i++){
-                if ( name == candidates.at(i).GetName()){
-                    shouldUpdateBallot = true;
-                    updatedBallotDistribution = true;
-                }
-            }
+    while (ballot!= NULL){
+        // Continue redistributing ballots
+        if (UpdateBallotCurrDis(ballot) != 0){
+            // Ballot doesn't have anybody else
+            ballot = candidates.at(eliminated_candidate).RemoveBallot();
+            continue; // Ignore ballot
         }
         
-        // Redistribute the ballot
-        if (shouldUpdateBallot){
-            for (int i = 0; i < candidates.size(); i++){
-                if (name == candidates.at(i).GetName()){
-                    candidates.at(i).AddBallot(ballot);
-                    break;
-                }
+        // Add ballot to new candidate
+        for (int i = 0; i < candidates.size(); i++){
+            if (candidates.at(i).GetName() == ballot->GetCandidateName(ballot->GetCurrDis())){
+                cout << "Ballot Id: " << ballot->GetId() << " now goes to " << candidates.at(i).GetName() << endl;
+                candidates.at(i).AddBallot(ballot);
             }
         }
+         
 
         ballot = candidates.at(eliminated_candidate).RemoveBallot();
     }
-
     return 0;
 }
     
@@ -271,7 +272,7 @@ int Election::ResolveTie(int num_candidates){
 
 // Computes election results for IR election
 int Election::ComputeIRElection(){
-    cout << "Computing IRElection" << endl;
+    cout << "Computing IR Election." << endl;
 
     // Ensures there are candidates
     if (candidates.size() <= 0){
@@ -279,12 +280,13 @@ int Election::ComputeIRElection(){
         exit(1);
     }
 
-    int round = 0;
+    int round = 1;
     int candidate_to_remove_idx;
     bool found_winner = false;
     int winning_idx;
 
     while (!found_winner){
+        cout << "=========== Round " << round << " =========== " << endl;;
         winning_idx = CheckForMajority();
         if (winning_idx != -1){
             // winning Candidate idx is winning_idx
@@ -297,13 +299,15 @@ int Election::ComputeIRElection(){
         }
        round++;
     }
-    cout << "Winning Candidate: " << candidates.at(winning_idx).GetName() << endl;
-    cout << candidates.size() << endl;
+    cout << "Winning Candidate: " << candidates.at(winning_idx).GetName() << 
+                             " (" << candidates.at(winning_idx).GetParty() <<
+                               ")" << endl;
     return 0;
 }
 
 // Computes results for OPL election
 int Election::ComputeOPLElection(){
+    cout << "Computing OPL Election." << endl;
     // Sets up maps
     for (int i = 0; i < parties.size(); i++){
         seatsPerPartyWholeNumber[parties.at(i)] = 0;
@@ -316,33 +320,18 @@ int Election::ComputeOPLElection(){
     map<string, int> remaningVotes;
     int remaningSeats = numberOfSeats;
 
-    //PRINTS OUT STUFF
-    for (int i = 0; i < parties.size(); i++){
-        cout << "Party: " << parties.at(i) << " had: " << numVotesForParty[parties.at(i)] << endl;
-    }
-   
     // Assign seats to parties based on whole numbers
-    cout << "Whole numbers =================" << endl;
     for (int i = 0; i < parties.size(); i++){
         int total_party_votes = numVotesForParty[parties.at(i)];
         int whole_num_seats = total_party_votes / quota;
-        cout << parties.at(i) << ": " << whole_num_seats << endl;
         remaningSeats = remaningSeats - whole_num_seats;
         remaningVotes[parties.at(i)] = total_party_votes % quota;
         seatsPerPartyWholeNumber[parties.at(i)] = whole_num_seats;
 
     }
 
-    // DEBUGGIN
-    cout << "Remaning votes." << endl;
-    for (int i = 0; i < parties.size(); i++){
-        cout << "Party: " << remaningVotes[parties.at(i)] << endl;
-    }
-
-
     // Assigns seats to parties based on remainders
     vector<int> tied_parties;
-    cout << "Remaning seats: " << remaningSeats << endl;
     map<string, int> remaningVotes_local(remaningVotes);
     for(int i = 0; i < remaningSeats; i++){
         int party_index = 0;
@@ -387,6 +376,14 @@ int Election::ComputeOPLElection(){
 
 
     // Distribute seats to candidates
+    cout << "=== Whole Number Seats ===" << endl;
+
+
+
+    cout << "=== Remainder Seat Number ===" << endl;
+
+
+
     vector<int> c_winners;
     cout << endl <<c_winners.size() << endl;
     cout << "====== Results ======" << endl;
@@ -424,15 +421,17 @@ int Election::ComputeOPLElection(){
 }
 // Computes election results
 int Election::RunElection(){
+    // Printing
+    cout << "Candidates." << endl;
+    for (int i = 0; i < candidates.size(); i++){
+        cout << candidates.at(i).GetName() << " (" << candidates.at(i).GetParty() << ")" << endl;;
+    }
+
     if (electionType == "OPL"){
         quota = numberOfBallots / numberOfSeats;
         ComputeOPLElection();
     }
     else if (electionType == "IR"){
-        for (int i = 0; i < candidates.size(); i++){
-             
-            cout << candidates.at(i).GetName() << ": asdfasdfasdf" << candidates.at(i).GetBallotListSize() << endl;
-        }
         ComputeIRElection(); 
     }
     else{

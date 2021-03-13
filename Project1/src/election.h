@@ -6,6 +6,7 @@
 #include "candidate.h"
 #include "report.h"
 #include <vector>
+#include "ballot.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ class Election{
         int RedistributeBallots(int eliminated_candidate);
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
+        int UpdateBallotCurrDis(Ballot *ballot);
         Candidate &GetCandidate(int idx);
 
 
