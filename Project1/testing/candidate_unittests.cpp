@@ -14,7 +14,7 @@ public:
   }
 protected:
 	Candidate newCandidate;
-}
+};
 
 TEST_F(CandidateTest, GetNameTest){
 	EXPECT_EQ(newCandidate.GetName(), "Bui");
