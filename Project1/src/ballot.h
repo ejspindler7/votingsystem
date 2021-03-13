@@ -17,6 +17,8 @@ class Ballot{
         int GetCurrDis();
         int GetId();
         void Print();
+        int GetCandidatesSize();
+        string GetCandidateName(int idx);
     private:
         int currentDistribution;
         int id;

@@ -128,6 +128,11 @@ int Driver::ReadInBallots(){
             }
             else if (election.GetElectionType() == "IR"){
                 ParseLine(line, votes, ',');
+                std::cout << "=======================" << std::endl;
+                for (int i = 0; i < votes.size(); i++){
+                    std::cout << votes.at(i) << std::endl;
+                }
+                std::cout << "=======================" << std::endl;
                 int first_candidate = -1;
                 for(int i = 0; i < votes.size(); i++){
                     int candidate_idx = (std::stoi(votes.at(i))) - 1;

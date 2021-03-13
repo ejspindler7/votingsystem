@@ -6,6 +6,8 @@
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
+#include "ballot.h"
+#include <climits>
 
 using namespace std;
 
@@ -113,20 +115,42 @@ int Election::AddCandidate(Candidate &candidate){
     return 0; 
 }
 
-int Election::RemoveCandidate(string name){
-    // TODO
+int Election::RemoveCandidate(int idx){
+    candidates.erase(candidates.begin() + idx);
     return 0;
 }
 
-string Election::FindCandidateToRemove(){
-    // TODO
-    return "AASDF";
+int Election::FindCandidateToRemove(){
+    vector<int> candidates_tied;  // Using vector incase of a tie
+    int current_min = INT_MAX;
+    int candidate_to_remove_idx;
+
+    for (int i = 0; i < candidates.size(); i++){
+        if (candidates.at(i).GetBallotListSize() < current_min){
+            current_min = candidates.at(i).GetBallotListSize();
+            candidate_to_remove_idx = i; 
+            candidates_tied.clear();
+        }
+        else if (candidates.at(i).GetBallotListSize() == current_min){
+            candidates_tied.push_back(candidate_to_remove_idx); 
+            candidates_tied.push_back(i); 
+        }
+    }
+
+    // Check for tied candidates
+    if (candidates_tied.size() > 0){
+        // Resolve tie here
+        // Removes duplicates from tied candidates
+        sort( candidates_tied.begin(), candidates_tied.end() );
+        candidates_tied.erase( unique( candidates_tied.begin(), candidates_tied.end() ), candidates_tied.end() );
+        // Give seat to party 
+        candidate_to_remove_idx = candidates_tied.at(ResolveTie(candidates_tied.size()));
+    }
+
+    return candidate_to_remove_idx;
+
 }
     
-int Election::AddBallot(Ballot balllot){
-    // TODO
-    return 0;
-}
 
 int Election::AddParty(string party_name){
     bool party_already_exists = false;
@@ -143,15 +167,86 @@ int Election::AddParty(string party_name){
     }
     return 0;
 }
-/*
-Candidate Election::CheckForMajority(){
-    // TODO
-    return NULL;
-}
-*/
 
-int Election::RedistributeBallots(){
-    // TODO
+int Election::CheckForMajority(){
+    int majority = -1;
+    int winning_idx = -1;
+    int num_to_beat = numberOfBallots/2 ;
+    
+    // Incase it is the last candidate
+    if (candidates.size() == 1){
+        return 0;
+    }
+
+    for (int i = 0; i < candidates.size(); i++){
+       if (candidates.at(i).GetBallotListSize() > majority){
+            majority = candidates.at(i).GetBallotListSize();
+            winning_idx = i;
+       }
+       else if (candidates.at(i).GetBallotListSize() == majority){
+            winning_idx = -1; // Have a tie for majority
+       }
+    }
+
+    // If there is a tie for majority
+    if (winning_idx == -1){
+        return winning_idx; 
+    }
+    else{ // No tie, but ensuring candidate is > numOfBallots/2
+        if (majority > num_to_beat){
+            return winning_idx;
+        }
+        else{
+            // Candidate did not have
+            return -1;
+        }
+    }
+}
+
+
+int Election::RedistributeBallots(int eliminated_candidate){
+    cout << "===============  Redistributing Ballots ============= " << endl;
+    Ballot *ballot = candidates.at(eliminated_candidate).RemoveBallot();
+    bool updatedBallotDistribution;
+    bool shouldUpdateBallot;
+    string name;
+    // Redistribute the ballots
+    while (ballot != NULL){
+        updatedBallotDistribution =  false;
+        shouldUpdateBallot = false;
+        while(!updatedBallotDistribution){
+            // Update ballot distribution
+            ballot->SetCurrDis(ballot->GetCurrDis() + 1);
+            if (ballot->GetCurrDis() > ballot->GetCandidatesSize()){
+                // Ballot is out of candidates
+                shouldUpdateBallot = false;
+                updatedBallotDistribution = true;
+                break;
+            }
+           
+            // Make sure candidate has NOT been eliminated
+            name = ballot->GetCandidateName(ballot->GetCurrDis());
+            for (int i = 0; i < candidates.size(); i++){
+                if ( name == candidates.at(i).GetName()){
+                    shouldUpdateBallot = true;
+                    updatedBallotDistribution = true;
+                }
+            }
+        }
+        
+        // Redistribute the ballot
+        if (shouldUpdateBallot){
+            for (int i = 0; i < candidates.size(); i++){
+                if (name == candidates.at(i).GetName()){
+                    candidates.at(i).AddBallot(ballot);
+                    break;
+                }
+            }
+        }
+
+        ballot = candidates.at(eliminated_candidate).RemoveBallot();
+    }
+
     return 0;
 }
     
@@ -163,7 +258,7 @@ int Election::SetCandidateRoundCountVotesElement(string name, int cout, int vote
 
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){
-    // Retrun random integer between [0:num_candidates]
+    // Return random integer between [0:num_candidates]
     int rand_number;
     for (int i = 0; i < 73 * num_candidates; i++){
         rand_number = rand() % num_candidates;
@@ -171,9 +266,39 @@ int Election::ResolveTie(int num_candidates){
     return rand_number;
 }
 
+
+
+
 // Computes election results for IR election
 int Election::ComputeIRElection(){
-    // TODO
+    cout << "Computing IRElection" << endl;
+
+    // Ensures there are candidates
+    if (candidates.size() <= 0){
+        cout << "No candidates. " << endl; 
+        exit(1);
+    }
+
+    int round = 0;
+    int candidate_to_remove_idx;
+    bool found_winner = false;
+    int winning_idx;
+
+    while (!found_winner){
+        winning_idx = CheckForMajority();
+        if (winning_idx != -1){
+            // winning Candidate idx is winning_idx
+            found_winner = true;
+        }
+        else{
+            candidate_to_remove_idx = FindCandidateToRemove();
+            RedistributeBallots(candidate_to_remove_idx);
+            RemoveCandidate(candidate_to_remove_idx);
+        }
+       round++;
+    }
+    cout << "Winning Candidate: " << candidates.at(winning_idx).GetName() << endl;
+    cout << candidates.size() << endl;
     return 0;
 }
 
@@ -239,10 +364,10 @@ int Election::ComputeOPLElection(){
         // Check if parties tied
         if(tied_parties.size() != 0){
             sort(tied_parties.begin(), tied_parties.end());
-            tied_parties.erase(unique(tied_parties.begin(), tied_parties.end()));
+            tied_parties.erase(unique(tied_parties.begin(), tied_parties.end()), tied_parties.end());
 
             // Give seat to party 
-            party_index = ResolveTie(tied_parties.size());
+            party_index = tied_parties.at(ResolveTie(tied_parties.size()));
         }
 
 
@@ -304,7 +429,10 @@ int Election::RunElection(){
         ComputeOPLElection();
     }
     else if (electionType == "IR"){
-        cout << "IR-> " << quota << endl;
+        for (int i = 0; i < candidates.size(); i++){
+             
+            cout << candidates.at(i).GetName() << ": asdfasdfasdf" << candidates.at(i).GetBallotListSize() << endl;
+        }
         ComputeIRElection(); 
     }
     else{

@@ -32,12 +32,11 @@ class Election{
         int ComputeIRElection();
         int ComputeOPLElection();
         int AddCandidate(Candidate &candidate);
-        int RemoveCandidate(string name);
-        string FindCandidateToRemove();
-        int AddBallot(Ballot balllot);
+        int RemoveCandidate(int idx);
+        int FindCandidateToRemove();
         int AddParty(string party_name);
-        //Candidate CheckForMajority();
-        int RedistributeBallots();
+        int CheckForMajority();
+        int RedistributeBallots(int eliminated_candidate);
         int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         int ResolveTie(int num_candidates);
         Candidate &GetCandidate(int idx);
@@ -58,7 +57,7 @@ class Election{
         map<string, int> numVotesForParty;
         map<string, vector<int>> winningCandidates;
         map<string, vector<Candidate>> candidateRankings;
-        map<string, vector<int>> candidateRoundCountVotes;
+        map<string, vector<int>> candidateRoundCountVotes; // Used for reporting
 
 };
 
