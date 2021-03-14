@@ -1,0 +1,175 @@
+\hypertarget{classCandidate}{}\doxysection{Candidate Class Reference}
+\label{classCandidate}\index{Candidate@{Candidate}}
+
+
+The main class for tracking candidate information.  
+
+
+
+
+{\ttfamily \#include $<$candidate.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCandidate_a753653df7d0342e5ac677f838ac7fd3c}{Candidate}} (string name, string party)
+\begin{DoxyCompactList}\small\item\em The constructor for the \mbox{\hyperlink{classCandidate}{Candidate}} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCandidate_a0a37672f0989c4a2b9be292020e5a686}{Set\+Party}} (string party)
+\begin{DoxyCompactList}\small\item\em Sets the name of the party for the candidate. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCandidate_a3cd8e64eba8ac472056d23f964db0387}{Get\+Party}} ()
+\begin{DoxyCompactList}\small\item\em Returns the string indicating the name of the candidate\textquotesingle{}s party. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classCandidate_acb11f5c7b212fd59283e4c56009e586a}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the string indicating the name of the candidate. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCandidate_a7074b2d4cf528ced606e0c0e8b604aaf}{Set\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the candidate. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCandidate_aae09d34f1917a96938b8794a5197d711}{Add\+Ballot}} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
+\begin{DoxyCompactList}\small\item\em Adds another ballot to the list of ballots voting for the candidate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ \mbox{\hyperlink{classCandidate_abedd13cfb5f65f2f6b594bc4d830cfa4}{Remove\+Ballot}} ()
+\begin{DoxyCompactList}\small\item\em Removess the most recently added ballot voting for the candidate from the list and returns it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCandidate_aaa2022c12fef5618dcb8903ee6c85347}{Get\+Ballot\+List\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the size of the list of ballots voting for the candidate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main class for tracking candidate information. 
+
+Uses its various functions to set and get all of the relevant information about the candidate. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCandidate_a753653df7d0342e5ac677f838ac7fd3c}\label{classCandidate_a753653df7d0342e5ac677f838ac7fd3c}} 
+\index{Candidate@{Candidate}!Candidate@{Candidate}}
+\index{Candidate@{Candidate}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{Candidate()}{Candidate()}}
+{\footnotesize\ttfamily Candidate\+::\+Candidate (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{party }\end{DoxyParamCaption})}
+
+
+
+The constructor for the \mbox{\hyperlink{classCandidate}{Candidate}} class. 
+
+This function will be used to create a new candidate with the given name and party.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & string indicating the name of the candidate being created.\\
+\hline
+\mbox{\texttt{ in}}  & {\em party} & sting indicating he name of the party of the candidate being created.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classCandidate}{Candidate}} object with name and party. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCandidate_aae09d34f1917a96938b8794a5197d711}\label{classCandidate_aae09d34f1917a96938b8794a5197d711}} 
+\index{Candidate@{Candidate}!AddBallot@{AddBallot}}
+\index{AddBallot@{AddBallot}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{AddBallot()}{AddBallot()}}
+{\footnotesize\ttfamily int Candidate\+::\+Add\+Ballot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBallot}{Ballot}} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Adds another ballot to the list of ballots voting for the candidate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dis} & The pointer to a ballot which is voting for the candidate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or 1 for failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_aaa2022c12fef5618dcb8903ee6c85347}\label{classCandidate_aaa2022c12fef5618dcb8903ee6c85347}} 
+\index{Candidate@{Candidate}!GetBallotListSize@{GetBallotListSize}}
+\index{GetBallotListSize@{GetBallotListSize}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{GetBallotListSize()}{GetBallotListSize()}}
+{\footnotesize\ttfamily int Candidate\+::\+Get\+Ballot\+List\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the size of the list of ballots voting for the candidate. 
+
+\begin{DoxyReturn}{Returns}
+int number of ballots in the list of ballots voting for the candidate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_acb11f5c7b212fd59283e4c56009e586a}\label{classCandidate_acb11f5c7b212fd59283e4c56009e586a}} 
+\index{Candidate@{Candidate}!GetName@{GetName}}
+\index{GetName@{GetName}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily string Candidate\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the string indicating the name of the candidate. 
+
+\begin{DoxyReturn}{Returns}
+string indicating the candidate\textquotesingle{}s name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a3cd8e64eba8ac472056d23f964db0387}\label{classCandidate_a3cd8e64eba8ac472056d23f964db0387}} 
+\index{Candidate@{Candidate}!GetParty@{GetParty}}
+\index{GetParty@{GetParty}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{GetParty()}{GetParty()}}
+{\footnotesize\ttfamily string Candidate\+::\+Get\+Party (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the string indicating the name of the candidate\textquotesingle{}s party. 
+
+\begin{DoxyReturn}{Returns}
+string indicating the candidate\textquotesingle{}s party name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_abedd13cfb5f65f2f6b594bc4d830cfa4}\label{classCandidate_abedd13cfb5f65f2f6b594bc4d830cfa4}} 
+\index{Candidate@{Candidate}!RemoveBallot@{RemoveBallot}}
+\index{RemoveBallot@{RemoveBallot}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{RemoveBallot()}{RemoveBallot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBallot}{Ballot}} $\ast$ Candidate\+::\+Remove\+Ballot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removess the most recently added ballot voting for the candidate from the list and returns it. 
+
+\begin{DoxyReturn}{Returns}
+Ballot$\ast$ ballot popped from the candidate\textquotesingle{}s list of ballots. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a7074b2d4cf528ced606e0c0e8b604aaf}\label{classCandidate_a7074b2d4cf528ced606e0c0e8b604aaf}} 
+\index{Candidate@{Candidate}!SetName@{SetName}}
+\index{SetName@{SetName}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily int Candidate\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Sets the name of the candidate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dis} & The string indicating the candidate\textquotesingle{}s name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or 1 for failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a0a37672f0989c4a2b9be292020e5a686}\label{classCandidate_a0a37672f0989c4a2b9be292020e5a686}} 
+\index{Candidate@{Candidate}!SetParty@{SetParty}}
+\index{SetParty@{SetParty}!Candidate@{Candidate}}
+\doxysubsubsection{\texorpdfstring{SetParty()}{SetParty()}}
+{\footnotesize\ttfamily int Candidate\+::\+Set\+Party (\begin{DoxyParamCaption}\item[{string}]{party }\end{DoxyParamCaption})}
+
+
+
+Sets the name of the party for the candidate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dis} & The string indicating the candidate\textquotesingle{}s party name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or 1 for failure. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/\mbox{\hyperlink{candidate_8h}{candidate.\+h}}\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/candidate.\+cpp\end{DoxyCompactItemize}

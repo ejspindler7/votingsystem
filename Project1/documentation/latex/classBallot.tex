@@ -1,0 +1,137 @@
+\hypertarget{classBallot}{}\doxysection{Ballot Class Reference}
+\label{classBallot}\index{Ballot@{Ballot}}
+
+
+The main class for tracking ballot information.  
+
+
+
+
+{\ttfamily \#include $<$ballot.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBallot_a780cf8fabc8c40a820e149e8b6a897a0}{Ballot}} (int id)
+\begin{DoxyCompactList}\small\item\em The constructor for the \mbox{\hyperlink{classBallot}{Ballot}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBallot_a5142d571cdb37994d5017c8b82e2b889}{Set\+Curr\+Dis}} (int dis)
+\begin{DoxyCompactList}\small\item\em Sets the index into the list of candidates indicating which candidate the ballot is for. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBallot_a4d0480223a7a590937834ade9e3dfbc5}{Set\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets the id for the ballot to a new value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBallot_aea6a14d2ace1ded64d3fc864166a0221}{Add\+Candidate}} (string name)
+\begin{DoxyCompactList}\small\item\em Adds an additional candidate to the ballot. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBallot_a042a5ce140280a9b001928ec38943de4}{Get\+Curr\+Dis}} ()
+\begin{DoxyCompactList}\small\item\em Returns the index into the list of candidates indicating which candidate the ballot is voting for. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBallot_afbf1176ea0718dffe77e1d5ea0af75a0}{Get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Returns the id of the ballot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBallot_a40d6b387464d3b405e660555f0e90f08}\label{classBallot_a40d6b387464d3b405e660555f0e90f08}} 
+void \mbox{\hyperlink{classBallot_a40d6b387464d3b405e660555f0e90f08}{Print}} ()
+\begin{DoxyCompactList}\small\item\em Prints the ID, list of candidates, and index into list of candidates for the ballot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main class for tracking ballot information. 
+
+Uses its various functions to set and get all of the relevant information about the ballot. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBallot_a780cf8fabc8c40a820e149e8b6a897a0}\label{classBallot_a780cf8fabc8c40a820e149e8b6a897a0}} 
+\index{Ballot@{Ballot}!Ballot@{Ballot}}
+\index{Ballot@{Ballot}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{Ballot()}{Ballot()}}
+{\footnotesize\ttfamily Ballot\+::\+Ballot (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+The constructor for the \mbox{\hyperlink{classBallot}{Ballot}} class. 
+
+This function will be used to create a new ballot with the given ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & The ID of the ballot being created.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classBallot}{Ballot}} object with id. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBallot_aea6a14d2ace1ded64d3fc864166a0221}\label{classBallot_aea6a14d2ace1ded64d3fc864166a0221}} 
+\index{Ballot@{Ballot}!AddCandidate@{AddCandidate}}
+\index{AddCandidate@{AddCandidate}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{AddCandidate()}{AddCandidate()}}
+{\footnotesize\ttfamily void Ballot\+::\+Add\+Candidate (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Adds an additional candidate to the ballot. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The candidate\textquotesingle{}s name. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBallot_a042a5ce140280a9b001928ec38943de4}\label{classBallot_a042a5ce140280a9b001928ec38943de4}} 
+\index{Ballot@{Ballot}!GetCurrDis@{GetCurrDis}}
+\index{GetCurrDis@{GetCurrDis}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{GetCurrDis()}{GetCurrDis()}}
+{\footnotesize\ttfamily int Ballot\+::\+Get\+Curr\+Dis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the index into the list of candidates indicating which candidate the ballot is voting for. 
+
+\begin{DoxyReturn}{Returns}
+int indicating the candidate the ballot votes for. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallot_afbf1176ea0718dffe77e1d5ea0af75a0}\label{classBallot_afbf1176ea0718dffe77e1d5ea0af75a0}} 
+\index{Ballot@{Ballot}!GetId@{GetId}}
+\index{GetId@{GetId}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily int Ballot\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the id of the ballot. 
+
+\begin{DoxyReturn}{Returns}
+int indicating the ballot\textquotesingle{}s ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallot_a5142d571cdb37994d5017c8b82e2b889}\label{classBallot_a5142d571cdb37994d5017c8b82e2b889}} 
+\index{Ballot@{Ballot}!SetCurrDis@{SetCurrDis}}
+\index{SetCurrDis@{SetCurrDis}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{SetCurrDis()}{SetCurrDis()}}
+{\footnotesize\ttfamily void Ballot\+::\+Set\+Curr\+Dis (\begin{DoxyParamCaption}\item[{int}]{dis }\end{DoxyParamCaption})}
+
+
+
+Sets the index into the list of candidates indicating which candidate the ballot is for. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dis} & The index indicating the ballot\textquotesingle{}s candidate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBallot_a4d0480223a7a590937834ade9e3dfbc5}\label{classBallot_a4d0480223a7a590937834ade9e3dfbc5}} 
+\index{Ballot@{Ballot}!SetId@{SetId}}
+\index{SetId@{SetId}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{SetId()}{SetId()}}
+{\footnotesize\ttfamily void Ballot\+::\+Set\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Sets the id for the ballot to a new value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & The ballot\textquotesingle{}s new ID. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/\mbox{\hyperlink{ballot_8h}{ballot.\+h}}\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/ballot.\+cpp\end{DoxyCompactItemize}
