@@ -26,7 +26,11 @@ int \mbox{\hyperlink{classBallot_afbf1176ea0718dffe77e1d5ea0af75a0}{Get\+Id}} ()
 \begin{DoxyCompactList}\small\item\em Returns the id of the ballot. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classBallot_a40d6b387464d3b405e660555f0e90f08}\label{classBallot_a40d6b387464d3b405e660555f0e90f08}} 
 void \mbox{\hyperlink{classBallot_a40d6b387464d3b405e660555f0e90f08}{Print}} ()
-\begin{DoxyCompactList}\small\item\em Prints the ID, list of candidates, and index into list of candidates for the ballot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prints the ID, list of candidates, and index into list of candidates for the ballot. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBallot_a8253ced94b95805cb3cc76bb16948144}{Get\+Candidates\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of candidates in the election. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classBallot_a9fd9a3dc6964466e67f76aa2f99ac41d}{Get\+Candidate\+Name}} (int idx)
+\begin{DoxyCompactList}\small\item\em Returns the name of the candidate at the given index in the candidates array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -73,6 +77,37 @@ Adds an additional candidate to the ballot.
 \mbox{\texttt{ in}}  & {\em name} & The candidate\textquotesingle{}s name. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classBallot_a9fd9a3dc6964466e67f76aa2f99ac41d}\label{classBallot_a9fd9a3dc6964466e67f76aa2f99ac41d}} 
+\index{Ballot@{Ballot}!GetCandidateName@{GetCandidateName}}
+\index{GetCandidateName@{GetCandidateName}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{GetCandidateName()}{GetCandidateName()}}
+{\footnotesize\ttfamily std\+::string Ballot\+::\+Get\+Candidate\+Name (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the candidate at the given index in the candidates array. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em idx} & int indicating the location of the candidate in the candidates array\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string name of the candidate at the given index. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallot_a8253ced94b95805cb3cc76bb16948144}\label{classBallot_a8253ced94b95805cb3cc76bb16948144}} 
+\index{Ballot@{Ballot}!GetCandidatesSize@{GetCandidatesSize}}
+\index{GetCandidatesSize@{GetCandidatesSize}!Ballot@{Ballot}}
+\doxysubsubsection{\texorpdfstring{GetCandidatesSize()}{GetCandidatesSize()}}
+{\footnotesize\ttfamily int Ballot\+::\+Get\+Candidates\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of candidates in the election. 
+
+\begin{DoxyReturn}{Returns}
+int indicating the size of the candidates array. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classBallot_a042a5ce140280a9b001928ec38943de4}\label{classBallot_a042a5ce140280a9b001928ec38943de4}} 
 \index{Ballot@{Ballot}!GetCurrDis@{GetCurrDis}}
 \index{GetCurrDis@{GetCurrDis}!Ballot@{Ballot}}

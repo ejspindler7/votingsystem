@@ -16,8 +16,8 @@ The main class for tracking election information and running the election.
 \begin{DoxyCompactList}\small\item\em The constructor for the \mbox{\hyperlink{classElection}{Election}} class. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_ac85c43ed8c894fe32e5a72b6ace01e80}{Get\+Votes\+For\+Party}} (string party\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Gets the number of votes for the given party. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classElection_afd120301e84a905cb8de2eea9fcbbde9}{Set\+Votes\+For\+Party}} (string party\+\_\+name, int num\+\_\+votes)
-\begin{DoxyCompactList}\small\item\em Sets the number of votes for the given party to the given int. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_acf0fdf5f9d9e7a10b959fee49c630c01}{Set\+Votes\+For\+Parties}} ()
+\begin{DoxyCompactList}\small\item\em Sets the number of votes for each party in the num\+Votes\+For\+Party array based on the number of ballots for each candidate in the party. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_ac6febad8f336b9e11347c13b5af627c4}{Set\+Election\+Type}} (string election\+\_\+type)
 \begin{DoxyCompactList}\small\item\em Sets the type of the election to the given string. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a27d2cd3bb9516812fdf5016624c7f71f}{Set\+Number\+Of\+Candidates}} (int num)
@@ -52,12 +52,12 @@ int \mbox{\hyperlink{classElection_a148e04470e2376ec193ea8aff4dc4800}{Compute\+O
 \begin{DoxyCompactList}\small\item\em Main function for computing instant runoff election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a49184557b9fa575a40918e6b0a15010c}{Add\+Candidate}} (\mbox{\hyperlink{classCandidate}{Candidate}} \&candidate)
 \begin{DoxyCompactList}\small\item\em Adds the given candidate to the election. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classElection_a1595d150ee1a8f5eabe4642c9fad43e1}{Remove\+Candidate}} (string name)
-\begin{DoxyCompactList}\small\item\em Removes the candidate with the given name from the election. \end{DoxyCompactList}\item 
-string \mbox{\hyperlink{classElection_a174d495350e33b34c3637237b0181760}{Find\+Candidate\+To\+Remove}} ()
-\begin{DoxyCompactList}\small\item\em Determines the candidate with the lowest number of votes and removes them from the election. In case of ties, the loser is determined based on a coinflip. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classElection_ac30297c1ff1504a9024897dafb3f0a37}{Add\+Ballot}} (\mbox{\hyperlink{classBallot}{Ballot}} balllot)
-\begin{DoxyCompactList}\small\item\em Adds the given ballot to the election. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_ad4a606169e275988695bfa3f9e359511}{Remove\+Candidate}} (int idx)
+\begin{DoxyCompactList}\small\item\em Removes the candidate with the at the given index in the candidates array from the election. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_ae598ecd1a3de111f0f7519ed4ce8227b}{Find\+Candidate\+To\+Remove}} ()
+\begin{DoxyCompactList}\small\item\em Determines the candidate with the lowest number of votes to remove from the election. In case of ties, the loser is determined based on a coinflip. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_a35582feb03505a8350c79fa76e7e4bb8}{Add\+Party}} (string party\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Adds the given party to the election. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_abae2e31f8c8a9132786c8c907962588d}{Check\+For\+Majority}} ()
 \begin{DoxyCompactList}\small\item\em Determines if any candidate has the majority of votes, and if so, returns their ID. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a8429ca59d10e26049ac07de87038b391}{Redistribute\+Ballots}} (int eliminated\+\_\+candidate)
@@ -67,7 +67,18 @@ int {\bfseries Set\+Candidate\+Round\+Count\+Votes\+Element} (string name, int c
 \item 
 int \mbox{\hyperlink{classElection_ad4806088ae00a6eb9626adffc30cf528}{Resolve\+Tie}} (int num\+\_\+candidates)
 \begin{DoxyCompactList}\small\item\em Given a number of candidates, generates a random number to indicate a winner. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classCandidate}{Candidate}} \mbox{\hyperlink{classElection_a4ee094351abfaee08eea21db7489b988}{Get\+Candidate}} (int idx)
+\mbox{\Hypertarget{classElection_aa4893a90512f83064c931a28adf98484}\label{classElection_aa4893a90512f83064c931a28adf98484}} 
+int {\bfseries Update\+Ballot\+Curr\+Dis} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
+\item 
+int \mbox{\hyperlink{classElection_ae40545f79e4b49857a0520244f8961cd}{Write\+Line\+To\+Audit}} (string line)
+\begin{DoxyCompactList}\small\item\em Adds the given string to the end of the audit report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_ac02b860427e7792067e7deb85d0f503a}{Write\+Line\+To\+Media}} (string line)
+\begin{DoxyCompactList}\small\item\em Adds the given string to the end of the media report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_a1e0d5738f62bab13a26832eae4b11141}{Close\+Reports}} ()
+\begin{DoxyCompactList}\small\item\em Closes all of the report files. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classElection_a0e491c747a67610e6bbc65abcf0c4d02}{Get\+Date\+And\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current date and time, then converts them into a string and retur$>$ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCandidate}{Candidate}} \& \mbox{\hyperlink{classElection_ad77774d456e332008dcf2df35067c850}{Get\+Candidate}} (int idx)
 \begin{DoxyCompactList}\small\item\em Given an index, returns the candidate at that index in the candidates array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -95,24 +106,6 @@ This function will be used to create a new election with the variables initializ
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classElection_ac30297c1ff1504a9024897dafb3f0a37}\label{classElection_ac30297c1ff1504a9024897dafb3f0a37}} 
-\index{Election@{Election}!AddBallot@{AddBallot}}
-\index{AddBallot@{AddBallot}!Election@{Election}}
-\doxysubsubsection{\texorpdfstring{AddBallot()}{AddBallot()}}
-{\footnotesize\ttfamily int Election\+::\+Add\+Ballot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBallot}{Ballot}}}]{balllot }\end{DoxyParamCaption})}
-
-
-
-Adds the given ballot to the election. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em ballot} & \mbox{\hyperlink{classBallot}{Ballot}} to be added to the election.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-int indicating 0 for success or 1 for failure 
-\end{DoxyReturn}
 \mbox{\Hypertarget{classElection_a49184557b9fa575a40918e6b0a15010c}\label{classElection_a49184557b9fa575a40918e6b0a15010c}} 
 \index{Election@{Election}!AddCandidate@{AddCandidate}}
 \index{AddCandidate@{AddCandidate}!Election@{Election}}
@@ -131,6 +124,24 @@ Adds the given candidate to the election.
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success or 1 for failure 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classElection_a35582feb03505a8350c79fa76e7e4bb8}\label{classElection_a35582feb03505a8350c79fa76e7e4bb8}} 
+\index{Election@{Election}!AddParty@{AddParty}}
+\index{AddParty@{AddParty}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{AddParty()}{AddParty()}}
+{\footnotesize\ttfamily int Election\+::\+Add\+Party (\begin{DoxyParamCaption}\item[{string}]{party\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Adds the given party to the election. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em party\+\_\+name} & string indicating the name of the party to be added to the election.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or 1 for failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classElection_abae2e31f8c8a9132786c8c907962588d}\label{classElection_abae2e31f8c8a9132786c8c907962588d}} 
 \index{Election@{Election}!CheckForMajority@{CheckForMajority}}
 \index{CheckForMajority@{CheckForMajority}!Election@{Election}}
@@ -143,6 +154,19 @@ Determines if any candidate has the majority of votes, and if so, returns their 
 
 \begin{DoxyReturn}{Returns}
 int indicating the id of the candidate with the most votes, or -\/1 if none such candidate exists 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classElection_a1e0d5738f62bab13a26832eae4b11141}\label{classElection_a1e0d5738f62bab13a26832eae4b11141}} 
+\index{Election@{Election}!CloseReports@{CloseReports}}
+\index{CloseReports@{CloseReports}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{CloseReports()}{CloseReports()}}
+{\footnotesize\ttfamily int Election\+::\+Close\+Reports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes all of the report files. 
+
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classElection_a801b2068799d520e531da0dbfe7591a1}\label{classElection_a801b2068799d520e531da0dbfe7591a1}} 
 \index{Election@{Election}!ComputeIRElection@{ComputeIRElection}}
@@ -170,24 +194,24 @@ Main function for computing instant runoff election results Updates the audit an
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success or 1 for failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classElection_a174d495350e33b34c3637237b0181760}\label{classElection_a174d495350e33b34c3637237b0181760}} 
+\mbox{\Hypertarget{classElection_ae598ecd1a3de111f0f7519ed4ce8227b}\label{classElection_ae598ecd1a3de111f0f7519ed4ce8227b}} 
 \index{Election@{Election}!FindCandidateToRemove@{FindCandidateToRemove}}
 \index{FindCandidateToRemove@{FindCandidateToRemove}!Election@{Election}}
 \doxysubsubsection{\texorpdfstring{FindCandidateToRemove()}{FindCandidateToRemove()}}
-{\footnotesize\ttfamily string Election\+::\+Find\+Candidate\+To\+Remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Election\+::\+Find\+Candidate\+To\+Remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Determines the candidate with the lowest number of votes and removes them from the election. In case of ties, the loser is determined based on a coinflip. 
+Determines the candidate with the lowest number of votes to remove from the election. In case of ties, the loser is determined based on a coinflip. 
 
 \begin{DoxyReturn}{Returns}
-string indicating the name of the candidate to remove 
+int indicating the index of the candidate to remove 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classElection_a4ee094351abfaee08eea21db7489b988}\label{classElection_a4ee094351abfaee08eea21db7489b988}} 
+\mbox{\Hypertarget{classElection_ad77774d456e332008dcf2df35067c850}\label{classElection_ad77774d456e332008dcf2df35067c850}} 
 \index{Election@{Election}!GetCandidate@{GetCandidate}}
 \index{GetCandidate@{GetCandidate}!Election@{Election}}
 \doxysubsubsection{\texorpdfstring{GetCandidate()}{GetCandidate()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classCandidate}{Candidate}} Election\+::\+Get\+Candidate (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCandidate}{Candidate}} \& Election\+::\+Get\+Candidate (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
 
 
 
@@ -200,6 +224,19 @@ Given an index, returns the candidate at that index in the candidates array.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classCandidate}{Candidate}} candidate located at the given index in the candidates array 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classElection_a0e491c747a67610e6bbc65abcf0c4d02}\label{classElection_a0e491c747a67610e6bbc65abcf0c4d02}} 
+\index{Election@{Election}!GetDateAndTime@{GetDateAndTime}}
+\index{GetDateAndTime@{GetDateAndTime}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{GetDateAndTime()}{GetDateAndTime()}}
+{\footnotesize\ttfamily string Election\+::\+Get\+Date\+And\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current date and time, then converts them into a string and retur$>$ 
+
+\begin{DoxyReturn}{Returns}
+string consisting of the current date and time. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classElection_ad7af4bc53e2d770bc1b470236ba4f3cc}\label{classElection_ad7af4bc53e2d770bc1b470236ba4f3cc}} 
 \index{Election@{Election}!GetElectionType@{GetElectionType}}
@@ -322,7 +359,7 @@ Increases the number of votes for the given party by one.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em string} & party\+\_\+name of the party whose votes are being increased\\
+\mbox{\texttt{ in}}  & {\em party\+\_\+name} & string indicating the name of the party whose votes are being increased\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -346,19 +383,19 @@ Given the id of a candidate who has been eliminated, redistributes their ballots
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success or 1 for failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classElection_a1595d150ee1a8f5eabe4642c9fad43e1}\label{classElection_a1595d150ee1a8f5eabe4642c9fad43e1}} 
+\mbox{\Hypertarget{classElection_ad4a606169e275988695bfa3f9e359511}\label{classElection_ad4a606169e275988695bfa3f9e359511}} 
 \index{Election@{Election}!RemoveCandidate@{RemoveCandidate}}
 \index{RemoveCandidate@{RemoveCandidate}!Election@{Election}}
 \doxysubsubsection{\texorpdfstring{RemoveCandidate()}{RemoveCandidate()}}
-{\footnotesize\ttfamily int Election\+::\+Remove\+Candidate (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Election\+::\+Remove\+Candidate (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
 
 
 
-Removes the candidate with the given name from the election. 
+Removes the candidate with the at the given index in the candidates array from the election. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em name} & string indicating the name of the candidate to remove from the election.\\
+\mbox{\texttt{ in}}  & {\em idx} & int indicating the name of the index to remove from the election.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -485,25 +522,54 @@ Sets the quota for the election.
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success or 1 for failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classElection_afd120301e84a905cb8de2eea9fcbbde9}\label{classElection_afd120301e84a905cb8de2eea9fcbbde9}} 
-\index{Election@{Election}!SetVotesForParty@{SetVotesForParty}}
-\index{SetVotesForParty@{SetVotesForParty}!Election@{Election}}
-\doxysubsubsection{\texorpdfstring{SetVotesForParty()}{SetVotesForParty()}}
-{\footnotesize\ttfamily int Election\+::\+Set\+Votes\+For\+Party (\begin{DoxyParamCaption}\item[{string}]{party\+\_\+name,  }\item[{int}]{num\+\_\+votes }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classElection_acf0fdf5f9d9e7a10b959fee49c630c01}\label{classElection_acf0fdf5f9d9e7a10b959fee49c630c01}} 
+\index{Election@{Election}!SetVotesForParties@{SetVotesForParties}}
+\index{SetVotesForParties@{SetVotesForParties}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{SetVotesForParties()}{SetVotesForParties()}}
+{\footnotesize\ttfamily int Election\+::\+Set\+Votes\+For\+Parties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Sets the number of votes for the given party to the given int. 
+Sets the number of votes for each party in the num\+Votes\+For\+Party array based on the number of ballots for each candidate in the party. 
+
+\begin{DoxyReturn}{Returns}
+int 0 for success or 1 for failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classElection_ae40545f79e4b49857a0520244f8961cd}\label{classElection_ae40545f79e4b49857a0520244f8961cd}} 
+\index{Election@{Election}!WriteLineToAudit@{WriteLineToAudit}}
+\index{WriteLineToAudit@{WriteLineToAudit}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{WriteLineToAudit()}{WriteLineToAudit()}}
+{\footnotesize\ttfamily int Election\+::\+Write\+Line\+To\+Audit (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Adds the given string to the end of the audit report file. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em party\+\_\+name} & string indicating the name of the party.\\
-\hline
-\mbox{\texttt{ in}}  & {\em num\+\_\+votes} & int indicating the number of votes forthe party.\\
+\mbox{\texttt{ in}}  & {\em line} & The string to be appended to the audit file.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 0 for success or 1 for failure 
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classElection_ac02b860427e7792067e7deb85d0f503a}\label{classElection_ac02b860427e7792067e7deb85d0f503a}} 
+\index{Election@{Election}!WriteLineToMedia@{WriteLineToMedia}}
+\index{WriteLineToMedia@{WriteLineToMedia}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{WriteLineToMedia()}{WriteLineToMedia()}}
+{\footnotesize\ttfamily int Election\+::\+Write\+Line\+To\+Media (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Adds the given string to the end of the media report file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em line} & The string to be appended to the media file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
 \end{DoxyReturn}
 
 

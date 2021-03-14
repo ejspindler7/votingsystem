@@ -33,15 +33,20 @@ int Candidate::SetName(string name){
     return 0;
 }
 int Candidate::AddBallot(Ballot *ballot){
-    ballots.push_back(ballot);    
+    this->ballots.push_back(ballot);    
     return 0;    
 }
 Ballot* Candidate::RemoveBallot(){
-   return NULL; 
+    if (ballots.size() == 0){
+        return NULL;
+    }
+    Ballot* tmp = ballots.front();
+    ballots.erase(ballots.begin());
+    return tmp;
 }
 
 int Candidate::GetBallotListSize(){
-    return ballots.size();
+    return this->ballots.size();
 }
 
 

@@ -67,6 +67,20 @@ class Ballot{
         * @brief Prints the ID, list of candidates, and index into list of candidates for the ballot.
         */
         void Print();
+        /**
+        * @brief Returns the number of candidates in the election.
+        *
+        * @return int indicating the size of the candidates array.
+        */
+        int GetCandidatesSize();
+        /**
+        * @brief Returns the name of the candidate at the given index in the candidates array.
+        *
+        * @param[in] idx int indicating the location of the candidate in the candidates array
+        *
+        * @return string name of the candidate at the given index.
+        */
+        string GetCandidateName(int idx);
     private:
         int currentDistribution;
         int id;

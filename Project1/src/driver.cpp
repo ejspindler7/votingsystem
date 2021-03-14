@@ -5,6 +5,8 @@
 #include <algorithm>
 #include "candidate.h"
 #include "ballot.h"
+#include <assert.h>
+#include <map>
 
 Driver::Driver(std::string file){
     fileName = file;
@@ -17,8 +19,11 @@ int Driver::ReadInElectionType(){
     if (fileHandle.is_open()){
         getline(fileHandle, tmp);
         election.SetElectionType(tmp);
-        
-        std::cout << election.GetElectionType() << std::endl;
+
+        string line = "Compute " + tmp + " election.";
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+        cout << line << endl;
     }
     else{
         std::cout << "File Handle is not open for Election Type." << std::endl;
@@ -35,7 +40,11 @@ int Driver::ReadInNumCandidates(){
         getline(fileHandle, input);
         num_candidates = std::stoi(input);    
         election.SetNumberOfCandidates(num_candidates);
-        std::cout << "Num candidates: " << num_candidates << std::endl;
+        
+        string line = "Number of candidates: " + to_string(num_candidates);
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+        cout << line << endl;
     }
         
 
@@ -45,7 +54,6 @@ int Driver::ReadInNumCandidates(){
 // Parses and creates candidates from CSV file
 int Driver::ReadInCandidates(){
     if (election.GetElectionType() == "OPL"){
-        std::cout << "READING in candidates for OPL " << std::endl;
         std::vector<std::string> candidates; 
         if (fileHandle.is_open()){
             std::string tmp;
@@ -63,7 +71,7 @@ int Driver::ReadInCandidates(){
             for(int i = 0; i < candidates.size(); i++){
                 if (i % 2 == 1){
                     party = candidates.at(i);
-                    std::cout << "Adding Candidates: " << name << "(" << party << ")" << std::endl;
+                    election.AddParty(party);
                     Candidate* candidate = new Candidate(name, party);
                     election.AddCandidate(*candidate);
                 }
@@ -72,10 +80,6 @@ int Driver::ReadInCandidates(){
                 }
             }
 
-            // Prints out the candidates
-            for(int i = 0; i < candidates.size(); i++){
-                std::cout<< candidates.at(i) << std::endl;
-            }
         }
         else{
             std::cout << "File handle is not open." << std::endl;
@@ -83,7 +87,6 @@ int Driver::ReadInCandidates(){
         
     }
     else if (election.GetElectionType() == "IR"){
-        std::cout << "Reading candidates for IR" << std::endl;
         std::vector<std::string> candidates; 
         if (fileHandle.is_open()){
             std::string tmp;
@@ -94,16 +97,8 @@ int Driver::ReadInCandidates(){
                 std::vector<std::string> parts;
                 ParseLine(candidates.at(i), parts, '(');
                 parts.at(1).erase(remove(parts.at(1).begin(), parts.at(1).end(), ')'), parts.at(1).end());
-                std::cout << "Adding Candidates: " << parts.at(0) << "(" << parts.at(1)<< ")" << std::endl;
                 Candidate* candidate = new Candidate(parts.at(0), parts.at(1));
                 election.AddCandidate(*candidate);
-            }
-
-
-
-            // Prints out the candidates
-            for(int i = 0; i < candidates.size(); i++){
-                std::cout<< candidates.at(i) << std::endl;
             }
         }
     }
@@ -115,40 +110,65 @@ int Driver::ReadInCandidates(){
 }
 
 int Driver::ReadInBallots(){
+    string ballDistribution = " === Ballot Distribution ====";
+    election.WriteLineToAudit(ballDistribution);
     std::string line;
     std::vector<std::string> votes;
     int ballot_id = 1;
     if (fileHandle.is_open()){
         while(getline(fileHandle, line)){
             Ballot* ballot = new Ballot(ballot_id);
+            assert(ballot!=NULL);
             if (election.GetElectionType() == "OPL"){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
                 (election.GetCandidate(candidate_idx)).AddBallot(ballot);
+                string data = "Ballot: " + to_string(ballot->GetId()) + " goes towards " 
+                    + election.GetCandidate(candidate_idx).GetName() + " (" 
+                    + election.GetCandidate(candidate_idx).GetParty() + ")";
+                election.WriteLineToAudit(data);
+
                 // OPL REPORT HERE
 
             }
             else if (election.GetElectionType() == "IR"){
-                ParseLine(line, votes, ',');
-                int first_candidate = -1;
-                for(int i = 0; i < votes.size(); i++){
-                    int candidate_idx = (std::stoi(votes.at(i))) - 1;
-                    if (first_candidate < 0){
-                        first_candidate = candidate_idx;
-                    }
-                    ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
-                }
-                // Giving ballot to favoriate candiate
-                (election.GetCandidate(first_candidate)).AddBallot(ballot);
-                // IR REPORT HERE
-                votes.clear();
-                ballot->Print();
+                std::map<int, int> vote_map;
+                std::vector<int> mapped;
+                bool setFirstCandidate = false;
+                int firstCandidate;
+                ParseLine2(line, votes, ',');
 
+                for (int pos = 0; pos < votes.size(); pos++){
+                    if (votes.at(pos) != ""){
+                        int choice = (std::stoi(votes.at(pos))) - 1;
+                        mapped.push_back(choice);
+                        vote_map[choice] = pos;
+                    }
+                }
+              
+                // Sorts vector
+                if (mapped.size() > 0){
+                    sort(mapped.begin(), mapped.end());
+                }
+
+                for (int i = 0; i < mapped.size(); i++){
+                    if (mapped.at(i) == 0){
+                        // Add ballot to first choice candidate 
+                        (election.GetCandidate(vote_map[0])).AddBallot(ballot);
+                        string data = "Ballot Id: " + to_string(ballot->GetId()) + " goes to " + 
+                            election.GetCandidate(vote_map[0]).GetName();
+                        election.WriteLineToAudit(data);
+                    }
+                    // Update candidate list
+                    ballot->AddCandidate(election.GetCandidate(vote_map[mapped.at(i)]).GetName());
+                }
+
+                votes.clear();
 
             }
             else{
                 std::cout << "Did not recognize election type." << std::endl;
-                exit(1);
+                exit(1); 
             }
             ballot_id++;
         }
@@ -168,7 +188,11 @@ int Driver::ReadInNumberOfBallots(){
         getline(fileHandle, input);
         num_ballots= std::stoi(input);    
         election.SetNumberOfBallots(num_ballots);
-        std::cout << "Num ballots: " << num_ballots<< std::endl;
+        string line = "Number of ballots: " + to_string(num_ballots);
+        cout << line << endl;
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+
     }
     return 0;
 }
@@ -181,7 +205,10 @@ int Driver::ReadInNumberOfSeats(){
         getline(fileHandle, input);
         num_seats= std::stoi(input);    
         election.SetNumberOfSeats(num_seats);
-        std::cout << "Num seats: " << num_seats<< std::endl;
+        string line = "Number of seats: " + to_string(num_seats);
+        cout << line << endl;
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
     }
 
     return 0;
@@ -191,6 +218,7 @@ int Driver::SetFileName(std::string name){
        fileName = name; 
        return 0;
 }
+
 
 std::string Driver::GetFileName(){
     return fileName;
@@ -232,6 +260,19 @@ void Driver::ParseLine(std::string line, std::vector<std::string> &words, char d
     return;
 }
 
+void Driver::ParseLine2(std::string line, std::vector<std::string> &words, char delim){
+    std::stringstream s_tmp(line); 
+    std::string tmp;
+
+    // Iterate through line, deliminating by ','
+    while(std::getline(s_tmp, tmp, delim)){
+       tmp.erase(remove(tmp.begin(), tmp.end(), ' '), tmp.end());
+       words.push_back(tmp);
+    }
+    
+    return;
+}
+
 int Driver::GetOPLVote(std::string line){
     for(int i = 0; i < line.size(); i++){
         if(line.at(i) == '1'){
@@ -241,7 +282,11 @@ int Driver::GetOPLVote(std::string line){
     return -1;
 }
 
-
+int Driver::ComputeElection(){
+    election.RunElection();
+    election.CloseReports();
+    return 0;
+}
 
 
 

@@ -8,9 +8,13 @@ int main(int argc, char *argv[]){
     }
 
     Driver driver = Driver(argv[1]);
+
     if (driver.ProcessCSV() != 0){
         std::cout << "Failed to process CSV " << argv[1] << std::endl;
         return 0;
+    }
+    if (driver.ComputeElection() != 0){
+        std::cout << "Failed to compute election in voitingsystem." << std::endl;
     }
 
     return 0;

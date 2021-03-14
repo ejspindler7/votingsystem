@@ -38,7 +38,7 @@ class Candidate{
         /**
         * @brief Sets the name of the party for the candidate.
         *
-        * @param[in] dis The string indicating the candidate's party name.
+        * @param[in] party The string indicating the candidate's party name.
         *
         * @return int indicating 0 for success or 1 for failure.
         */
@@ -58,7 +58,7 @@ class Candidate{
         /**
         * @brief Sets the name of the candidate.
         *
-        * @param[in] dis The string indicating the candidate's name.
+        * @param[in] name The string indicating the candidate's name.
         *
         * @return int indicating 0 for success or 1 for failure.
         */
@@ -66,7 +66,7 @@ class Candidate{
         /**
         * @brief Adds another ballot to the list of ballots voting for the candidate.
         *
-        * @param[in] dis The pointer to a ballot which is voting for the candidate.
+        * @param[in] ballot The pointer to a ballot which is voting for the candidate.
         *
         * @return int indicating 0 for success or 1 for failure.
         */

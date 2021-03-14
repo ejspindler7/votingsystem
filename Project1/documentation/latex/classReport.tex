@@ -24,6 +24,8 @@ int \mbox{\hyperlink{classReport_af32657ff571a55ec67503a84baee76c4}{Set\+Media\+
 \begin{DoxyCompactList}\small\item\em Sets the string indicating the name of the media report file to the given name. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classReport_ac035852e3982038a73165ce426efd2f2}{Write\+Line\+To\+Audit\+Report}} (string line)
 \begin{DoxyCompactList}\small\item\em Adds the given string to the end of the audit report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_a0048da21886f7f84b47c0325a1be7d71}{Write\+Line\+To\+Media\+Report}} (string line)
+\begin{DoxyCompactList}\small\item\em Adds the given string to the end of the media report file. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classReport_a574739d42cef3af60ff48c4767b8026e}{Close\+Reports}} ()
 \begin{DoxyCompactList}\small\item\em Closes all of the report files. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classReport_a4502ca8563681686a74d5f21f0e33074}{Get\+Date\+And\+Time}} ()
@@ -155,6 +157,24 @@ Adds the given string to the end of the audit report file.
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em line} & The string to be appended to the audit file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a0048da21886f7f84b47c0325a1be7d71}\label{classReport_a0048da21886f7f84b47c0325a1be7d71}} 
+\index{Report@{Report}!WriteLineToMediaReport@{WriteLineToMediaReport}}
+\index{WriteLineToMediaReport@{WriteLineToMediaReport}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{WriteLineToMediaReport()}{WriteLineToMediaReport()}}
+{\footnotesize\ttfamily int Report\+::\+Write\+Line\+To\+Media\+Report (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Adds the given string to the end of the media report file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em line} & The string to be appended to the media file.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

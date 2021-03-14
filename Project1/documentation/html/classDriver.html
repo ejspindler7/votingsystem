@@ -109,9 +109,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">ParseLine</a> (std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</td></tr>
 <tr class="memdesc:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the data from the given line into the given vector of strings, splitting based on the delim character passed.  <a href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">More...</a><br /></td></tr>
 <tr class="separator:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2650ac1fe52587a006230ba7a4f4d893"><td class="memItemLeft" align="right" valign="top"><a id="a2650ac1fe52587a006230ba7a4f4d893"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ParseLine2</b> (std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</td></tr>
+<tr class="separator:a2650ac1fe52587a006230ba7a4f4d893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61cf2f77a4987adfc0a5b82037ab7042"><td class="memItemLeft" align="right" valign="top"><a id="a61cf2f77a4987adfc0a5b82037ab7042"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::string line)</td></tr>
 <tr class="separator:a61cf2f77a4987adfc0a5b82037ab7042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a540a15c9ce20fa7265ee09cdfd304a91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">ComputeElection</a> ()</td></tr>
+<tr class="memdesc:a540a15c9ce20fa7265ee09cdfd304a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished.  <a href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">More...</a><br /></td></tr>
+<tr class="separator:a540a15c9ce20fa7265ee09cdfd304a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main class for processing the CSV file for information. </p>
@@ -146,6 +152,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a540a15c9ce20fa7265ee09cdfd304a91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a540a15c9ce20fa7265ee09cdfd304a91">&#9670;&nbsp;</a></span>ComputeElection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Driver::ComputeElection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished. </p>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure </dd></dl>
+
+</div>
+</div>
 <a id="a22b919c9742d0129ecd6414e80956cfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22b919c9742d0129ecd6414e80956cfc">&#9670;&nbsp;</a></span>GetFileName()</h2>
 

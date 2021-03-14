@@ -12,6 +12,7 @@
 #include "election.h"
 #include <vector>
 #include <fstream>
+#include "report.h"
 
 /*******************************************************************************
  * Class Definitions
@@ -100,8 +101,15 @@ class Driver{
         * @param[in] delim char which devices each word in the line
         */
         void ParseLine(std::string line, std::vector<std::string> &words, char delim);
-        // not sure exactly what this does, need some help
+        void ParseLine2(std::string line, std::vector<std::string> &words, char delim);
         int GetOPLVote(std::string line);
+        >
+        /**
+        * @brief Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished
+        *
+        * @return int indicating 0 for success or 1 for failure
+        */
+        int ComputeElection();
 
     private:
         std::string fileName;

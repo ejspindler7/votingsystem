@@ -30,6 +30,14 @@ int Ballot::GetId(){
     return id;
 }
 
+int Ballot::GetCandidatesSize(){
+    return candidates.size();
+}
+
+std::string Ballot::GetCandidateName(int idx){
+    return candidates.at(idx);
+}
+
 void Ballot::Print(){
     for(int i = 0; i < candidates.size(); i++){
         std::cout << candidates.at(i) << std::endl;

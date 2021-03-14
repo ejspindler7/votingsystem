@@ -9,8 +9,9 @@
  * Includes
  ******************************************************************************/
 #include <string>
+#include <iostream>
+#include <fstream>
 #include "election.h"
-#include "candidate.h"
 
 using namespace std;
 
@@ -68,6 +69,14 @@ class Report{
         * @return int 0 indicating success or 1 indicating failure.
         */
         int WriteLineToAuditReport(string line);
+        /**
+        * @brief Adds the given string to the end of the media report file.
+        *
+        * @param[in] line The string to be appended to the media file.
+        *
+        * @return int 0 indicating success or 1 indicating failure.
+        */
+        int WriteLineToMediaReport(string line);
         /*
         int WriteOPLAuditReport(Election& election);
         int WriteOPLMediaReport(Election& election);
@@ -92,6 +101,8 @@ class Report{
     private:
         string auditReportName;
         string mediaReportName;
+        ofstream auditReport;
+        ofstream mediaReport;
         vector<Candidate> originalCandidates;
 };
 

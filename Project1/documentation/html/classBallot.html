@@ -98,6 +98,12 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallot.html#a40d6b387464d3b405e660555f0e90f08">Print</a> ()</td></tr>
 <tr class="memdesc:a40d6b387464d3b405e660555f0e90f08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the ID, list of candidates, and index into list of candidates for the ballot. <br /></td></tr>
 <tr class="separator:a40d6b387464d3b405e660555f0e90f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8253ced94b95805cb3cc76bb16948144"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallot.html#a8253ced94b95805cb3cc76bb16948144">GetCandidatesSize</a> ()</td></tr>
+<tr class="memdesc:a8253ced94b95805cb3cc76bb16948144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of candidates in the election.  <a href="classBallot.html#a8253ced94b95805cb3cc76bb16948144">More...</a><br /></td></tr>
+<tr class="separator:a8253ced94b95805cb3cc76bb16948144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd9a3dc6964466e67f76aa2f99ac41d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallot.html#a9fd9a3dc6964466e67f76aa2f99ac41d">GetCandidateName</a> (int idx)</td></tr>
+<tr class="memdesc:a9fd9a3dc6964466e67f76aa2f99ac41d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the candidate at the given index in the candidates array.  <a href="classBallot.html#a9fd9a3dc6964466e67f76aa2f99ac41d">More...</a><br /></td></tr>
+<tr class="separator:a9fd9a3dc6964466e67f76aa2f99ac41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main class for tracking ballot information. </p>
@@ -155,6 +161,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a9fd9a3dc6964466e67f76aa2f99ac41d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd9a3dc6964466e67f76aa2f99ac41d">&#9670;&nbsp;</a></span>GetCandidateName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Ballot::GetCandidateName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the name of the candidate at the given index in the candidates array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">idx</td><td>int indicating the location of the candidate in the candidates array</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string name of the candidate at the given index. </dd></dl>
+
+</div>
+</div>
+<a id="a8253ced94b95805cb3cc76bb16948144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8253ced94b95805cb3cc76bb16948144">&#9670;&nbsp;</a></span>GetCandidatesSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Ballot::GetCandidatesSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of candidates in the election. </p>
+<dl class="section return"><dt>Returns</dt><dd>int indicating the size of the candidates array. </dd></dl>
 
 </div>
 </div>

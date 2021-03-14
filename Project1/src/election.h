@@ -13,6 +13,9 @@
 #include "candidate.h"
 #include "report.h"
 #include <vector>
+#include "ballot.h"
+#include <fstream>
+
 
 using namespace std;
 
@@ -44,15 +47,11 @@ class Election{
         */
         int GetVotesForParty(string party_name);
         /**
-        * @brief Sets the number of votes for the given party to the given int.
-        *
-        * @param[in] party_name string indicating the name of the party.
-        *
-        * @param[in] num_votes int indicating the number of votes forthe party.
+        * @brief Sets the number of votes for each party in the numVotesForParty array based on the number of ballots for each candidate in the party.
         *
         * @return int 0 for success or 1 for failure
         */
-        int SetVotesForParty(string party_name, int num_votes);
+        int SetVotesForParties();
         /**
         * @brief Sets the type of the election to the given string.
         *
@@ -72,7 +71,7 @@ class Election{
         /**
         * @brief Increases the number of votes for the given party by one.
         *
-        * @param[in] string party_name of the party whose votes are being increased
+        * @param[in] party_name string indicating the name of the party whose votes are being increased
         *
         * @return int new number of votes for the party
         */
@@ -176,28 +175,28 @@ class Election{
         */
         int AddCandidate(Candidate &candidate);
         /**
-        * @brief Removes the candidate with the given name from the election.
+        * @brief Removes the candidate with the at the given index in the candidates array from the election.
         *
-        * @param[in] name string indicating the name of the candidate to remove from the election.
+        * @param[in] idx int indicating the name of the index to remove from the election.
         *
         * @return int indicating 0 for success or 1 for failure
         */
-        int RemoveCandidate(string name);
+        int RemoveCandidate(int idx);
         /**
-        * @brief Determines the candidate with the lowest number of votes and removes them from the election.
+        * @brief Determines the candidate with the lowest number of votes to remove from the election.
         * In case of ties, the loser is determined based on a coinflip
         *
-        * @return string indicating the name of the candidate to remove
+        * @return int indicating the index of the candidate to remove
         */
-        string FindCandidateToRemove();
+        int FindCandidateToRemove();
         /**
-        * @brief Adds the given ballot to the election.
+        * @brief Adds the given party to the election.
         *
-        * @param[in] ballot Ballot to be added to the election.
+        * @param[in] party_name string indicating the name of the party to be added to the election.
         *
         * @return int indicating 0 for success or 1 for failure
         */
-        int AddBallot(Ballot balllot);
+        int AddParty(string party_name);
         /**
         * @brief Determines if any candidate has the majority of votes, and if so, returns their ID
         *
@@ -221,6 +220,35 @@ class Election{
         * @return int from 0 to num_candidates - 1 indicating which candidate was randomly selected to win
         */
         int ResolveTie(int num_candidates);
+        int UpdateBallotCurrDis(Ballot *ballot);
+        /**
+        * @brief Adds the given string to the end of the audit report file.
+        *
+        * @param[in] line The string to be appended to the audit file.
+        *
+        * @return int 0 indicating success or 1 indicating failure.
+        */
+        int WriteLineToAudit(string line);
+        /**
+        * @brief Adds the given string to the end of the media report file.
+        *
+        * @param[in] line The string to be appended to the media file.
+        *
+        * @return int 0 indicating success or 1 indicating failure.
+        */
+        int WriteLineToMedia(string line);
+        /**
+        * @brief Closes all of the report files.
+        *
+        * @return int 0 indicating success or 1 indicating failure.
+        */
+        int CloseReports();
+        /**
+        * @brief Gets the current date and time, then converts them into a string and retur>
+        *
+        * @return string consisting of the current date and time.
+        */
+        string GetDateAndTime();
         /**
         * @brief Given an index, returns the candidate at that index in the candidates array
         *
@@ -228,23 +256,26 @@ class Election{
         *
         * @return Candidate candidate located at the given index in the candidates array
         */
-        Candidate GetCandidate(int idx);
+        Candidate &GetCandidate(int idx);
 
 
     private:
+        ofstream audit;
+        ofstream media;
         string electionType;
         int numberOfCandidates;
         int numberOfBallots;
         vector<Candidate> candidates;
         int numberOfSeats;
         int quota;
-        //Report report;
         vector<string> parties;
         map<string, int> seatsPerPartyWholeNumber;
         map<string, int> seatsPerPartyRemainder;
+        map<string, int> finalPartySeats;
         map<string, int> numVotesForParty;
+        map<string, vector<int>> winningCandidates;
         map<string, vector<Candidate>> candidateRankings;
-        map<string, vector<int>> candidateRoundCountVotes;
+        map<string, vector<int>> candidateRoundCountVotes; // Used for reporting
 
 };
 

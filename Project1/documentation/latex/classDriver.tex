@@ -34,9 +34,14 @@ std\+::string \mbox{\hyperlink{classDriver_a22b919c9742d0129ecd6414e80956cfc}{Ge
 \begin{DoxyCompactList}\small\item\em Returns the string indicating the filename for the C\+SV file being read from. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDriver_aabffa0f857a65a8f1d80a710eebfc9b2}{Parse\+Line}} (std\+::string line, std\+::vector$<$ std\+::string $>$ \&words, char delim)
 \begin{DoxyCompactList}\small\item\em Reads the data from the given line into the given vector of strings, splitting based on the delim character passed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDriver_a2650ac1fe52587a006230ba7a4f4d893}\label{classDriver_a2650ac1fe52587a006230ba7a4f4d893}} 
+void {\bfseries Parse\+Line2} (std\+::string line, std\+::vector$<$ std\+::string $>$ \&words, char delim)
+\item 
 \mbox{\Hypertarget{classDriver_a61cf2f77a4987adfc0a5b82037ab7042}\label{classDriver_a61cf2f77a4987adfc0a5b82037ab7042}} 
 int {\bfseries Get\+O\+P\+L\+Vote} (std\+::string line)
-\end{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}{Compute\+Election}} ()
+\begin{DoxyCompactList}\small\item\em Passes control to the election class by calling election.\+Run\+Election(), then closes reports after the election simulation has finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -68,6 +73,19 @@ This function will be used to create a new driver to process a C\+SV file with t
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}\label{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}} 
+\index{Driver@{Driver}!ComputeElection@{ComputeElection}}
+\index{ComputeElection@{ComputeElection}!Driver@{Driver}}
+\doxysubsubsection{\texorpdfstring{ComputeElection()}{ComputeElection()}}
+{\footnotesize\ttfamily int Driver\+::\+Compute\+Election (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Passes control to the election class by calling election.\+Run\+Election(), then closes reports after the election simulation has finished. 
+
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or 1 for failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDriver_a22b919c9742d0129ecd6414e80956cfc}\label{classDriver_a22b919c9742d0129ecd6414e80956cfc}} 
 \index{Driver@{Driver}!GetFileName@{GetFileName}}
 \index{GetFileName@{GetFileName}!Driver@{Driver}}
