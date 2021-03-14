@@ -8,6 +8,7 @@ int main(int argc, char *argv[]){
     }
 
     Driver driver = Driver(argv[1]);
+
     if (driver.ProcessCSV() != 0){
         std::cout << "Failed to process CSV " << argv[1] << std::endl;
         return 0;

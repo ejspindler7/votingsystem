@@ -1,0 +1,188 @@
+\hypertarget{classReport}{}\doxysection{Report Class Reference}
+\label{classReport}\index{Report@{Report}}
+
+
+The main class for producing election reports.  
+
+
+
+
+{\ttfamily \#include $<$report.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classReport_ae3150817fcf4ebf814358baf5bd72e8f}{Report}} ()
+\begin{DoxyCompactList}\small\item\em The constructor for the \mbox{\hyperlink{classReport}{Report}} class. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classReport_a6d64c8292931cde4c40256addba9a4a4}{Get\+Audit\+Report\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the string indicating the name of the audit report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_a4018c434f163ee79112e9700fcfb4b6a}{Set\+Audit\+Report\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em Sets the string indicating the name of the audit report file. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classReport_a994708c9cb38eba010b066dc2029dcee}{Get\+Media\+Report\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the string indicating the name of the media report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_af32657ff571a55ec67503a84baee76c4}{Set\+Media\+Report\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em Sets the string indicating the name of the media report file to the given name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_ac035852e3982038a73165ce426efd2f2}{Write\+Line\+To\+Audit\+Report}} (string line)
+\begin{DoxyCompactList}\small\item\em Adds the given string to the end of the audit report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_a0048da21886f7f84b47c0325a1be7d71}{Write\+Line\+To\+Media\+Report}} (string line)
+\begin{DoxyCompactList}\small\item\em Adds the given string to the end of the media report file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classReport_a574739d42cef3af60ff48c4767b8026e}{Close\+Reports}} ()
+\begin{DoxyCompactList}\small\item\em Closes all of the report files. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classReport_a4502ca8563681686a74d5f21f0e33074}{Get\+Date\+And\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current date and time, then converts them into a string and returns it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main class for producing election reports. 
+
+Uses its various funcctions to update information in the report files and save them to the comptuer, as well as printing election result to the terminal 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classReport_ae3150817fcf4ebf814358baf5bd72e8f}\label{classReport_ae3150817fcf4ebf814358baf5bd72e8f}} 
+\index{Report@{Report}!Report@{Report}}
+\index{Report@{Report}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{Report()}{Report()}}
+{\footnotesize\ttfamily Report\+::\+Report (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The constructor for the \mbox{\hyperlink{classReport}{Report}} class. 
+
+This function will be used to create a new \mbox{\hyperlink{classReport}{Report}} class which produces a media and audit report and writes results to the terminal
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classReport}{Report}} object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classReport_a574739d42cef3af60ff48c4767b8026e}\label{classReport_a574739d42cef3af60ff48c4767b8026e}} 
+\index{Report@{Report}!CloseReports@{CloseReports}}
+\index{CloseReports@{CloseReports}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{CloseReports()}{CloseReports()}}
+{\footnotesize\ttfamily int Report\+::\+Close\+Reports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes all of the report files. 
+
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a6d64c8292931cde4c40256addba9a4a4}\label{classReport_a6d64c8292931cde4c40256addba9a4a4}} 
+\index{Report@{Report}!GetAuditReportName@{GetAuditReportName}}
+\index{GetAuditReportName@{GetAuditReportName}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{GetAuditReportName()}{GetAuditReportName()}}
+{\footnotesize\ttfamily string Report\+::\+Get\+Audit\+Report\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the string indicating the name of the audit report file. 
+
+\begin{DoxyReturn}{Returns}
+string indicating the candidate\textquotesingle{}s party name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a4502ca8563681686a74d5f21f0e33074}\label{classReport_a4502ca8563681686a74d5f21f0e33074}} 
+\index{Report@{Report}!GetDateAndTime@{GetDateAndTime}}
+\index{GetDateAndTime@{GetDateAndTime}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{GetDateAndTime()}{GetDateAndTime()}}
+{\footnotesize\ttfamily string Report\+::\+Get\+Date\+And\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current date and time, then converts them into a string and returns it. 
+
+\begin{DoxyReturn}{Returns}
+string consisting of the current date and time. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a994708c9cb38eba010b066dc2029dcee}\label{classReport_a994708c9cb38eba010b066dc2029dcee}} 
+\index{Report@{Report}!GetMediaReportName@{GetMediaReportName}}
+\index{GetMediaReportName@{GetMediaReportName}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{GetMediaReportName()}{GetMediaReportName()}}
+{\footnotesize\ttfamily string Report\+::\+Get\+Media\+Report\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the string indicating the name of the media report file. 
+
+\begin{DoxyReturn}{Returns}
+string indicating the candidate\textquotesingle{}s party name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a4018c434f163ee79112e9700fcfb4b6a}\label{classReport_a4018c434f163ee79112e9700fcfb4b6a}} 
+\index{Report@{Report}!SetAuditReportName@{SetAuditReportName}}
+\index{SetAuditReportName@{SetAuditReportName}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{SetAuditReportName()}{SetAuditReportName()}}
+{\footnotesize\ttfamily int Report\+::\+Set\+Audit\+Report\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Sets the string indicating the name of the audit report file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The string indicating the new name of the audit report file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_af32657ff571a55ec67503a84baee76c4}\label{classReport_af32657ff571a55ec67503a84baee76c4}} 
+\index{Report@{Report}!SetMediaReportName@{SetMediaReportName}}
+\index{SetMediaReportName@{SetMediaReportName}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{SetMediaReportName()}{SetMediaReportName()}}
+{\footnotesize\ttfamily int Report\+::\+Set\+Media\+Report\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Sets the string indicating the name of the media report file to the given name. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The string indicating the new name of the media report file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_ac035852e3982038a73165ce426efd2f2}\label{classReport_ac035852e3982038a73165ce426efd2f2}} 
+\index{Report@{Report}!WriteLineToAuditReport@{WriteLineToAuditReport}}
+\index{WriteLineToAuditReport@{WriteLineToAuditReport}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{WriteLineToAuditReport()}{WriteLineToAuditReport()}}
+{\footnotesize\ttfamily int Report\+::\+Write\+Line\+To\+Audit\+Report (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Adds the given string to the end of the audit report file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em line} & The string to be appended to the audit file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classReport_a0048da21886f7f84b47c0325a1be7d71}\label{classReport_a0048da21886f7f84b47c0325a1be7d71}} 
+\index{Report@{Report}!WriteLineToMediaReport@{WriteLineToMediaReport}}
+\index{WriteLineToMediaReport@{WriteLineToMediaReport}!Report@{Report}}
+\doxysubsubsection{\texorpdfstring{WriteLineToMediaReport()}{WriteLineToMediaReport()}}
+{\footnotesize\ttfamily int Report\+::\+Write\+Line\+To\+Media\+Report (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Adds the given string to the end of the media report file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em line} & The string to be appended to the media file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 indicating success or 1 indicating failure. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/\mbox{\hyperlink{report_8h}{report.\+h}}\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/report.\+cpp\end{DoxyCompactItemize}
