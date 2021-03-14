@@ -103,7 +103,7 @@ class Driver{
         void ParseLine(std::string line, std::vector<std::string> &words, char delim);
         void ParseLine2(std::string line, std::vector<std::string> &words, char delim);
         int GetOPLVote(std::string line);
-        >
+        
         /**
         * @brief Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished
         *
