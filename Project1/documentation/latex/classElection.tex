@@ -62,14 +62,10 @@ int \mbox{\hyperlink{classElection_abae2e31f8c8a9132786c8c907962588d}{Check\+For
 \begin{DoxyCompactList}\small\item\em Determines if any candidate has the majority of votes, and if so, returns their ID. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a8429ca59d10e26049ac07de87038b391}{Redistribute\+Ballots}} (int eliminated\+\_\+candidate)
 \begin{DoxyCompactList}\small\item\em Given the id of a candidate who has been eliminated, redistributes their ballots among the other candidates. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classElection_acec2732e199b317b76b7a8353a5b72d2}\label{classElection_acec2732e199b317b76b7a8353a5b72d2}} 
-int {\bfseries Set\+Candidate\+Round\+Count\+Votes\+Element} (string name, int cout, int vote\+\_\+num)
-\item 
 int \mbox{\hyperlink{classElection_ad4806088ae00a6eb9626adffc30cf528}{Resolve\+Tie}} (int num\+\_\+candidates)
 \begin{DoxyCompactList}\small\item\em Given a number of candidates, generates a random number to indicate a winner. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classElection_aa4893a90512f83064c931a28adf98484}\label{classElection_aa4893a90512f83064c931a28adf98484}} 
-int {\bfseries Update\+Ballot\+Curr\+Dis} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
-\item 
+int \mbox{\hyperlink{classElection_aa4893a90512f83064c931a28adf98484}{Update\+Ballot\+Curr\+Dis}} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
+\begin{DoxyCompactList}\small\item\em Changes which candidate the ballot votes for to the next candidate in order. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_ae40545f79e4b49857a0520244f8961cd}{Write\+Line\+To\+Audit}} (string line)
 \begin{DoxyCompactList}\small\item\em Adds the given string to the end of the audit report file. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_ac02b860427e7792067e7deb85d0f503a}{Write\+Line\+To\+Media}} (string line)
@@ -166,7 +162,7 @@ int indicating the id of the candidate with the most votes, or -\/1 if none such
 Closes all of the report files. 
 
 \begin{DoxyReturn}{Returns}
-int 0 indicating success or 1 indicating failure. 
+int 0 indicating success. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classElection_a801b2068799d520e531da0dbfe7591a1}\label{classElection_a801b2068799d520e531da0dbfe7591a1}} 
 \index{Election@{Election}!ComputeIRElection@{ComputeIRElection}}
@@ -535,6 +531,24 @@ Sets the number of votes for each party in the num\+Votes\+For\+Party array base
 \begin{DoxyReturn}{Returns}
 int 0 for success or 1 for failure 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classElection_aa4893a90512f83064c931a28adf98484}\label{classElection_aa4893a90512f83064c931a28adf98484}} 
+\index{Election@{Election}!UpdateBallotCurrDis@{UpdateBallotCurrDis}}
+\index{UpdateBallotCurrDis@{UpdateBallotCurrDis}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{UpdateBallotCurrDis()}{UpdateBallotCurrDis()}}
+{\footnotesize\ttfamily int Election\+::\+Update\+Ballot\+Curr\+Dis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBallot}{Ballot}} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Changes which candidate the ballot votes for to the next candidate in order. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ballot} & Ballot$\ast$ pointing to the ballot to be updated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success or -\/1 for failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classElection_ae40545f79e4b49857a0520244f8961cd}\label{classElection_ae40545f79e4b49857a0520244f8961cd}} 
 \index{Election@{Election}!WriteLineToAudit@{WriteLineToAudit}}
 \index{WriteLineToAudit@{WriteLineToAudit}!Election@{Election}}
@@ -551,7 +565,7 @@ Adds the given string to the end of the audit report file.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 0 indicating success or 1 indicating failure. 
+int 0 indicating success. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classElection_ac02b860427e7792067e7deb85d0f503a}\label{classElection_ac02b860427e7792067e7deb85d0f503a}} 
 \index{Election@{Election}!WriteLineToMedia@{WriteLineToMedia}}
@@ -569,7 +583,7 @@ Adds the given string to the end of the media report file.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 0 indicating success or 1 indicating failure. 
+int 0 indicating success. 
 \end{DoxyReturn}
 
 

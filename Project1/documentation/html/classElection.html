@@ -151,14 +151,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8429ca59d10e26049ac07de87038b391"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a8429ca59d10e26049ac07de87038b391">RedistributeBallots</a> (int eliminated_candidate)</td></tr>
 <tr class="memdesc:a8429ca59d10e26049ac07de87038b391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the id of a candidate who has been eliminated, redistributes their ballots among the other candidates.  <a href="classElection.html#a8429ca59d10e26049ac07de87038b391">More...</a><br /></td></tr>
 <tr class="separator:a8429ca59d10e26049ac07de87038b391"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acec2732e199b317b76b7a8353a5b72d2"><td class="memItemLeft" align="right" valign="top"><a id="acec2732e199b317b76b7a8353a5b72d2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>SetCandidateRoundCountVotesElement</b> (string name, int cout, int vote_num)</td></tr>
-<tr class="separator:acec2732e199b317b76b7a8353a5b72d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4806088ae00a6eb9626adffc30cf528"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#ad4806088ae00a6eb9626adffc30cf528">ResolveTie</a> (int num_candidates)</td></tr>
 <tr class="memdesc:ad4806088ae00a6eb9626adffc30cf528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a number of candidates, generates a random number to indicate a winner.  <a href="classElection.html#ad4806088ae00a6eb9626adffc30cf528">More...</a><br /></td></tr>
 <tr class="separator:ad4806088ae00a6eb9626adffc30cf528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4893a90512f83064c931a28adf98484"><td class="memItemLeft" align="right" valign="top"><a id="aa4893a90512f83064c931a28adf98484"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateBallotCurrDis</b> (<a class="el" href="classBallot.html">Ballot</a> *ballot)</td></tr>
+<tr class="memitem:aa4893a90512f83064c931a28adf98484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#aa4893a90512f83064c931a28adf98484">UpdateBallotCurrDis</a> (<a class="el" href="classBallot.html">Ballot</a> *ballot)</td></tr>
+<tr class="memdesc:aa4893a90512f83064c931a28adf98484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes which candidate the ballot votes for to the next candidate in order.  <a href="classElection.html#aa4893a90512f83064c931a28adf98484">More...</a><br /></td></tr>
 <tr class="separator:aa4893a90512f83064c931a28adf98484"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae40545f79e4b49857a0520244f8961cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#ae40545f79e4b49857a0520244f8961cd">WriteLineToAudit</a> (string line)</td></tr>
 <tr class="memdesc:ae40545f79e4b49857a0520244f8961cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given string to the end of the audit report file.  <a href="classElection.html#ae40545f79e4b49857a0520244f8961cd">More...</a><br /></td></tr>
@@ -292,7 +289,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateBallotCurrDis</b
 </div><div class="memdoc">
 
 <p>Closes all of the report files. </p>
-<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success or 1 indicating failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success. </dd></dl>
 
 </div>
 </div>
@@ -853,6 +850,33 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateBallotCurrDis</b
 
 </div>
 </div>
+<a id="aa4893a90512f83064c931a28adf98484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4893a90512f83064c931a28adf98484">&#9670;&nbsp;</a></span>UpdateBallotCurrDis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Election::UpdateBallotCurrDis </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBallot.html">Ballot</a> *&#160;</td>
+          <td class="paramname"><em>ballot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Changes which candidate the ballot votes for to the next candidate in order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ballot</td><td>Ballot* pointing to the ballot to be updated</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or -1 for failure </dd></dl>
+
+</div>
+</div>
 <a id="ae40545f79e4b49857a0520244f8961cd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae40545f79e4b49857a0520244f8961cd">&#9670;&nbsp;</a></span>WriteLineToAudit()</h2>
 
@@ -876,7 +900,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateBallotCurrDis</b
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success or 1 indicating failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success. </dd></dl>
 
 </div>
 </div>
@@ -903,7 +927,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateBallotCurrDis</b
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success or 1 indicating failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int 0 indicating success. </dd></dl>
 
 </div>
 </div>

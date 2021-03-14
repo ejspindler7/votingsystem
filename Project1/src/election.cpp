@@ -266,12 +266,6 @@ int Election::RedistributeBallots(int eliminated_candidate){
     }
     return 0;
 }
-    
-int Election::SetCandidateRoundCountVotesElement(string name, int cout, int vote_num){
-    // TODO
-    return 0;
-}
-
 
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){

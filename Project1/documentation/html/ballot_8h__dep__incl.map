@@ -1,7 +1,7 @@
 <map id="/home/palme885/csci5801/repo&#45;Team11/Project1/src/ballot.h" name="/home/palme885/csci5801/repo&#45;Team11/Project1/src/ballot.h">
-<area shape="rect" id="node1" title=" " alt="" coords="73,5,267,61"/>
-<area shape="rect" id="node2" href="$candidate_8h.html" title=" " alt="" coords="7,109,200,165"/>
-<area shape="rect" id="node3" href="$election_8h.html" title=" " alt="" coords="73,213,267,269"/>
+<area shape="rect" id="node1" title="This file describes the Ballot class, which stores and updates ballot information." alt="" coords="73,5,267,61"/>
+<area shape="rect" id="node2" href="$candidate_8h.html" title="This file describes the Candidate class, which stores and updates information about each candidate." alt="" coords="7,109,200,165"/>
+<area shape="rect" id="node3" href="$election_8h.html" title="This file describes the Election class, which stores and updates election information and runs simula..." alt="" coords="73,213,267,269"/>
 <area shape="rect" id="node4" href="$driver_8h_source.html" title=" " alt="" coords="5,421,199,477"/>
-<area shape="rect" id="node5" href="$report_8h.html" title=" " alt="" coords="73,317,267,373"/>
+<area shape="rect" id="node5" href="$report_8h.html" title="This files describes the Report class, which generates the election reports and writes information to..." alt="" coords="73,317,267,373"/>
 </map>

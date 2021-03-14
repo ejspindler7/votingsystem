@@ -1,5 +1,7 @@
 /**
  * @file candidate.h
+ * @author Ryan Mower
+ * @brief This file describes the Candidate class, which stores and updates information about each candidate.
  */
 
 #ifndef CANDIDATE_H
@@ -40,7 +42,7 @@ class Candidate{
         *
         * @param[in] party The string indicating the candidate's party name.
         *
-        * @return int indicating 0 for success or 1 for failure.
+        * @return int 0 indicating success.
         */
         int SetParty(string party);
         /**
@@ -60,7 +62,7 @@ class Candidate{
         *
         * @param[in] name The string indicating the candidate's name.
         *
-        * @return int indicating 0 for success or 1 for failure.
+        * @return int 0 indicating success.
         */
         int SetName(string name);
         /**
@@ -68,7 +70,7 @@ class Candidate{
         *
         * @param[in] ballot The pointer to a ballot which is voting for the candidate.
         *
-        * @return int indicating 0 for success or 1 for failure.
+        * @return int 0 indicating success.
         */
         int AddBallot(Ballot *ballot);
         /**

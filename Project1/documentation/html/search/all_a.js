@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['setauditreportname_54',['SetAuditReportName',['../classReport.html#a4018c434f163ee79112e9700fcfb4b6a',1,'Report']]],
-  ['setcurrdis_55',['SetCurrDis',['../classBallot.html#a5142d571cdb37994d5017c8b82e2b889',1,'Ballot']]],
-  ['setelectiontype_56',['SetElectionType',['../classElection.html#ac6febad8f336b9e11347c13b5af627c4',1,'Election']]],
-  ['setfilename_57',['SetFileName',['../classDriver.html#aa3d81bbef085d35a31987ca222176fca',1,'Driver']]],
-  ['setid_58',['SetId',['../classBallot.html#a4d0480223a7a590937834ade9e3dfbc5',1,'Ballot']]],
-  ['setmediareportname_59',['SetMediaReportName',['../classReport.html#af32657ff571a55ec67503a84baee76c4',1,'Report']]],
-  ['setname_60',['SetName',['../classCandidate.html#a7074b2d4cf528ced606e0c0e8b604aaf',1,'Candidate']]],
-  ['setnumberofballots_61',['SetNumberOfBallots',['../classElection.html#a093b9ce40c8bf34dc897730eabbcd1fc',1,'Election']]],
-  ['setnumberofcandidates_62',['SetNumberOfCandidates',['../classElection.html#a27d2cd3bb9516812fdf5016624c7f71f',1,'Election']]],
-  ['setnumberofseats_63',['SetNumberOfSeats',['../classElection.html#a89ab38ed190b080d790c62adfe13f999',1,'Election']]],
-  ['setparty_64',['SetParty',['../classCandidate.html#a0a37672f0989c4a2b9be292020e5a686',1,'Candidate']]],
-  ['setquota_65',['SetQuota',['../classElection.html#a2ba258d79a761da582a879e88c2b1ffb',1,'Election']]],
-  ['setvotesforparties_66',['SetVotesForParties',['../classElection.html#acf0fdf5f9d9e7a10b959fee49c630c01',1,'Election']]]
+  ['setauditreportname_56',['SetAuditReportName',['../classReport.html#a4018c434f163ee79112e9700fcfb4b6a',1,'Report']]],
+  ['setcurrdis_57',['SetCurrDis',['../classBallot.html#a5142d571cdb37994d5017c8b82e2b889',1,'Ballot']]],
+  ['setelectiontype_58',['SetElectionType',['../classElection.html#ac6febad8f336b9e11347c13b5af627c4',1,'Election']]],
+  ['setfilename_59',['SetFileName',['../classDriver.html#aa3d81bbef085d35a31987ca222176fca',1,'Driver']]],
+  ['setid_60',['SetId',['../classBallot.html#a4d0480223a7a590937834ade9e3dfbc5',1,'Ballot']]],
+  ['setmediareportname_61',['SetMediaReportName',['../classReport.html#af32657ff571a55ec67503a84baee76c4',1,'Report']]],
+  ['setname_62',['SetName',['../classCandidate.html#a7074b2d4cf528ced606e0c0e8b604aaf',1,'Candidate']]],
+  ['setnumberofballots_63',['SetNumberOfBallots',['../classElection.html#a093b9ce40c8bf34dc897730eabbcd1fc',1,'Election']]],
+  ['setnumberofcandidates_64',['SetNumberOfCandidates',['../classElection.html#a27d2cd3bb9516812fdf5016624c7f71f',1,'Election']]],
+  ['setnumberofseats_65',['SetNumberOfSeats',['../classElection.html#a89ab38ed190b080d790c62adfe13f999',1,'Election']]],
+  ['setparty_66',['SetParty',['../classCandidate.html#a0a37672f0989c4a2b9be292020e5a686',1,'Candidate']]],
+  ['setquota_67',['SetQuota',['../classElection.html#a2ba258d79a761da582a879e88c2b1ffb',1,'Election']]],
+  ['setvotesforparties_68',['SetVotesForParties',['../classElection.html#acf0fdf5f9d9e7a10b959fee49c630c01',1,'Election']]]
 ];
