@@ -1,5 +1,7 @@
 /**
  * @file election.h
+ * @author Ryan Mower
+ * @brief This file describes the Election class, which stores and updates election information and runs simulations of the election.
  */
 
 #ifndef ELECTION_H
@@ -68,14 +70,6 @@ class Election{
         * @return int 0 for success or 1 for failure
         */
         int SetNumberOfCandidates(int num);
-        /**
-        * @brief Increases the number of votes for the given party by one.
-        *
-        * @param[in] party_name string indicating the name of the party whose votes are being increased
-        *
-        * @return int new number of votes for the party
-        */
-        int IncrementVotesForParty(string party_name);
         /**
         * @brief Gets the number of seats to be assigned.
         *
@@ -211,7 +205,6 @@ class Election{
         * @return int indicating 0 for success or 1 for failure
         */
         int RedistributeBallots(int eliminated_candidate);
-        int SetCandidateRoundCountVotesElement(string name, int cout, int vote_num);
         /**
         * @brief Given a number of candidates, generates a random number to indicate a winner
         *
@@ -220,13 +213,20 @@ class Election{
         * @return int from 0 to num_candidates - 1 indicating which candidate was randomly selected to win
         */
         int ResolveTie(int num_candidates);
+        /**
+        * @brief Changes which candidate the ballot votes for to the next candidate in order
+        *
+        * @param[in] ballot Ballot* pointing to the ballot to be updated
+        *
+        * @return int indicating 0 for success or -1 for failure
+        */
         int UpdateBallotCurrDis(Ballot *ballot);
         /**
         * @brief Adds the given string to the end of the audit report file.
         *
         * @param[in] line The string to be appended to the audit file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int WriteLineToAudit(string line);
         /**
@@ -234,13 +234,13 @@ class Election{
         *
         * @param[in] line The string to be appended to the media file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int WriteLineToMedia(string line);
         /**
         * @brief Closes all of the report files.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int CloseReports();
         /**

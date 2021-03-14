@@ -107,13 +107,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a22b919c9742d0129ecd6414e80956cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the string indicating the filename for the CSV file being read from.  <a href="classDriver.html#a22b919c9742d0129ecd6414e80956cfc">More...</a><br /></td></tr>
 <tr class="separator:a22b919c9742d0129ecd6414e80956cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">ParseLine</a> (std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</td></tr>
-<tr class="memdesc:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the data from the given line into the given vector of strings, splitting based on the delim character passed.  <a href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">More...</a><br /></td></tr>
+<tr class="memdesc:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the data from the given line into the given vector of strings, splitting based on the delim character passed Does not delete lines after reading them.  <a href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">More...</a><br /></td></tr>
 <tr class="separator:aabffa0f857a65a8f1d80a710eebfc9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2650ac1fe52587a006230ba7a4f4d893"><td class="memItemLeft" align="right" valign="top"><a id="a2650ac1fe52587a006230ba7a4f4d893"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ParseLine2</b> (std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</td></tr>
+<tr class="memitem:a2650ac1fe52587a006230ba7a4f4d893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a2650ac1fe52587a006230ba7a4f4d893">ParseLine2</a> (std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</td></tr>
+<tr class="memdesc:a2650ac1fe52587a006230ba7a4f4d893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the data from the given line into the given vector of strings, split&gt; Deletes lines after reading them.  <a href="classDriver.html#a2650ac1fe52587a006230ba7a4f4d893">More...</a><br /></td></tr>
 <tr class="separator:a2650ac1fe52587a006230ba7a4f4d893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61cf2f77a4987adfc0a5b82037ab7042"><td class="memItemLeft" align="right" valign="top"><a id="a61cf2f77a4987adfc0a5b82037ab7042"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::string line)</td></tr>
+<tr class="memitem:a61cf2f77a4987adfc0a5b82037ab7042"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042">GetOPLVote</a> (std::string line)</td></tr>
+<tr class="memdesc:a61cf2f77a4987adfc0a5b82037ab7042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the data from the given line to determine which candidate a ballot is voting for.  <a href="classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042">More...</a><br /></td></tr>
 <tr class="separator:a61cf2f77a4987adfc0a5b82037ab7042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a540a15c9ce20fa7265ee09cdfd304a91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">ComputeElection</a> ()</td></tr>
 <tr class="memdesc:a540a15c9ce20fa7265ee09cdfd304a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished.  <a href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">More...</a><br /></td></tr>
@@ -141,6 +141,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 
 <p>The constructor for the <a class="el" href="classDriver.html" title="The main class for processing the CSV file for information.">Driver</a> class. </p>
 <p>This function will be used to create a new driver to process a CSV file with the given filename.</p>
+<p>The file is assumed to be formatted correctly, so there is no exception handling for incorrect CSV files. If the CSV file is not arranged as expected, this can lead to issues with program function, but it is considered improper use of the system and should not be expected to execute.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fileName</td><td>string indicating the name of the file to be read from</td></tr>
@@ -168,7 +169,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -190,6 +191,33 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 
 <p>Returns the string indicating the filename for the CSV file being read from. </p>
 <dl class="section return"><dt>Returns</dt><dd>string indicating the name of the CSV file </dd></dl>
+
+</div>
+</div>
+<a id="a61cf2f77a4987adfc0a5b82037ab7042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61cf2f77a4987adfc0a5b82037ab7042">&#9670;&nbsp;</a></span>GetOPLVote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Driver::GetOPLVote </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the data from the given line to determine which candidate a ballot is voting for. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">line</td><td>string of text from a line of the CSV file</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating the location in the line where the vote is, or -1 if there is no vote for any candidate </dd></dl>
 
 </div>
 </div>
@@ -225,11 +253,55 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
       </table>
 </div><div class="memdoc">
 
-<p>Reads the data from the given line into the given vector of strings, splitting based on the delim character passed. </p>
+<p>Reads the data from the given line into the given vector of strings, splitting based on the delim character passed Does not delete lines after reading them. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">line</td><td>string of text from a line of the CSV file</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">&amp;words</td><td>pointer to a vector&lt;string&gt; which each individual word from the line is loaded into</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">delim</td><td>char which devices each word in the line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2650ac1fe52587a006230ba7a4f4d893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2650ac1fe52587a006230ba7a4f4d893">&#9670;&nbsp;</a></span>ParseLine2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Driver::ParseLine2 </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>words</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>delim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the data from the given line into the given vector of strings, split&gt; Deletes lines after reading them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">line</td><td>string of text from a line of the CSV file</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">&amp;words</td><td>pointer to a vector&lt;string&gt; which each individual word from the&gt;</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">delim</td><td>char which devices each word in the line </td></tr>
   </table>
   </dd>
@@ -254,7 +326,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Calls all of the above ReadIn functions to read in all of the data from the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -275,7 +347,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the list of ballots in the election based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -296,7 +368,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the list of candidates in the election based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -317,7 +389,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the election type to either IR or OPL based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -338,7 +410,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the number of ballots in the election based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -359,7 +431,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the number of seats in the election based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -380,7 +452,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
 </div><div class="memdoc">
 
 <p>Sets the number of candidates in the election based on the data in the CSV file. </p>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>
@@ -407,7 +479,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetOPLVote</b> (std::s
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
 
 </div>
 </div>

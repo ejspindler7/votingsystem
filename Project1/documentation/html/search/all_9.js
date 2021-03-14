@@ -1,16 +1,7 @@
 var searchData=
 [
-  ['readinballots_41',['ReadInBallots',['../classDriver.html#a8ec981b652d9ac11bca3d66cbe1db134',1,'Driver']]],
-  ['readincandidates_42',['ReadInCandidates',['../classDriver.html#a6416aa7333fa6140ce57e43504f887e1',1,'Driver']]],
-  ['readinelectiontype_43',['ReadInElectionType',['../classDriver.html#ae3306edcc79387c3c1a1eb3dc8e0c795',1,'Driver']]],
-  ['readinnumberofballots_44',['ReadInNumberOfBallots',['../classDriver.html#a29e90b172d9aec0c85acc0feb7cc5624',1,'Driver']]],
-  ['readinnumberofseats_45',['ReadInNumberOfSeats',['../classDriver.html#a28f1fa7bd074a6e6f79609740a00049e',1,'Driver']]],
-  ['readinnumcandidates_46',['ReadInNumCandidates',['../classDriver.html#a9a6dc33dbaf65f882db40ddc16b2db26',1,'Driver']]],
-  ['redistributeballots_47',['RedistributeBallots',['../classElection.html#a8429ca59d10e26049ac07de87038b391',1,'Election']]],
-  ['removeballot_48',['RemoveBallot',['../classCandidate.html#abedd13cfb5f65f2f6b594bc4d830cfa4',1,'Candidate']]],
-  ['removecandidate_49',['RemoveCandidate',['../classElection.html#ad4a606169e275988695bfa3f9e359511',1,'Election']]],
-  ['report_50',['Report',['../classReport.html',1,'Report'],['../classReport.html#ae3150817fcf4ebf814358baf5bd72e8f',1,'Report::Report()']]],
-  ['report_2eh_51',['report.h',['../report_8h.html',1,'']]],
-  ['resolvetie_52',['ResolveTie',['../classElection.html#ad4806088ae00a6eb9626adffc30cf528',1,'Election']]],
-  ['runelection_53',['RunElection',['../classElection.html#a7231fcc8a3894a372f02120df028a7ee',1,'Election']]]
+  ['parseline_40',['ParseLine',['../classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2',1,'Driver']]],
+  ['parseline2_41',['ParseLine2',['../classDriver.html#a2650ac1fe52587a006230ba7a4f4d893',1,'Driver']]],
+  ['print_42',['Print',['../classBallot.html#a40d6b387464d3b405e660555f0e90f08',1,'Ballot']]],
+  ['processcsv_43',['ProcessCSV',['../classDriver.html#add99b6b550e508a634489de781a3629d',1,'Driver']]]
 ];

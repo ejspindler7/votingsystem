@@ -1,5 +1,7 @@
 /**
  * @file ballot.h
+ * @author Ryan Mower
+ * @brief This file describes the Ballot class, which stores and updates ballot information.
  */
 
 #ifndef BALLOT_H

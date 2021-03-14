@@ -47,11 +47,6 @@ int Election::SetVotesForParties(){
     return 0;
 }
 
-// Don't use
-int Election::IncrementVotesForParty(string party_name){
-    return 0;
-}
-
 // Gets the number of seats
 int Election::GetNumberOfSeats(){
     return numberOfSeats;
@@ -275,14 +270,6 @@ int Election::RedistributeBallots(int eliminated_candidate){
     }
     return 0;
 }
-
-// Dont use
-int Election::SetCandidateRoundCountVotesElement(string name, int cout, int vote_num){
-    // TODO
-    return 0;
-}
-
-
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){
     // Return random integer between [0:num_candidates]

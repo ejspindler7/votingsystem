@@ -1,5 +1,7 @@
 /**
  * @file report.h
+ * @author Ryan Mower
+ * @brief This files describes the Report class, which generates the election reports and writes information to the terminal.
  */
 
 #ifndef REPORT_H
@@ -44,7 +46,7 @@ class Report{
         *
         * @param[in] name The string indicating the new name of the audit report file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int SetAuditReportName(string name);
         /**
@@ -58,7 +60,7 @@ class Report{
         *
         * @param[in] name The string indicating the new name of the media report file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int SetMediaReportName(string name);
         /**
@@ -66,7 +68,7 @@ class Report{
         *
         * @param[in] line The string to be appended to the audit file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int WriteLineToAuditReport(string line);
         /**
@@ -74,7 +76,7 @@ class Report{
         *
         * @param[in] line The string to be appended to the media file.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int WriteLineToMediaReport(string line);
         /*
@@ -88,7 +90,7 @@ class Report{
         /**
         * @brief Closes all of the report files.
         *
-        * @return int 0 indicating success or 1 indicating failure.
+        * @return int 0 indicating success.
         */
         int CloseReports();
         /**
