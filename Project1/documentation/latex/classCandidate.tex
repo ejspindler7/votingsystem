@@ -128,6 +128,8 @@ string indicating the candidate\textquotesingle{}s party name.
 
 Removess the most recently added ballot voting for the candidate from the list and returns it. 
 
+Exception\+: returns N\+U\+LL if the \mbox{\hyperlink{classCandidate}{Candidate}} has no ballots to remove.
+
 \begin{DoxyReturn}{Returns}
 Ballot$\ast$ ballot popped from the candidate\textquotesingle{}s list of ballots. 
 \end{DoxyReturn}

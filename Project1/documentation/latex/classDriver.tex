@@ -60,6 +60,8 @@ The constructor for the \mbox{\hyperlink{classDriver}{Driver}} class.
 
 This function will be used to create a new driver to process a C\+SV file with the given filename.
 
+The file is assumed to be formatted correctly, so there is no exception handling for incorrect C\+SV files. If the C\+SV file is not arranged as expected, this can lead to issues with program function, but it is considered improper use of the system and should not be expected to execute.
+
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em file\+Name} & string indicating the name of the file to be read from\\
@@ -266,5 +268,5 @@ int indicating 0 for success.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/driver.\+h\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/\mbox{\hyperlink{driver_8h}{driver.\+h}}\item 
 /home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/driver.\+cpp\end{DoxyCompactItemize}

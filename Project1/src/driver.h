@@ -1,5 +1,5 @@
 /**
- * @file ballot.h
+ * @file driver.h
  * @author Ryan Mower
  * @brief This file describes the Driver class, which reads in election information from a CSV file.
  */
@@ -30,6 +30,9 @@ class Driver{
         * @brief The constructor for the Driver class.
         *
         * This function will be used to create a new driver to process a CSV file with the given filename.
+        *
+        * The file is assumed to be formatted correctly, so there is no exception handling for incorrect CSV files.
+        * If the CSV file is not arranged as expected, this can lead to issues with program function, but it is considered improper use of the system and should not be expected to execute.
         *
         * @param[in] fileName string indicating the name of the file to be read from
         *

@@ -76,6 +76,8 @@ class Candidate{
         /**
         * @brief Removess the most recently added ballot voting for the candidate from the list and returns it.
         *
+        * Exception: returns NULL if the Candidate has no ballots to remove.
+        *
         * @return Ballot* ballot popped from the candidate's list of ballots.
         */
         Ballot* RemoveBallot();

@@ -141,6 +141,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The constructor for the <a class="el" href="classDriver.html" title="The main class for processing the CSV file for information.">Driver</a> class. </p>
 <p>This function will be used to create a new driver to process a CSV file with the given filename.</p>
+<p>The file is assumed to be formatted correctly, so there is no exception handling for incorrect CSV files. If the CSV file is not arranged as expected, this can lead to issues with program function, but it is considered improper use of the system and should not be expected to execute.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fileName</td><td>string indicating the name of the file to be read from</td></tr>
