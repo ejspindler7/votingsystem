@@ -481,7 +481,7 @@ int Election::ComputeOPLElection(){
 int Election::RunElection(){
 
     // Printing
-    string line = "** Candidatse **";
+    string line = "** Candidates **";
     cout << line << endl;
     WriteLineToAudit(line);
     WriteLineToMedia(line);
