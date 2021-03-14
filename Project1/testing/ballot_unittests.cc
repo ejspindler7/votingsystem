@@ -15,7 +15,6 @@ TEST_F(BallotTest, GetCurrDisTest){
  
 }
 
-
 TEST_F(BallotTest, SetCurrDisTest){
 	newBallot.SetCurrDis(1); 
     EXPECT_EQ(newBallot.GetCurrDis(), 1) << "Expecting 1"; 

@@ -50,8 +50,7 @@ TEST_F(CandidateTest, RemoveBallotTest){
 
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
 
-	newCandidate.RemoveBallot();
+	EXPECT_EQ(newCandidate.RemoveBallot(), newBallot);
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
-
 }
 
