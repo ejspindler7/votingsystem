@@ -13,7 +13,7 @@ class ElectionTests : public ::testing::Test {
   Election electionOPL  = Election(); //opl.csv
   Election electionIR  = Election(); //ir.csv
   Candidate newCandidate = Candidate("Emma", "D");
-  Ballot newballot = Ballot(1);
+  Ballot* newballot = new Ballot(1);
 
 };
 
@@ -162,6 +162,7 @@ TEST_F(ElectionTests, ComputeOPLElection){
   //writelinetoaudit
   //writelinetomedia
 }
+*/
 //AddCandidate
 TEST_F(ElectionTests, AddCandidate){
   electionOPL.SetNumberOfCandidates(0);
@@ -188,6 +189,7 @@ TEST_F(ElectionTests, RemoveCandidate){
   electionIR.SetNumberOfCandidates(0);
   EXPECT_EQ(electionIR.GetNumberOfCandidates(), 0) << "Expecting OPL";
 }
+/*
 //not tested
 //FindCandidateToRemove ???????????/
 TEST_F(ElectionTests, FindCandidateToRemove){
@@ -196,10 +198,7 @@ TEST_F(ElectionTests, FindCandidateToRemove){
   electionIR.IncreaseNumberOfCandidates();
   EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to remove candidate at index 0";
 }
-//nottested
-//AddBallot
-TEST_F(ElectionTests, AddBallot){
-}
+*/
 //CheckForMajority
 TEST_F(ElectionTests, CheckForMajority){
   int index = 0;
@@ -208,6 +207,7 @@ TEST_F(ElectionTests, CheckForMajority){
   electionIR.IncreaseNumberOfCandidates();
   EXPECT_EQ(electionIR.CheckForMajority(), index) << "Expecting IR: 0 index Rosen";
 }
+/*
 //not tested
 //writelinetoaudit????
 TEST_F(ElectionTests, WriteLineToAudit){
@@ -218,25 +218,34 @@ TEST_F(ElectionTests, WriteLineToAudit){
 //writelinetomedia
 TEST_F(ElectionTests,WriteLineToMedia){
 }
-//not tested
+*/
+//doesnt pass
 //UpdateBallotCurrDis
 TEST_F(ElectionTests, UpdateBallotCurrDis){
+  electionIR.SetNumberOfCandidates(0);
+  electionIR.AddCandidate(newCandidate);
+  electionIR.IncreaseNumberOfCandidates();
+  electionIR.AddCandidate(newCandidate);
+  electionIR.IncreaseNumberOfCandidates();
+  electionIR.AddCandidate(newCandidate);
+  electionIR.IncreaseNumberOfCandidates();
+  EXPECT_EQ(electionOPL.UpdateBallotCurrDis(newballot),0);
 }
+/*
 //not tested
 //RedistributeBallots
 TEST_F(ElectionTests, RedistributeBallots){
   electionOPL.RedistributeBallots(5);
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(),5);
 }
-//not tested
-//SetCandidateRoundCountVotesElement
-TEST_F(ElectionTests, SetCandidateRoundCountVotesElement){
-}
-//not tested
+*/
 //ResolveTie
+//returns a random number
 TEST_F(ElectionTests, ResolveTie){
-  //how to test because literally returns randomnumber
+  int ans = electionOPL.ResolveTie(3);
+  EXPECT_EQ(ans,ans);
 }
+/*
 //not nottested
 //&GetCandidate not sure how to access
 TEST_F(ElectionTests, GetCandidate){
@@ -250,5 +259,14 @@ TEST_F(ElectionTests, GetCandidate){
   EXPECT_EQ(electionIR.GetCandidate(0),newCandidate) << "Expecting IR: Emma";
 }
 */
-//closereports
-//getdateandtime
+
+TEST_F(ElectionTests, GetDateAndTime){
+  time_t now = time(0); // Grabs current time.
+  char* time = ctime(&now); // Converts to string form
+  string str(time);         // Converts time to string object
+  EXPECT_EQ(electionOPL.GetDateAndTime(),time);
+}
+TEST_F(ElectionTests, CloseReports){
+
+  EXPECT_EQ(electionOPL.CloseReports(),0);
+}
