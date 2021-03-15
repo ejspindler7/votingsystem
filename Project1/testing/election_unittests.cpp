@@ -218,7 +218,7 @@ TEST_F(ElectionTests, WriteLineToAudit){
 //writelinetomedia
 TEST_F(ElectionTests,WriteLineToMedia){
 }
-*/
+
 //doesnt pass
 //UpdateBallotCurrDis
 TEST_F(ElectionTests, UpdateBallotCurrDis){
@@ -231,7 +231,7 @@ TEST_F(ElectionTests, UpdateBallotCurrDis){
   electionIR.IncreaseNumberOfCandidates();
   EXPECT_EQ(electionOPL.UpdateBallotCurrDis(newballot),0);
 }
-/*
+
 //not tested
 //RedistributeBallots
 TEST_F(ElectionTests, RedistributeBallots){
