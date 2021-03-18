@@ -122,7 +122,10 @@ int Election::AddCandidate(Candidate &candidate){
 
 // Removes a candidate from the election
 int Election::RemoveCandidate(int idx){
-    candidates.erase(candidates.begin() + idx);
+	if (candidates.size() > 0){
+		candidates.erase(candidates.begin() + idx);
+	}
+
     return 0;
 }
 
