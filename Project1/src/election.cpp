@@ -468,7 +468,7 @@ int Election::ComputeOPLElection(){
     WriteLineToAudit(winners);
     WriteLineToMedia(winners);
     for (int winner = 0; winner < c_winners.size(); winner++){
-        string line = to_string(winner + 1) + ". " + candidates.at(winner).GetName() + 
+        string line = to_string(winner + 1) + ". " + candidates.at(c_winners.at(winner)).GetName() + 
             " (" + candidates.at(winner).GetParty() + ") ";
         cout << line << endl;
         WriteLineToAudit(line);
