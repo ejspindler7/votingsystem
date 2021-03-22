@@ -6,14 +6,11 @@
 #include <iostream>
 
 class CandidateTest : public ::testing::Test {
-public:
-	void SetUp( ) { 
-    // code here will execute just before the test ensues 
-	newCandidate = Candidate("Bui", "R");
-	Ballot* newBallot = Ballot(1)
-  }
 protected:
-	Candidate newCandidate;
+    // code here will execute just before the test ensues 
+	Candidate newCandidate = Candidate("Bui", "R");
+	Ballot* newBallot = new Ballot(1);
+  
 };
 
 TEST_F(CandidateTest, GetNameTest){
@@ -21,38 +18,39 @@ TEST_F(CandidateTest, GetNameTest){
 }
 
 TEST_F(CandidateTest, GetPartyTest){
-	EXPECT_EQ(newCandiate.GetParty(), "R");
+	EXPECT_EQ(newCandidate.GetParty(), "R");
 }
 
 TEST_F(CandidateTest, SetNameTest){
 	std::string newName = "Tran";
-	newCandiate.setName(newName);
+	newCandidate.SetName(newName);
 
 	EXPECT_EQ(newCandidate.GetName(), "Tran");
 }
 
 TEST_F(CandidateTest, SetPartyTest){
 	std::string newParty = "D";
-	newCandiate.setName(newName);
+	newCandidate.SetParty(newParty);
 
 	EXPECT_EQ(newCandidate.GetParty(), "D");
 }
 
-TEST_F(CandidateTest, GetBallotListSizeTest{
-	EXPECT_EQ(newCandidate.size(), 0);
+TEST_F(CandidateTest, GetBallotListSizeTest){
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
 }
 
 TEST_F(CandidateTest, AddBallotTest){
-	newBallot.addBallot(&newBallot)
+	newCandidate.AddBallot(newBallot);
 
-	EXPECT_EQ(newCandidate.size(), 1);
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
 }
 
 TEST_F(CandidateTest, RemoveBallotTest){
-	newCandidate.addBallot(&newBallot)
+	newCandidate.AddBallot(newBallot);
 
-	EXPECT_EQ(newCandidate.size(), 1);
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
+
 	EXPECT_EQ(newCandidate.RemoveBallot(), newBallot);
-	EXPECT_EQ(newCandidate.size(), 0);
-
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
 }
+

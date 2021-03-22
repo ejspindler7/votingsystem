@@ -12,7 +12,7 @@
 
 using namespace std;
 
-
+// Default constructor
 Election::Election(){
     electionType       = "NONE";
     numberOfCandidates = -1;
@@ -26,6 +26,8 @@ Election::Election(){
     media.open(mediaReportName);
 }
 
+
+// Gets the number of votes for a specific party
 int Election::GetVotesForParty(string party_name){
     int total_votes = 0;
     for (int i = 0; i < candidates.size(); i++){
@@ -37,15 +39,11 @@ int Election::GetVotesForParty(string party_name){
     return total_votes;
 }
 
-
+// Sets the vote count of a specific party
 int Election::SetVotesForParties(){
     for (int i = 0; i < parties.size(); i++){
         numVotesForParty[parties.at(i)] = GetVotesForParty(parties.at(i));
     }
-    return 0;
-}
-
-int Election::IncrementVotesForParty(string party_name){
     return 0;
 }
 
@@ -116,21 +114,28 @@ int Election::IncreaseNumberOfBallots(){
     return 0;
 }
 
+// Adds a candidate to the election
 int Election::AddCandidate(Candidate &candidate){    
     candidates.push_back(candidate);
     return 0; 
 }
 
+// Removes a candidate from the election
 int Election::RemoveCandidate(int idx){
-    candidates.erase(candidates.begin() + idx);
+	if (candidates.size() > 0){
+		candidates.erase(candidates.begin() + idx);
+	}
+
     return 0;
 }
 
+// Finds which candide to remove (lowest number of votes)
 int Election::FindCandidateToRemove(){
     vector<int> candidates_tied;  // Using vector incase of a tie
     int current_min = INT_MAX;
     int candidate_to_remove_idx;
 
+	// Traverse all candidates, searching for which candidate to remove
     for (int i = 0; i < candidates.size(); i++){
         if (candidates.at(i).GetBallotListSize() < current_min){
             current_min = candidates.at(i).GetBallotListSize();
@@ -157,7 +162,7 @@ int Election::FindCandidateToRemove(){
 
 }
     
-
+// Adds a party to the elecgtion
 int Election::AddParty(string party_name){
     bool party_already_exists = false;
 
@@ -174,6 +179,7 @@ int Election::AddParty(string party_name){
     return 0;
 }
 
+// See if any of the current candidates have a majority
 int Election::CheckForMajority(){
     int majority = -1;
     int winning_idx = -1;
@@ -215,6 +221,7 @@ int Election::CheckForMajority(){
     }
 }
 
+// Updates the ballot's current distribution (which candidate the ballot counts for)
 int Election::UpdateBallotCurrDis(Ballot* ballot){
   int curDis = ballot->GetCurrDis();
   int newDis = curDis + 1;
@@ -237,7 +244,7 @@ int Election::UpdateBallotCurrDis(Ballot* ballot){
   return -1; // Did not find new candidate anywhere
 }
 
-
+// Redistributes the ballots for IR election
 int Election::RedistributeBallots(int eliminated_candidate){
     string line = "-- Redistributing Ballots ---";
     WriteLineToAudit(line);
@@ -266,13 +273,6 @@ int Election::RedistributeBallots(int eliminated_candidate){
     }
     return 0;
 }
-    
-int Election::SetCandidateRoundCountVotesElement(string name, int cout, int vote_num){
-    // TODO
-    return 0;
-}
-
-
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){
     // Return random integer between [0:num_candidates]
@@ -481,7 +481,7 @@ int Election::ComputeOPLElection(){
 int Election::RunElection(){
 
     // Printing
-    string line = "** Candidatse **";
+    string line = "** Candidates **";
     cout << line << endl;
     WriteLineToAudit(line);
     WriteLineToMedia(line);
@@ -509,10 +509,12 @@ int Election::RunElection(){
     return 0;
 }
 
+// Gets the candidate at idx
 Candidate& Election::GetCandidate(int idx){
     return candidates.at(idx);
 }
 
+// Gets the current date and time
 string Election::GetDateAndTime(){
     // Got idea from: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
     time_t now = time(0); // Grabs current time.
@@ -521,17 +523,20 @@ string Election::GetDateAndTime(){
     return dt;
 }
 
+// Writes a line to an audit file
 int Election::WriteLineToAudit(string line){
     audit<<line + "\n" ;
     return 0;
 }
 
-
+// Writes a line to the media file
 int Election::WriteLineToMedia(string line){
     media<<line + "\n" ;
     return 0;
 }
 
+
+// Saves the reports
 int Election::CloseReports(){
     audit.close();
     media.close();

@@ -6,20 +6,14 @@
 
 
 class BallotTest : public ::testing::Test {
- public:
-  void SetUp( ) { 
-    // code here will execute just before the test ensues 
-	newBallot = Ballot(1);
-  }
 protected:
-	Ballot newBallot;
+	Ballot newBallot= Ballot(1);
 };
 
 TEST_F(BallotTest, GetCurrDisTest){
     EXPECT_EQ(newBallot.GetCurrDis(), 0) << "Expecting 0"; 
  
 }
-
 
 TEST_F(BallotTest, SetCurrDisTest){
 	newBallot.SetCurrDis(1); 
@@ -38,8 +32,8 @@ TEST_F(BallotTest, SetIdTest){
 }
 
 TEST_F(BallotTest, AddCandidateTest){
-	std::string expectedCandidate = "Trump";
-	newBallot.AddCandidate(expectedCandidate);
+	std::string expectedCandidate = "Trump\n";
+	newBallot.AddCandidate("Trump");
 
 	testing::internal::CaptureStdout();
 	newBallot.Print();
@@ -62,17 +56,9 @@ TEST_F(BallotTest, PrintOrderTest){
 	newBallot.Print();
 	std::string actualPrintedCandidates = testing::internal::GetCapturedStdout();
 
-	EXPECT_EQ(actualPrintedCandidates, expectedCandidate1 + "\n" + expectedCandidate2 + "\n" + expectedCandidate3)
+	EXPECT_EQ(actualPrintedCandidates, expectedCandidate1 + "\n" + expectedCandidate2 + "\n" + expectedCandidate3 + "\n");
 
 
 }
-
-
-
-
-
-
-
-
 
 
