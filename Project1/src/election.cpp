@@ -9,6 +9,7 @@
 #include <climits>
 #include "report.h"
 #include <ctime>
+#include <ctime>
 
 using namespace std;
 
@@ -276,8 +277,13 @@ int Election::RedistributeBallots(int eliminated_candidate){
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){
     // Return random integer between [0:num_candidates]
+    std::time_t t = std::time(0);   // get time now
+    std::tm* now = std::localtime(&t);
+
+
+    int constant = now->tm_sec * num_candidates * 73;
     int rand_number;
-    for (int i = 0; i < 73 * num_candidates; i++){
+    for (int i = 0; i < constant; i++){
         rand_number = rand() % num_candidates;
     }
     return rand_number;
