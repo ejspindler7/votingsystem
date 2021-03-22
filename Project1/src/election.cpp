@@ -440,10 +440,10 @@ int Election::ComputeOPLElection(){
     vector<int> c_winners;
     for (int party = 0; party < parties.size(); party++){
         int seats_to_give = finalPartySeats[parties.at(party)];
-        int winner_idx = 0;
-        int winner_votes = -1;
+
         for (int seat = 0; seat < seats_to_give; seat++){
-            
+            int winner_idx = 0;
+            int winner_votes = -1; 
             for (int c = 0; c < candidates.size(); c++){
                 // Current candidate did not already win
                 if (!(std::count(c_winners.begin(), c_winners.end(), c))){
