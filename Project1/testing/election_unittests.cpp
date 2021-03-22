@@ -7,11 +7,12 @@
 
 class ElectionTests : public ::testing::Test {
     // code here will execute just before the test ensues
-
  protected:
   Election electionOPL  = Election(); //opl.csv
   Election electionIR  = Election(); //ir.csv
   Candidate newCandidate = Candidate("Emma", "D");
+  Candidate newCandidate2 = Candidate("Eric", "R");
+
   Ballot* newballot = new Ballot(1);
 
 };
@@ -19,30 +20,39 @@ class ElectionTests : public ::testing::Test {
 //SetElectionType
 TEST_F(ElectionTests, SetElectionType){
   electionOPL.SetElectionType("OPL");
-	electionIR.SetElectionType("IR");
-
 	std::string expected_OPL = "OPL";
-	std::string expected_IR= "IR";
-    EXPECT_EQ(electionOPL.GetElectionType(), expected_OPL) << "Expecting OPL";
-    EXPECT_EQ(electionIR.GetElectionType(), expected_IR) << "Expecting IR";
+  EXPECT_EQ(electionOPL.GetElectionType(), expected_OPL) << "Expecting OPL";
 }
 
 // GetElectionType
 TEST_F(ElectionTests, GetElectionType){
+  //constructor test
+  EXPECT_EQ(electionOPL.GetElectionType(), "NONE") << "Expecting NONE";
+
 	std::string expected_OPL = "OPL";
-	std::string expected_IR= "IR";
   electionOPL.SetElectionType("OPL");
-	electionIR.SetElectionType("IR");
   EXPECT_EQ(electionOPL.GetElectionType(), expected_OPL) << "Expecting OPL";
-  EXPECT_EQ(electionIR.GetElectionType(), expected_IR) << "Expecting IR";
+}
+
+TEST_F(ElectionTests, GetNumberParties){
+  std::string independent = "I";
+  electionOPL.AddParty(independent);
+  EXPECT_EQ(electionOPL.GetNumberParties(),1);
 }
 
 //AddParty
 TEST_F(ElectionTests, AddParty){
-  EXPECT_EQ(electionOPL.AddParty("Test"),0);
+  //party adds 
+  std::string independent = "I";
+  electionOPL.AddParty(independent);
+  EXPECT_EQ(electionOPL.GetNumberParties(), 1);
+  
+  //try to add the same party
+  electionOPL.AddParty(independent);
+  EXPECT_EQ(electionOPL.GetNumberParties(), 1);
 
 }
-//SetVotesForParty
+//SetVotesForParty !!!!!
 TEST_F(ElectionTests, SetVotesForParties){
   std::string dem = "D";
   int success = electionOPL.AddParty(dem);
@@ -50,17 +60,13 @@ TEST_F(ElectionTests, SetVotesForParties){
   EXPECT_EQ(electionOPL.GetVotesForParty(dem), 0) << "Expecting OPL votes for D: 0";
 }
 
-//GetVotesForParty
+//GetVotesForParty !!!
 TEST_F(ElectionTests, GetVotesForParty){
   std::string dem = "D";
   int success = electionOPL.AddParty(dem);
   electionOPL.SetVotesForParties();
   EXPECT_EQ(electionOPL.GetVotesForParty(dem), 0) << "Expecting OPL D votes: 0";
 }
-
-
-
-
 
 
 //SetNumberOfCandidates
@@ -71,6 +77,9 @@ TEST_F(ElectionTests, SetNumberOfCandidates){
 }
 //GetNumberOfCandidates
 TEST_F(ElectionTests, GetNumberOfCandidates){
+  //testing constructor
+  EXPECT_EQ(electionOPL.GetNumberOfCandidates(), -1) << "Expecting -1";
+
    electionOPL.SetNumberOfCandidates(6);
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 6) << "Expecting OPL";
 
@@ -84,8 +93,10 @@ TEST_F(ElectionTests, SetNumberOfSeats){
 }
 //GetNumberOfSeats
 TEST_F(ElectionTests, GetNumberOfSeats){
-  electionOPL.SetNumberOfSeats(3);
+//testing constructor
+  EXPECT_EQ(electionOPL.GetNumberOfSeats(), -1) << "Expecting -1";
 
+  electionOPL.SetNumberOfSeats(3);
   EXPECT_EQ(electionOPL.GetNumberOfSeats(), 3) << "Expecting OPL: 3";
 }
 
@@ -101,6 +112,9 @@ TEST_F(ElectionTests, SetNumberOfBallots){
 }
 //GetNumberOfBallots
 TEST_F(ElectionTests, GetNumberOfBallots){
+  //testing constructor
+  EXPECT_EQ(electionOPL.GetNumberOfBallots(), -1) << "Expecting -1";
+
   electionOPL.SetNumberOfBallots(9);
   electionIR.SetNumberOfBallots(6);
   EXPECT_EQ(electionOPL.GetNumberOfBallots(), 9) << "Expecting OPL: 9";
@@ -112,11 +126,14 @@ TEST_F(ElectionTests, GetNumberOfBallots){
 //SetQuota
 TEST_F(ElectionTests, SetQuota){
   electionOPL.SetQuota(3);
-    EXPECT_EQ(electionOPL.GetQuota(), 3) << "Expecting OPL: 3";
+  EXPECT_EQ(electionOPL.GetQuota(), 3) << "Expecting OPL: 3";
 
 }
 //GetQuota
 TEST_F(ElectionTests, GetQuota){
+  //testing constructor
+  EXPECT_EQ(electionOPL.GetQuota(), -1) << "Expecting -1";
+
   electionOPL.SetQuota(3);
     EXPECT_EQ(electionOPL.GetQuota(), 3) << "Expecting OPL: 3";
 
@@ -129,7 +146,6 @@ TEST_F(ElectionTests, IncreaseNumberOfCandidates){
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 7) << "Expecting OPL: 7";
 
 }
-
 
 //IncreaseNumberOfBallots
 TEST_F(ElectionTests, IncreaseNumberOfBallots){
@@ -173,33 +189,28 @@ TEST_F(ElectionTests, AddCandidate){
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 1) << "Expecting OPL: 1";
   electionOPL.AddCandidate(newCandidate2);
   electionOPL.IncreaseNumberOfCandidates();
+  //tests with more than one added
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(),2) << "Expecting OPL: 2";
-  electionIR.SetNumberOfCandidates(0);
-  electionIR.AddCandidate(newCandidate);
-  electionIR.IncreaseNumberOfCandidates();
-  EXPECT_EQ(electionIR.GetNumberOfCandidates(), 1) << "Expecting IR: 1";
 }
 //RemoveCandidate
 TEST_F(ElectionTests, RemoveCandidate){
+  //test with one candidate that gets removed
   electionOPL.SetNumberOfCandidates(0);
   electionOPL.AddCandidate(newCandidate);
   electionOPL.IncreaseNumberOfCandidates();
   electionOPL.RemoveCandidate(0);
   electionOPL.SetNumberOfCandidates(0);
-  //test with one candidate
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 0) << "Expecting OPL: 0";
+
+  //tests with 2 candidates and removing the second one
   electionOPL.AddCandidate(newCandidate2);
+  electionOPL.IncreaseNumberOfCandidates();
+  electionOPL.AddCandidate(newCandidate);
   electionOPL.IncreaseNumberOfCandidates();
   electionOPL.RemoveCandidate(1);
   electionOPL.SetNumberOfCandidates(1);
-  //tests with 2 candidates and removing the second one
   EXPECT_EQ(electionOPL.GetNumberOfCandidates(), 1) << "Expecting OPL: 1";
-  electionIR.SetNumberOfCandidates(0);
-  electionIR.AddCandidate(newCandidate);
-  electionIR.IncreaseNumberOfCandidates();
-  electionIR.RemoveCandidate(0);
-  electionIR.SetNumberOfCandidates(0);
-  EXPECT_EQ(electionIR.GetNumberOfCandidates(), 0) << "Expecting IR: 0";
+  
 }
 /*
 //not tested
@@ -213,11 +224,17 @@ TEST_F(ElectionTests, FindCandidateToRemove){
 */
 //CheckForMajority
 TEST_F(ElectionTests, CheckForMajority){
-  int index = 0;
+  //tests to see if last candidate
   electionIR.SetNumberOfCandidates(0);
   electionIR.AddCandidate(newCandidate);
   electionIR.IncreaseNumberOfCandidates();
-  EXPECT_EQ(electionIR.CheckForMajority(), index) << "Expecting IR: 0 index Rosen";
+  EXPECT_EQ(electionIR.CheckForMajority(), 0) << "Expecting IR: 0 index Rosen";
+  
+  //have a tie for majority will return -1
+
+  //one candidate has a majority 
+
+  //a candidate ahs the majority but its not more than 1/2 will return -1
 }
 /*
 //not tested
