@@ -215,15 +215,14 @@ TEST_F(ElectionTests, RemoveCandidate){
   
 }
 
-/*
-//not tested
-//FindCandidateToRemove ???????????/
 TEST_F(ElectionTests, FindCandidateToRemove){
-  //electionIR.SetNumberOfCandidates(0);
-  //electionIR.AddCandidate(newCandidate);
-  //electionIR.IncreaseNumberOfCandidates();
-  //EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to remove candidate at index 0";
+//one candidate no ballot
+  electionIR.SetNumberOfCandidates(0);
+  electionIR.AddCandidate(newCandidate);
+  electionIR.IncreaseNumberOfCandidates();
+  EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to remove candidate at index 0";
 
+//two ballots two candidates
   newballot->AddCandidate(newCandidate.GetName());
   newCandidate.AddBallot(newballot);
   electionIR.SetNumberOfCandidates(0);
@@ -243,11 +242,13 @@ TEST_F(ElectionTests, FindCandidateToRemove){
 
   //check for tie
   EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to resolve tie";
+
+  //3 ballots two candidates
   newballot3->AddCandidate(newCandidate2.GetName());
   newCandidate2.AddBallot(newballot3);
   electionIR.SetVotesForParties();
   EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to remove First Candidate";
-}*/
+}
 
 
 //CheckForMajority
@@ -376,7 +377,6 @@ TEST_F(ElectionTests, UpdateBallotCurrDis){
   EXPECT_EQ(electionIR.UpdateBallotCurrDis(newballot2),0);
 }
 
-//not tested
 //RedistributeBallots
 TEST_F(ElectionTests, RedistributeBallots){
   newballot2->AddCandidate(newCandidate2.GetName());
@@ -411,11 +411,9 @@ TEST_F(ElectionTests, ResolveTie){
 }
 
 /*
-//not nottested
 //&GetCandidate not sure how to access
 TEST_F(ElectionTests, GetCandidate){
   electionIR.SetNumberOfCandidates(0);
-  newCandidate.AddBallot(newballot);
   electionIR.AddCandidate(newCandidate);
   electionIR.IncreaseNumberOfCandidates();
   
