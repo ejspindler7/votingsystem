@@ -9,6 +9,7 @@
 #include <climits>
 #include "report.h"
 #include <ctime>
+#include <ctime>
 
 using namespace std;
 
@@ -280,8 +281,13 @@ int Election::RedistributeBallots(int eliminated_candidate){
 // Fair coin flip
 int Election::ResolveTie(int num_candidates){
     // Return random integer between [0:num_candidates]
+    std::time_t t = std::time(0);   // get time now
+    std::tm* now = std::localtime(&t);
+
+
+    int constant = now->tm_sec * num_candidates * 73;
     int rand_number;
-    for (int i = 0; i < 73 * num_candidates; i++){
+    for (int i = 0; i < constant; i++){
         rand_number = rand() % num_candidates;
     }
     return rand_number;
@@ -438,14 +444,15 @@ int Election::ComputeOPLElection(){
     }
 
 
-
+    vector<int> tied_candidates;
     vector<int> c_winners;
     for (int party = 0; party < parties.size(); party++){
         int seats_to_give = finalPartySeats[parties.at(party)];
-        int winner_idx = 0;
-        int winner_votes = -1;
+
         for (int seat = 0; seat < seats_to_give; seat++){
-            
+            int winner_idx = 0;
+            int winner_votes = -1; 
+            tied_candidates.clear();
             for (int c = 0; c < candidates.size(); c++){
                 // Current candidate did not already win
                 if (!(std::count(c_winners.begin(), c_winners.end(), c))){
@@ -456,9 +463,24 @@ int Election::ComputeOPLElection(){
                             winner_idx = c;
                             winner_votes = candidates.at(c).GetBallotListSize();
                         }
+                        // Candidates tied for winner
+                        else if(winner_votes == candidates.at(c).GetBallotListSize()){
+                            tied_candidates.push_back(winner_idx);
+                            tied_candidates.push_back(c);
+                        }
                     }
                 }
             }
+
+            // Check and resolve ties
+            if(tied_candidates.size() != 0){
+                sort(tied_candidates.begin(), tied_candidates.end());
+                tied_candidates.erase(unique(tied_candidates.begin(), tied_candidates.end()), tied_candidates.end());
+
+                // Give seat to party 
+                winner_idx = tied_candidates.at(ResolveTie(tied_candidates.size()));
+            }
+
 
             c_winners.push_back(winner_idx);
 
@@ -470,7 +492,7 @@ int Election::ComputeOPLElection(){
     WriteLineToAudit(winners);
     WriteLineToMedia(winners);
     for (int winner = 0; winner < c_winners.size(); winner++){
-        string line = to_string(winner + 1) + ". " + candidates.at(winner).GetName() + 
+        string line = to_string(winner + 1) + ". " + candidates.at(c_winners.at(winner)).GetName() + 
             " (" + candidates.at(winner).GetParty() + ") ";
         cout << line << endl;
         WriteLineToAudit(line);
