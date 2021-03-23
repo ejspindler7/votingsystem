@@ -16,6 +16,8 @@ TEST_F(BallotTest, GetCurrDisTest){
 }
 
 TEST_F(BallotTest, SetCurrDisTest){
+	EXPECT_EQ(newBallot.GetCurrDis(), 0);
+
 	newBallot.SetCurrDis(1); 
     EXPECT_EQ(newBallot.GetCurrDis(), 1) << "Expecting 1"; 
  
@@ -26,8 +28,9 @@ TEST_F(BallotTest, GetIdTest){
 }
 
 TEST_F(BallotTest, SetIdTest){
+	EXPECT_EQ(newBallot.GetId(), 1);
+	
 	newBallot.SetId(99);
-
 	EXPECT_EQ(newBallot.GetId(), 99);
 }
 
