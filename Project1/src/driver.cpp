@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "candidate.h"
 #include "ballot.h"
+#include "election.h"
 #include <assert.h>
 #include <map>
 
@@ -23,7 +24,7 @@ int Driver::ReadInElectionType(){
         string line = "Compute " + tmp + " election.";
         election.WriteLineToAudit(line);
         election.WriteLineToMedia(line);
-        cout << line << endl;
+        std::cout << line << std::endl;
     }
     else{
         std::cout << "File Handle is not open for Election Type." << std::endl;

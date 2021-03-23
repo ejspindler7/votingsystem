@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include "report.h"
+#include "candidate.h"
 
 class Driver{
     public:
