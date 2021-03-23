@@ -10,6 +10,7 @@ protected:
     // code here will execute just before the test ensues 
 	Candidate newCandidate = Candidate("Bui", "R");
 	Ballot* newBallot = new Ballot(1);
+	Ballot* nullBallot = NULL;
   
 };
 
@@ -46,10 +47,15 @@ TEST_F(CandidateTest, AddBallotTest){
 }
 
 TEST_F(CandidateTest, RemoveBallotTest){
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
+
+	//tests case if theres no ballots to remove
+	EXPECT_EQ(newCandidate.RemoveBallot(),nullBallot);
+	
 	newCandidate.AddBallot(newBallot);
-
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
-
+	
+	//tests if the ballot removec is returns and if the number of ballots decreased
 	EXPECT_EQ(newCandidate.RemoveBallot(), newBallot);
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
 }
