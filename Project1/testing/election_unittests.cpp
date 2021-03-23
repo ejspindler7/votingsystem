@@ -10,8 +10,7 @@ class ElectionTests : public ::testing::Test {
  protected:
   Election electionOPL  = Election(); //opl.csv
   Election electionIR  = Election(); //ir.csv
-  Election election  = Election(); //ir.csv
-
+  Election election  = Election(); 
 
   Candidate newCandidate = Candidate("Emma", "D");
   Candidate newCandidate2 = Candidate("Eric", "R");
@@ -24,12 +23,6 @@ class ElectionTests : public ::testing::Test {
   Ballot* newballot4 = new Ballot(4);
   Ballot* newballot5 = new Ballot(5);
   Ballot* newballot6 = new Ballot(6);
-  //Ballot* newballot7 = new Ballot(7);
-
-
-
-
-
 
 };
 
@@ -254,8 +247,8 @@ TEST_F(ElectionTests, FindCandidateToRemove){
   newCandidate2.AddBallot(newballot3);
   electionIR.SetVotesForParties();
   EXPECT_EQ(electionIR.FindCandidateToRemove(),0) << "Expecting IR to remove First Candidate";
-}
-*/
+}*/
+
 
 //CheckForMajority
 TEST_F(ElectionTests, CheckForMajority){
@@ -349,17 +342,7 @@ TEST_F(ElectionTests, CheckForMajority){
 
   EXPECT_EQ(election.CheckForMajority(),-1) << "Expecting IR to have winning index of -1";
 }
-/*
-//not tested
-//writelinetoaudit????
-TEST_F(ElectionTests, WriteLineToAudit){
-  int index = 0;
-  EXPECT_EQ(CheckForMajority(),index) << "Expecting IR: 0 index Rosen";
-}
-//not tested
-//writelinetomedia
-TEST_F(ElectionTests,WriteLineToMedia){
-}*/
+
 
 //UpdateBallotCurrDis
 TEST_F(ElectionTests, UpdateBallotCurrDis){
@@ -392,34 +375,54 @@ TEST_F(ElectionTests, UpdateBallotCurrDis){
 
   EXPECT_EQ(electionIR.UpdateBallotCurrDis(newballot2),0);
 }
-/*
+
 //not tested
 //RedistributeBallots
 TEST_F(ElectionTests, RedistributeBallots){
-  electionOPL.RedistributeBallots(5);
-  EXPECT_EQ(electionOPL.GetNumberOfCandidates(),5);
+  newballot2->AddCandidate(newCandidate2.GetName());
+  newballot2->AddCandidate(newCandidate3.GetName());
+
+  newballot3->AddCandidate(newCandidate3.GetName());
+  newballot3->AddCandidate(newCandidate2.GetName());
+
+  newballot2->SetCurrDis(0);
+  //newCandidate.AddBallot(newballot2);
+  newCandidate2.AddBallot(newballot2);
+  newCandidate3.AddBallot(newballot3);
+
+  electionIR.SetNumberOfCandidates(0);
+  electionIR.AddCandidate(newCandidate2);
+  electionIR.AddCandidate(newCandidate3);
+
+  electionIR.IncreaseNumberOfCandidates();
+  electionIR.IncreaseNumberOfCandidates();
+
+  electionIR.RedistributeBallots(1);
+  EXPECT_EQ(newCandidate2.GetBallotListSize(),1);
+  EXPECT_EQ(newCandidate3.GetBallotListSize(),1);
+
 }
-*/
+
 //ResolveTie
 //returns a random number
 TEST_F(ElectionTests, ResolveTie){
   int ans = electionOPL.ResolveTie(3);
   EXPECT_EQ(ans,ans);
 }
+
 /*
 //not nottested
 //&GetCandidate not sure how to access
 TEST_F(ElectionTests, GetCandidate){
   electionIR.SetNumberOfCandidates(0);
+  newCandidate.AddBallot(newballot);
   electionIR.AddCandidate(newCandidate);
   electionIR.IncreaseNumberOfCandidates();
-  electionOPL.SetNumberOfCandidates(0);
-  electionOPL.AddCandidate(newCandidate);
-  electionOPL.IncreaseNumberOfCandidates();
-  EXPECT_EQ(electionOPL.GetCandidate(0),newCandidate) << "Expecting OPL: Emma";
-  EXPECT_EQ(electionIR.GetCandidate(0),newCandidate) << "Expecting IR: Emma";
-}
-*/
+  
+  EXPECT_EQ(electionIR.GetCandidate(0), newCandidate);
+ 
+}*/
+
 
 TEST_F(ElectionTests, GetDateAndTime){
   time_t now = time(0); // Grabs current time.
@@ -427,7 +430,7 @@ TEST_F(ElectionTests, GetDateAndTime){
   string str(time);         // Converts time to string object
   EXPECT_EQ(electionOPL.GetDateAndTime(),time);
 }
-TEST_F(ElectionTests, CloseReports){
 
+TEST_F(ElectionTests, CloseReports){
   EXPECT_EQ(electionOPL.CloseReports(),0);
 }
