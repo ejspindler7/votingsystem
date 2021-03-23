@@ -172,14 +172,7 @@ TEST_F(ElectionTests, IncreaseNumberOfBallots){
   electionOPL.IncreaseNumberOfBallots();
   EXPECT_EQ(electionOPL.GetNumberOfBallots(), 10) << "Expecting OPL";
 }
-/*
-//not passed
-//RunElection
-TEST_F(ElectionTests, RunElection){
-  electionOPL.RunElection();
-}
 
-*/
 //AddCandidate
 TEST_F(ElectionTests, AddCandidate){
   //checks the number of default candidates from constructor
@@ -410,16 +403,16 @@ TEST_F(ElectionTests, ResolveTie){
   EXPECT_EQ(ans,ans);
 }
 
-/*
+
 //&GetCandidate not sure how to access
 TEST_F(ElectionTests, GetCandidate){
   electionIR.SetNumberOfCandidates(0);
   electionIR.AddCandidate(newCandidate);
   electionIR.IncreaseNumberOfCandidates();
   
-  EXPECT_EQ(electionIR.GetCandidate(0), newCandidate);
+  EXPECT_TRUE(electionIR.GetCandidate(0).GetName() == "Emma");
  
-}*/
+}
 
 
 TEST_F(ElectionTests, GetDateAndTime){

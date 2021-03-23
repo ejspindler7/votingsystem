@@ -161,8 +161,12 @@ int Election::FindCandidateToRemove(){
     return candidate_to_remove_idx;
 
 }
+
+int Election::GetNumberParties(){
+    return parties.size();
+}
     
-// Adds a party to the elecgtion
+// Adds a party to the election
 int Election::AddParty(string party_name){
     bool party_already_exists = false;
 
@@ -282,8 +286,6 @@ int Election::ResolveTie(int num_candidates){
     }
     return rand_number;
 }
-
-
 
 
 // Computes election results for IR election

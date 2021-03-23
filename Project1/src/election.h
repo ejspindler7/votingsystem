@@ -192,6 +192,12 @@ class Election{
         */
         int AddParty(string party_name);
         /**
+        * @brief Gets the number of parties participating in the election
+        *
+        * @return integer of the number of parties in the election
+        */
+        int GetNumberParties();
+        /**
         * @brief Determines if any candidate has the majority of votes, and if so, returns their ID
         *
         * @return int indicating the id of the candidate with the most votes, or -1 if none such candidate exists
