@@ -119,7 +119,9 @@ int Driver::ReadInBallots(){
     if (fileHandle.is_open()){
         while(getline(fileHandle, line)){
             Ballot* ballot = new Ballot(ballot_id);
-            assert(ballot!=NULL);
+            if (line == ""){
+                break;
+            }
             if (election.GetElectionType() == "OPL"){
                 int candidate_idx = this->GetOPLVote(line);
                 ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
