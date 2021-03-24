@@ -11,6 +11,7 @@ protected:
 	Candidate newCandidate = Candidate("Bui", "R");
 	Candidate newCandidate2 = Candidate("Nguyen", "D");
 	Ballot* newBallot = new Ballot(1);
+	Ballot* nullBallot = NULL;
   
 };
 
@@ -51,6 +52,9 @@ TEST_F(CandidateTest, AddBallotTest){
 }
 
 TEST_F(CandidateTest, RemoveBallotTest){
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
+	EXPECT_EQ(newCandidate.RemoveBallot(),nullBallot);
+
 	newCandidate.AddBallot(newBallot);
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
 
