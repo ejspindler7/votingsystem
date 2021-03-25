@@ -273,9 +273,9 @@ class Election{
         map<string, int> seatsPerPartyRemainder;
         map<string, int> finalPartySeats;
         map<string, int> numVotesForParty;
-        map<string, vector<int>> winningCandidates;
-        map<string, vector<Candidate>> candidateRankings;
-        map<string, vector<int>> candidateRoundCountVotes; // Used for reporting
+        map<string, vector<int> > winningCandidates;
+        map<string, vector<Candidate> > candidateRankings;
+        map<string, vector<int> > candidateRoundCountVotes; // Used for reporting
 
 };
 

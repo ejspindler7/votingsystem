@@ -60,7 +60,7 @@ int Driver::ReadInCandidates(){
             std::string tmp;
             getline(fileHandle, tmp);
             ParseLine(tmp, candidates, ',');
-            // Removefs '[' or ']' from word.
+            // Removes '[' or ']' from word.
             for (int i = 0; i < candidates.size(); i++){
                 candidates.at(i).erase(remove(candidates.at(i).begin(), candidates.at(i).end(), '['), candidates.at(i).end());
                 candidates.at(i).erase(remove(candidates.at(i).begin(), candidates.at(i).end(), ']'), candidates.at(i).end());
