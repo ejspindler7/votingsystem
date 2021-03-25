@@ -53,7 +53,7 @@ TEST_F(DriverTests, ReadIRArgumentsTest){
 	EXPECT_EQ("Number of candidates: 4\n", actualNumOfCandidates);
 
 	//Reading in candidates
-	newDriver1.ReadInCandidates();
+	EXPECT_EQ(newDriver1.ReadInCandidates(),0);
 
 	//Reading in number of ballots
 	testing::internal::CaptureStdout();
