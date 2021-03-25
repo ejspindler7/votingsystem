@@ -37,36 +37,15 @@ int Report::SetMediaReportName(string name){
     return 0;
 }
 int Report::WriteLineToAuditReport(string line){
-    auditReport << line << endl;      
+    auditReport << line << endl;
     return 0;
 }
 
 int Report::WriteLineToMediaReport(string line){
-    mediaReport<< line << endl;      
+    mediaReport<< line << endl;
     return 0;
 }
 
-/*
-int Report::WriteOPLAuditReport(Election& election){
-    return 0;
-}
-int Report::WriteOPLMediaReport(Election& election){
-    return 0;
-}
-int Report::WriteOPLToScreen(Election& election){
-    return 0;
-}
-int Report::WriteIRAuditReport(Election& election){
-    return 0;
-}
-int Report::WriteIRMediaReport(Election& election){
-    return 0;
-}
-int Report::WriteIRToScreen(Election& election){
-    return 0;
-}
-*/
- 
 int Report::CloseReports(){
     auditReport.close();
     mediaReport.close();
@@ -79,8 +58,3 @@ string Report::GetDateAndTime(){
     string str(dt);         // Converts time to string object
     return dt;
 }
-
-
-
-
-

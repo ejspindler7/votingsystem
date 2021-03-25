@@ -79,14 +79,6 @@ class Report{
         * @return int 0 indicating success.
         */
         int WriteLineToMediaReport(string line);
-        /*
-        int WriteOPLAuditReport(Election& election);
-        int WriteOPLMediaReport(Election& election);
-        int WriteOPLToScreen(Election& election);
-        int WriteIRAuditReport(Election& election);
-        int WriteIRMediaReport(Election& election);
-        int WriteIRToScreen(Election& election);
-        */
         /**
         * @brief Closes all of the report files.
         *

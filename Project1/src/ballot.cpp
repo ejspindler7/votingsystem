@@ -39,7 +39,7 @@ std::string Ballot::GetCandidateName(int idx){
 }
 
 void Ballot::Print(){
-    for(int i = 0; i < candidates.size(); i++){
+    for(int i = 0; i < candidates.size(); i++){ //prints each candidate that the ballot is voting for
         std::cout << candidates.at(i) << std::endl;
     }
 }
