@@ -13,6 +13,7 @@ protected:
 	Driver oplDriver= Driver("opl.csv");
 };
 
+//Getter and setter testing for fileName
 TEST_F(DriverTests, GetFileNameTest){
 	EXPECT_TRUE("ballots" == newDriver.GetFileName());
 	
@@ -155,5 +156,7 @@ TEST_F(DriverTests, ParseLine2Test){
 
 TEST_F(DriverTests, GetOPLVoteTest){
 	EXPECT_EQ(newDriver.GetOPLVote(",,1"), 2);
+	EXPECT_EQ(newDriver.GetOPLVote("1"), 0);
+	EXPECT_EQ(newDriver.GetOPLVote(","), -1);
 	EXPECT_EQ(newDriver.GetOPLVote(""), -1);
 }

@@ -35,6 +35,8 @@ TEST_F(CandidateTest, SetNameTest){
 }
 
 TEST_F(CandidateTest, SetPartyTest){
+	EXPECT_EQ(newCandidate.GetParty(), "R");
+
 	std::string newParty = "D";
 	newCandidate.SetParty(newParty);
 
@@ -46,6 +48,8 @@ TEST_F(CandidateTest, GetBallotListSizeTest){
 }
 
 TEST_F(CandidateTest, AddBallotTest){
+	EXPECT_EQ(newCandidate.GetBallotListSize(), 0);
+	
 	newCandidate.AddBallot(newBallot);
 
 	EXPECT_EQ(newCandidate.GetBallotListSize(), 1);
