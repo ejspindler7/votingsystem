@@ -15,8 +15,9 @@ var searchData=
   ['getnumberofballots_30',['GetNumberOfBallots',['../classElection.html#aeff19b07efefb27b34c4907cddccb30f',1,'Election']]],
   ['getnumberofcandidates_31',['GetNumberOfCandidates',['../classElection.html#a76efc432135b01dc6f9ecedb2e775e3d',1,'Election']]],
   ['getnumberofseats_32',['GetNumberOfSeats',['../classElection.html#a62a8aa569ef1d8fdc15c8c2715e1c4c2',1,'Election']]],
-  ['getoplvote_33',['GetOPLVote',['../classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042',1,'Driver']]],
-  ['getparty_34',['GetParty',['../classCandidate.html#a3cd8e64eba8ac472056d23f964db0387',1,'Candidate']]],
-  ['getquota_35',['GetQuota',['../classElection.html#aa80fb5a99d07b267ea1102070f822267',1,'Election']]],
-  ['getvotesforparty_36',['GetVotesForParty',['../classElection.html#ac85c43ed8c894fe32e5a72b6ace01e80',1,'Election']]]
+  ['getnumberparties_33',['GetNumberParties',['../classElection.html#a98174a3f9cb668a075417aeccb253c2e',1,'Election']]],
+  ['getoplvote_34',['GetOPLVote',['../classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042',1,'Driver']]],
+  ['getparty_35',['GetParty',['../classCandidate.html#a3cd8e64eba8ac472056d23f964db0387',1,'Candidate']]],
+  ['getquota_36',['GetQuota',['../classElection.html#aa80fb5a99d07b267ea1102070f822267',1,'Election']]],
+  ['getvotesforparty_37',['GetVotesForParty',['../classElection.html#ac85c43ed8c894fe32e5a72b6ace01e80',1,'Election']]]
 ];

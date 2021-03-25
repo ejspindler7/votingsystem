@@ -56,6 +56,8 @@ int \mbox{\hyperlink{classElection_ae598ecd1a3de111f0f7519ed4ce8227b}{Find\+Cand
 \begin{DoxyCompactList}\small\item\em Determines the candidate with the lowest number of votes to remove from the election. In case of ties, the loser is determined based on a coinflip. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a35582feb03505a8350c79fa76e7e4bb8}{Add\+Party}} (string party\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Adds the given party to the election. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classElection_a98174a3f9cb668a075417aeccb253c2e}{Get\+Number\+Parties}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of parties participating in the election. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_abae2e31f8c8a9132786c8c907962588d}{Check\+For\+Majority}} ()
 \begin{DoxyCompactList}\small\item\em Determines if any candidate has the majority of votes, and if so, returns their ID. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classElection_a8429ca59d10e26049ac07de87038b391}{Redistribute\+Ballots}} (int eliminated\+\_\+candidate)
@@ -283,6 +285,19 @@ Gets the number of seats to be assigned.
 
 \begin{DoxyReturn}{Returns}
 int indicating the number of seats to be assigned between all candidates in this election 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classElection_a98174a3f9cb668a075417aeccb253c2e}\label{classElection_a98174a3f9cb668a075417aeccb253c2e}} 
+\index{Election@{Election}!GetNumberParties@{GetNumberParties}}
+\index{GetNumberParties@{GetNumberParties}!Election@{Election}}
+\doxysubsubsection{\texorpdfstring{GetNumberParties()}{GetNumberParties()}}
+{\footnotesize\ttfamily int Election\+::\+Get\+Number\+Parties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of parties participating in the election. 
+
+\begin{DoxyReturn}{Returns}
+integer of the number of parties in the election 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classElection_aa80fb5a99d07b267ea1102070f822267}\label{classElection_aa80fb5a99d07b267ea1102070f822267}} 
 \index{Election@{Election}!GetQuota@{GetQuota}}
