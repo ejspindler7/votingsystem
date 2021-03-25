@@ -1,0 +1,29 @@
+Compute IR election.
+Number of candidates: 4
+Number of ballots: 2
+ === Ballot Distribution ====
+Ballot Id: 1 goes to Kleinberg
+Ballot Id: 2 goes to Chou
+** Candidates **
+Rosen (D) 
+Kleinberg (R) 
+Chou (I) 
+Royce (L) 
+=========== Round 1 =========== 
+Candidate Rosen now has 0 ballots.
+Candidate Kleinberg now has 1 ballots.
+Candidate Chou now has 1 ballots.
+Candidate Royce now has 0 ballots.
+-- Redistributing Ballots ---
+=========== Round 2 =========== 
+Candidate Rosen now has 0 ballots.
+Candidate Kleinberg now has 1 ballots.
+Candidate Chou now has 1 ballots.
+-- Redistributing Ballots ---
+=========== Round 3 =========== 
+Candidate Kleinberg now has 1 ballots.
+Candidate Chou now has 1 ballots.
+-- Redistributing Ballots ---
+Ballot Id; 2 now goes to Kleinberg
+=========== Round 4 =========== 
+Winning Candidate: Kleinberg (R).
