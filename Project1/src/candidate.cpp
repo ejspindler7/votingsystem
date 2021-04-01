@@ -9,7 +9,7 @@ using namespace std;
 
 
 Candidate::Candidate(string name, string party){
-   candidateName = name; 
+   candidateName = name;
    this->party = party;
 }
 
@@ -33,14 +33,14 @@ int Candidate::SetName(string name){
     return 0;
 }
 int Candidate::AddBallot(Ballot *ballot){
-    this->ballots.push_back(ballot);    
-    return 0;    
+    this->ballots.push_back(ballot);
+    return 0;
 }
 Ballot* Candidate::RemoveBallot(){
     if (ballots.size() == 0){
         return NULL;
     }
-    Ballot* tmp = ballots.front();
+    Ballot* tmp = ballots.front(); //locates, removes, and returns the first element of the ballots list
     ballots.erase(ballots.begin());
     return tmp;
 }
