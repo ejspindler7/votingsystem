@@ -34,17 +34,17 @@ class Driver{
         * The file is assumed to be formatted correctly, so there is no exception handling for incorrect CSV files.
         * If the CSV file is not arranged as expected, this can lead to issues with program function, but it is considered improper use of the system and should not be expected to execute.
         *
-        * @param[in] fileName string indicating the name of the file to be read from
+        * @param[in] fileNames strings indicating the name of the file to be read from.
         *
         * @return Driver object with given fileName
         */
-        Driver(std::string fileName = "NONE");
+        Driver(std::vector<std::string> fileNames);
         /**
         * @brief Sets the election type to either IR or OPL based on the data in the CSV file
         *
         * @return int indicating 0 for success.
         */
-        int ReadInElectionType(void);
+        int ReadInElectionType(std::ifstream *fh, int flag);
         /**
         * @brief Sets the number of candidates in the election based on the data in the CSV file
         *
@@ -134,8 +134,9 @@ class Driver{
 
     private:
         std::string fileName;
-        std::ifstream fileHandle;
+        std::vector<std::ifstream*> fileHandles;
         Election election;
+        std::ifstream ballotFile;
 };
 
 

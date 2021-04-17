@@ -8,22 +8,37 @@
 #include <assert.h>
 #include <map>
 
-Driver::Driver(std::string file){
-    fileName = file;
-    fileHandle.open(fileName);
+Driver::Driver(std::vector<std::string> files){
+    // Primes ifstream pointers        
+    for (int i = 0; i < files.size(); i++){
+        fileHandles.push_back(new std::ifstream);
+    }
+
+    // Opens all CSV files
+    for (int i = 0; i < files.size(); i++){
+        fileHandles.at(i)->open(files.at(i));
+        if (!fileHandles.at(i)->is_open()){
+            std::cout << "File not valid. " << files.at(i) << std::endl;
+            exit(0);
+        }
+    }
+  
 }
 
-int Driver::ReadInElectionType(){
+
+int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     std::vector<std::string> words;
     std::string tmp; 
-    if (fileHandle.is_open()){
-        getline(fileHandle, tmp);
-        election.SetElectionType(tmp);
+    if (*fh){
+        if (!flag){
+            getline(*fh, tmp);
+            election.SetElectionType(tmp);
 
-        string line = "Compute " + tmp + " election.";
-        election.WriteLineToAudit(line);
-        election.WriteLineToMedia(line);
-        cout << line << endl;
+            string line = "Compute " + tmp + " election.";
+            election.WriteLineToAudit(line);
+            election.WriteLineToMedia(line);
+            cout << line << endl;
+        }
     }
     else{
         std::cout << "File Handle is not open for Election Type." << std::endl;
@@ -32,6 +47,7 @@ int Driver::ReadInElectionType(){
     return 0;
 }
 
+/*
 int Driver::ReadInNumCandidates(){
     int num_candidates = -1;
     std::string input;
@@ -225,25 +241,30 @@ int Driver::SetFileName(std::string name){
 std::string Driver::GetFileName(){
     return fileName;
 }
-
+*/
 int Driver::ProcessCSV(){
-    ReadInElectionType();   
-    ReadInNumCandidates();
-    ReadInCandidates();
-    if (election.GetElectionType() == "OPL"){
-        ReadInNumberOfSeats();
-        ReadInNumberOfBallots();
+    for (int i = 0; i < fileHandles.size(); i++){
+        ReadInElectionType(fileHandles.at(i), i);   
+        /*
+        ReadInNumCandidates();
+        ReadInCandidates();
+        if (election.GetElectionType() == "OPL"){
+            ReadInNumberOfSeats();
+            ReadInNumberOfBallots();
+        }
+        else if (election.GetElectionType() == "IR"){
+            ReadInNumberOfBallots();
+        }
+        else{
+            std::cout << "Election type not recognized." << std::endl;
+        }
+        ReadInBallots();
+        */
     }
-    else if (election.GetElectionType() == "IR"){
-        ReadInNumberOfBallots();
-    }
-    else{
-        std::cout << "Election type not recognized." << std::endl;
-    }
-    ReadInBallots();
+    std::cout << election.GetElectionType() << std::endl;
     return 0;
 }
-
+/*
 // Got the parsing from
 //https://www.tutorialspoint.com/How-to-read-and-parse-CSV-files-in-Cplusplus
 // https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
@@ -291,7 +312,7 @@ int Driver::ComputeElection(){
 }
 
 
-
+*/
 
 
 
