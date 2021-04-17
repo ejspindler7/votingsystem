@@ -7,12 +7,12 @@
 #include "ballot.h"
 #include <assert.h>
 #include <map>
+#include <stdio.h>
 
 Driver::Driver(std::vector<std::string> files){
     // Used to combine all balltos into one file
     ballotFileName = "ballotfile.csv";
-    ballotFile.open(ballotFileName);
-    ballotFile.close();
+    remove(ballotFileName.c_str());
 
     // Primes ifstream pointers        
     for (int i = 0; i < files.size(); i++){
@@ -33,10 +33,10 @@ Driver::Driver(std::vector<std::string> files){
 
 int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     std::vector<std::string> words;
-    std::string tmp; 
+    std::string tmp = ""; 
     if (*fh){
+        getline(*fh, tmp);
         if (!flag){
-            getline(*fh, tmp);
             election.SetElectionType(tmp);
 
 
@@ -52,13 +52,13 @@ int Driver::ReadInElectionType(std::ifstream *fh, int flag){
 
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
-    std::string input;
+    std::string input = "";
+    getline(*fh, input);
     if (flag){
         // Already read in candidates
         return 0;
     }
     if (*fh){
-        getline(*fh, input);
         num_candidates = std::stoi(input); 
         election.SetNumberOfCandidates(num_candidates);   
     }
@@ -67,6 +67,9 @@ int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
 
 // Parses and creates candidates from CSV file
 int Driver::ReadInCandidates(std::ifstream *fh, int flag){
+    std::string tmp = "";
+    getline(*fh, tmp);
+
     if (flag){
         // Already read in candidates
         return 0;
@@ -75,8 +78,6 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     if (election.GetElectionType() == "OPL"){
         std::vector<std::string> candidates; 
         if (*fh){
-            std::string tmp;
-            getline(*fh, tmp);
             ParseLine(tmp, candidates, ',');
             // Removefs '[' or ']' from word.
             for (int i = 0; i < candidates.size(); i++){
@@ -108,8 +109,6 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     else if (election.GetElectionType() == "IR"){
         std::vector<std::string> candidates; 
         if (*fh){
-            std::string tmp;
-            getline(*fh, tmp);
             ParseLine(tmp, candidates, ',');
             // Adds candidate to election
             for(int i = 0; i < candidates.size(); i++){
@@ -128,15 +127,16 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     
     return 0;
 }
-/*
+
 int Driver::ReadInBallots(){
-    string ballDistribution = " === Ballot Distribution ====";
+    string ballDistribution = " ==== Ballot Distribution ====";
     election.WriteLineToAudit(ballDistribution);
     std::string line;
     std::vector<std::string> votes;
     int ballot_id = 1;
-    if (fileHandle.is_open()){
-        while(getline(fileHandle, line)){
+    ballotFileCompleted.open(ballotFileName);
+    if (ballotFileCompleted.is_open()){
+        while(getline(ballotFileCompleted, line)){
             Ballot* ballot = new Ballot(ballot_id);
             if (line == ""){
                 break;
@@ -201,14 +201,17 @@ int Driver::ReadInBallots(){
     }
     return 0;
 }
-*/
+
 
 int Driver::AppendToBallotFile(std::ifstream *fh, int numBallots){
     ballotFile.open(ballotFileName, std::ios_base::app);
+    std::string tmp;
+    getline(*fh, tmp);
+    
     for (int i = 0; i < numBallots; i++){
-        std::string tmp;
-        getline(*fh, tmp);
         ballotFile <<tmp + "\n";
+        tmp = "";
+        getline(*fh, tmp);
     }
     ballotFile.close();
     return 0;
@@ -216,30 +219,28 @@ int Driver::AppendToBallotFile(std::ifstream *fh, int numBallots){
 
 int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
     int num_ballots= -1;
-    std::string input;
+    std::string input = "";
+    getline(*fh, input);
     if (flag){
         // Already read in number of ballots
         return 0;
     }
     if (*fh){
-        getline(*fh, input);
         num_ballots= std::stoi(input);    
         election.SetNumberOfBallots(num_ballots);
-
-
     }
     return 0;
 }
 
 int Driver::ReadInNumberOfSeats(std::ifstream *fh, int flag){
     int num_seats= -1;
-    std::string input;
+    std::string input = "";
+    getline(*fh, input);
     if (flag){
         // Already read in number of seats.
         return 0;
     }
     if (*fh){
-        getline(*fh, input);
         num_seats= std::stoi(input);    
         election.SetNumberOfSeats(num_seats);
 
@@ -270,36 +271,40 @@ int Driver::ProcessCSV(){
             std::cout << "Election type not recognized." << std::endl;
         }
         AppendToBallotFile(fileHandles.at(i), election.GetNumberOfBallots());
-        //ReadInBallots();
+        
  
     }
 
+    // Loads ballots into memory
+    ReadInBallots();
 
-    // REPORTING GOES BeLOW
-    std::cout << election.GetElectionType() << std::endl;
 
-    // Read in Number of Candidates---
+    // ====== Reporting ======
+    // Election Type
+    string line = "Compute " + election.GetElectionType() + " election.";
+    election.WriteLineToAudit(line);
+    election.WriteLineToMedia(line);
+    cout << line << endl;
     
-    string line1 = "Number of candidates: " + to_string(election.GetNumberOfCandidates());
-    //election.WriteLineToAudit(line);
-    //election.WriteLineToMedia(line);
-    cout << line1 << endl;
-    //--
-    //     string line = "Compute " + tmp + " election.";
-    // election.WriteLineToAudit(line);
-    // election.WriteLineToMedia(line);
-    // cout << line << endl;
-    // ---
-    string line2 = "Number of seats: " + to_string(election.GetNumberOfSeats());
-    cout << line2 << endl;
-    //election.WriteLineToAudit(line);
-    //election.WriteLineToMedia(line);
-    //==
-    //     string line = "Number of ballots: " + to_string(num_ballots);
-    // cout << line << endl;
-    // election.WriteLineToAudit(line);
-    // election.WriteLineToMedia(line);
+    // Number of Candidates
+    line = "Number of candidates: " + to_string(election.GetNumberOfCandidates());
+    election.WriteLineToAudit(line);
+    election.WriteLineToMedia(line);
+    cout << line << endl;
 
+    if (election.GetElectionType() == "OPL"){
+        // Number of Seats
+        line = "Number of seats: " + to_string(election.GetNumberOfSeats());
+        cout << line << endl;
+        election.WriteLineToAudit(line);
+        election.WriteLineToMedia(line);
+    }
+    
+    // Number of Ballots
+    line = "Number of ballots: " + to_string(election.GetNumberOfBallots());
+    cout << line << endl;
+    election.WriteLineToAudit(line);
+    election.WriteLineToMedia(line);
 
     return 0;
 }

@@ -138,6 +138,7 @@ class Driver{
         std::vector<std::ifstream*> fileHandles;
         Election election;
         std::ofstream ballotFile;
+        std::ifstream ballotFileCompleted;
         std::string ballotFileName;
 };
 

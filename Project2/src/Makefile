@@ -17,4 +17,5 @@ clean:
 	rm Media*
 	rm Audit*
 	rm votingsystem
+	rm ballotfile.csv
 
