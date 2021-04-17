@@ -15,6 +15,7 @@
 #include <vector>
 #include <fstream>
 #include "report.h"
+#include "ballot.h"
 
 /*******************************************************************************
  * Class Definitions
@@ -132,6 +133,13 @@ class Driver{
          * @return int indicating the number of CSV files inputted.
          */
         int GetNumInputFiles(void);
+
+        /**
+         * @brief Check if the provided IR ballot ranks at least half of the candidates.
+         * 
+         * @return bool indicating if the ballot is valid (true- valid, flase- invalid)
+         */
+        bool CheckIfIRBallotValid(Ballot* ballot);
 
     private:
         std::string fileName;

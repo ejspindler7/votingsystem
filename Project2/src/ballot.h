@@ -70,7 +70,7 @@ class Ballot{
         */
         void Print();
         /**
-        * @brief Returns the number of candidates in the election.
+        * @brief Returns the number of candidates the ballot voted for.
         *
         * @return int indicating the size of the candidates array.
         */

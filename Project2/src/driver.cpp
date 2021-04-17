@@ -8,6 +8,8 @@
 #include <assert.h>
 #include <map>
 #include <stdio.h>
+#include <cmath>
+
 
 Driver::Driver(std::vector<std::string> files){
     // Used to combine all balltos into one file
@@ -49,6 +51,11 @@ int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     return 0;
 }
 
+// Checks if IR ballot is valid
+bool Driver::CheckIfIRBallotValid(Ballot* ballot){
+    int minValidNum =std::ceil(((double) election.GetNumberOfCandidates()) / 2);
+    return ((ballot->GetCandidatesSize()) >= minValidNum );
+}
 
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
@@ -175,14 +182,19 @@ int Driver::ReadInBallots(){
 
                 for (int i = 0; i < mapped.size(); i++){
                     if (mapped.at(i) == 0){
-                        // Add ballot to first choice candidate 
-                        (election.GetCandidate(vote_map[0])).AddBallot(ballot);
                         string data = "Ballot Id: " + to_string(ballot->GetId()) + " goes to " + 
                             election.GetCandidate(vote_map[0]).GetName();
                         election.WriteLineToAudit(data);
                     }
                     // Update candidate list
                     ballot->AddCandidate(election.GetCandidate(vote_map[mapped.at(i)]).GetName());
+                }
+                // Checks for valid ballot
+                if (CheckIfIRBallotValid(ballot)){
+                    // Skip ballot because it is invalid
+                    (election.GetCandidate(vote_map[0])).AddBallot(ballot);
+                }else{
+                    std::cout << "Invalid ballot " << ballot_id << std::endl;
                 }
 
                 votes.clear();
