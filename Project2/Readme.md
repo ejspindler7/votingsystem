@@ -1,7 +1,7 @@
 The program can be run by execuitng the commands in the src directory.
-1. src> make clean
-2. src> make
-3. ./votingsystem 
+1. `src> make clean`
+2. `src> make`
+3. `./votingsystem `
 4. `<path/to/csv/file>`
 5. `d` when done adding files
 
