@@ -50,13 +50,13 @@ class Driver{
         *
         * @return int indicating 0 for success.
         */
-        int ReadInNumCandidates(void);
+        int ReadInNumCandidates(std::ifstream *fh, int flag);
         /**
         * @brief Sets the list of candidates in the election based on the data in the CSV file
         *
-        * @return int indicating 0 for success.
+        * @return number of candidates.
         */
-        int ReadInCandidates(void);
+        int ReadInCandidates(std::ifstream *fh, int flag);
         /**
         * @brief Sets the list of ballots in the election based on the data in the CSV file
         *
@@ -68,33 +68,20 @@ class Driver{
         *
         * @return int indicating 0 for success.
         */
-        int ReadInNumberOfBallots(void);
+        int ReadInNumberOfBallots(std::ifstream *fh, int flag);
         /**
         * @brief Sets the number of seats in the election based on the data in the CSV file
         *
         * @return int indicating 0 for success.
         */
-        int ReadInNumberOfSeats(void);
+        int ReadInNumberOfSeats(std::ifstream *fh, int flag);
         /**
         * @brief Calls all of the above ReadIn functions to read in all of the data from the CSV file
         *
         * @return int indicating 0 for success.
         */
         int ProcessCSV(void);
-        /**
-        * @brief Sets the name of the CSV file to a new string
-        *
-        * @param[in] string string indicating the new name of the file to be read from
-        *
-        * @return int indicating 0 for success.
-        */
-        int SetFileName(std::string string);
-        /**
-        * @brief Returns the string indicating the filename for the CSV file being read from
-        *
-        * @return string indicating the name of the CSV file
-        */
-        std::string GetFileName(void);
+
         /**
         * @brief Reads the data from the given line into the given vector of strings, splitting based on the delim character passed
         * Does not delete lines after reading them
@@ -132,11 +119,26 @@ class Driver{
         */
         int ComputeElection();
 
+        /**
+         * @brief Adds ballots to one large ballot file.
+         * 
+         * @return int indicating 0 for success.
+         */
+        int AppendToBallotFile(std::ifstream *fh, int numBallots);
+
+        /**
+         * @brief Retrieves number of files inputted.
+         * 
+         * @return int indicating the number of CSV files inputted.
+         */
+        int GetNumInputFiles(void);
+
     private:
         std::string fileName;
         std::vector<std::ifstream*> fileHandles;
         Election election;
-        std::ifstream ballotFile;
+        std::ofstream ballotFile;
+        std::string ballotFileName;
 };
 
 
