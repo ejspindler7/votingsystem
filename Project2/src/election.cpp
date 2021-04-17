@@ -335,6 +335,10 @@ int Election::ComputeIRElection(){
     WriteLineToAudit(winningCandidate);
     return 0;
 }
+int Election::ComputePOElection(){
+    std::cout << "PO infromation read into memory." << std::endl;
+    return 0;
+}
 
 // Computes results for OPL election
 int Election::ComputeOPLElection(){
@@ -525,6 +529,9 @@ int Election::RunElection(){
     }
     else if (electionType == "IR"){
         ComputeIRElection(); 
+    }
+    else if (electionType == "PO"){
+        ComputePOElection();
     }
     else{
         cout << "Didn't recognize election type." << endl;        

@@ -153,13 +153,22 @@ class Election{
         */
         int ComputeIRElection();
         /**
-        * @brief Main function for computing instant runoff election results
+        * @brief Main function for computing OPL election results
         * Updates the audit and media file
         * Calls the relevant helper functions to destermine the winning parties and candidates
         *
         * @return int indicating 0 for success or 1 for failure
         */
         int ComputeOPLElection();
+        /**
+        * @brief Main function for computing popularity only election results
+        * Updates the audit and media file
+        * Calls the relevant helper functions to destermine the winning parties and candidates
+        *
+        * *Currently stubbed for agile scrum to just display ballots read into memory*
+        * @return int indicating 0 for success or 1 for failure
+        */
+        int ComputePOElection();
         /**
         * @brief Adds the given candidate to the election.
         *

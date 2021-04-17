@@ -82,7 +82,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
         return 0;
     }
 
-    if (election.GetElectionType() == "OPL"){
+    if (election.GetElectionType() == "OPL" || election.GetElectionType() == "PO"){
         std::vector<std::string> candidates; 
         if (*fh){
             ParseLine(tmp, candidates, ',');
@@ -200,6 +200,18 @@ int Driver::ReadInBallots(){
                 votes.clear();
 
             }
+            else if ( election.GetElectionType() == "PO"){
+                int candidate_idx = this->GetOPLVote(line);
+                ballot->AddCandidate((election.GetCandidate(candidate_idx)).GetName());
+                (election.GetCandidate(candidate_idx)).AddBallot(ballot);
+                string data = "Ballot: " + to_string(ballot->GetId()) + " goes towards " 
+                    + election.GetCandidate(candidate_idx).GetName() + " (" 
+                    + election.GetCandidate(candidate_idx).GetParty() + ")";
+                election.WriteLineToAudit(data);
+                // Used to prove info was read in properly.
+                std::cout << data << std::endl;
+
+            }
             else{
                 std::cout << "Did not recognize election type." << std::endl;
                 exit(1); 
@@ -275,7 +287,7 @@ int Driver::ProcessCSV(){
             ReadInNumberOfBallots(fileHandles.at(i), i);
         }
        
-        else if (election.GetElectionType() == "IR"){
+        else if (election.GetElectionType() == "IR" || election.GetElectionType() == "PO"){
             ReadInNumberOfBallots(fileHandles.at(i), i);
         }
         
