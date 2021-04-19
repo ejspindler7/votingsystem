@@ -138,12 +138,16 @@ int Election::FindCandidateToRemove(){
 
 	// Traverse all candidates, searching for which candidate to remove
     for (int i = 0; i < candidates.size(); i++){
+        //compares the candidates ballot list size
         if (candidates.at(i).GetBallotListSize() < current_min){
             current_min = candidates.at(i).GetBallotListSize();
+            //set the index of the candidate to remove
             candidate_to_remove_idx = i; 
             candidates_tied.clear();
         }
+        //compares the candidate ballot list size equal to the already found min to check for a tie
         else if (candidates.at(i).GetBallotListSize() == current_min){
+            //adds the candidates that are tied indexes to candidates_tied
             candidates_tied.push_back(candidate_to_remove_idx); 
             candidates_tied.push_back(i); 
         }
@@ -163,6 +167,7 @@ int Election::FindCandidateToRemove(){
 
 }
 
+// Gets the number of parties
 int Election::GetNumberParties(){
     return parties.size();
 }
@@ -170,14 +175,14 @@ int Election::GetNumberParties(){
 // Adds a party to the election
 int Election::AddParty(string party_name){
     bool party_already_exists = false;
-
+    //checks if party already exists 
     for(int i = 0; i < parties.size(); i++){
         if (party_name == parties.at(i)){
             party_already_exists = true;
             break;
         }
     }
-    
+    //adds party if it does not already exist
     if (!party_already_exists){
         parties.push_back(party_name);
     }
@@ -196,14 +201,16 @@ int Election::CheckForMajority(){
     }
 
     for (int i = 0; i < candidates.size(); i++){
+        //documents candidates number of ballots in audit and media files
         string line = "Candidate " + candidates.at(i).GetName() + " now has " + 
             to_string(candidates.at(i).GetBallotListSize()) + " ballots.";
         cout << line << endl;
         WriteLineToAudit(line);
         WriteLineToMedia(line);
-
+        //checks if the candidate ballot list size is larger than the majority
        if (candidates.at(i).GetBallotListSize() > majority){
             majority = candidates.at(i).GetBallotListSize();
+            //sets the candidates index to the winning index
             winning_idx = i;
        }
        else if (candidates.at(i).GetBallotListSize() == majority){
@@ -268,12 +275,11 @@ int Election::RedistributeBallots(int eliminated_candidate){
             if (candidates.at(i).GetName() == ballot->GetCandidateName(ballot->GetCurrDis())){
                 string line = "Ballot Id; " + to_string(ballot->GetId()) + " now goes to " + candidates.at(i).GetName();
                 WriteLineToAudit(line);
-
+                //adds ballot to candidate
                 candidates.at(i).AddBallot(ballot);
             }
         }
-         
-
+        
         ballot = candidates.at(eliminated_candidate).RemoveBallot();
     }
     return 0;
@@ -287,6 +293,7 @@ int Election::ResolveTie(int num_candidates){
 
     int constant = now->tm_sec * num_candidates * 73;
     int rand_number;
+    // computes random number
     for (int i = 0; i < constant; i++){
         rand_number = rand() % num_candidates;
     }
@@ -318,6 +325,7 @@ int Election::ComputeIRElection(){
             found_winner = true;
         }
         else{
+            //when winner hasnt been found
             candidate_to_remove_idx = FindCandidateToRemove();
             RedistributeBallots(candidate_to_remove_idx);
             RemoveCandidate(candidate_to_remove_idx);
@@ -335,6 +343,7 @@ int Election::ComputeIRElection(){
     WriteLineToAudit(winningCandidate);
     return 0;
 }
+
 int Election::ComputePOElection(){
     std::cout << "PO infromation read into memory." << std::endl;
     return 0;
@@ -410,7 +419,7 @@ int Election::ComputeOPLElection(){
     }
 
 
-    // Distribute seats to candidates
+    // Distribute seats to candidates and document into audit and media files
     string wholeNumSeats = "=== Whole Number Seats ===";
     cout << wholeNumSeats << endl;
     WriteLineToAudit(wholeNumSeats);
@@ -490,7 +499,7 @@ int Election::ComputeOPLElection(){
 
         }
     }
-
+    //documents winners in audit and media file
     string winners = "====== WINNERS  ======";
     cout << winners << endl;
     WriteLineToAudit(winners);
@@ -514,7 +523,7 @@ int Election::RunElection(){
     WriteLineToAudit(line);
     WriteLineToMedia(line);
 
-
+    //document candidates with parties in audit and media file
     for (int i = 0; i < candidates.size(); i++){
         string cands = candidates.at(i).GetName() + " (" + candidates.at(i).GetParty() + ") ";
         cout << cands << endl;
@@ -522,7 +531,7 @@ int Election::RunElection(){
         WriteLineToMedia(cands);
     }
 
-
+    //computes the election based on type of election
     if (electionType == "OPL"){
         quota = numberOfBallots / numberOfSeats;
         ComputeOPLElection();

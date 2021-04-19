@@ -82,7 +82,6 @@ class Driver{
         * @return int indicating 0 for success.
         */
         int ProcessCSV(void);
-
         /**
         * @brief Reads the data from the given line into the given vector of strings, splitting based on the delim character passed
         * Does not delete lines after reading them

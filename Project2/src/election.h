@@ -147,7 +147,7 @@ class Election{
         /**
         * @brief Main function for computing instant runoff election results
         * Updates the audit and media file
-        * Calls the relevant helper functions to destermine the winning candidate
+        * Calls the relevant helper functions to determine the winning candidate
         *
         * @return int indicating 0 for success or 1 for failure
         */
@@ -155,7 +155,7 @@ class Election{
         /**
         * @brief Main function for computing OPL election results
         * Updates the audit and media file
-        * Calls the relevant helper functions to destermine the winning parties and candidates
+        * Calls the relevant helper functions to determine the winning parties and candidates
         *
         * @return int indicating 0 for success or 1 for failure
         */
@@ -163,7 +163,7 @@ class Election{
         /**
         * @brief Main function for computing popularity only election results
         * Updates the audit and media file
-        * Calls the relevant helper functions to destermine the winning parties and candidates
+        * Calls the relevant helper functions to determine the winning parties and candidates
         *
         * *Currently stubbed for agile scrum to just display ballots read into memory*
         * @return int indicating 0 for success or 1 for failure
@@ -259,7 +259,7 @@ class Election{
         */
         int CloseReports();
         /**
-        * @brief Gets the current date and time, then converts them into a string and retur>
+        * @brief Gets the current date and time, then converts them into a string and return
         *
         * @return string consisting of the current date and time.
         */

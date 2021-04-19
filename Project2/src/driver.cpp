@@ -32,7 +32,7 @@ Driver::Driver(std::vector<std::string> files){
   
 }
 
-
+// Reads in the election type and sets it 
 int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     std::vector<std::string> words;
     std::string tmp = ""; 
@@ -40,8 +40,6 @@ int Driver::ReadInElectionType(std::ifstream *fh, int flag){
         getline(*fh, tmp);
         if (!flag){
             election.SetElectionType(tmp);
-
-
         }
     }
     else{
@@ -57,6 +55,7 @@ bool Driver::CheckIfIRBallotValid(Ballot* ballot){
     return ((ballot->GetCandidatesSize()) >= minValidNum );
 }
 
+//Reads in the the number of candidates and Sets the number of Candidates
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
     std::string input = "";
@@ -127,6 +126,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
             }
         }
     }
+    // case for if election type is invalid
     else{
         std::cout << "Did not recognize election type: " << election.GetElectionType() << endl;
         return -1;
@@ -134,7 +134,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     
     return 0;
 }
-
+//reads in ballots in accordance to election type
 int Driver::ReadInBallots(){
     string ballDistribution = " ==== Ballot Distribution ====";
     election.WriteLineToAudit(ballDistribution);
@@ -249,6 +249,7 @@ int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
         // Already read in number of ballots
         return 0;
     }
+    //Sets the number of Ballots in election
     if (*fh){
         num_ballots= std::stoi(input);    
         election.SetNumberOfBallots(num_ballots);
@@ -264,6 +265,7 @@ int Driver::ReadInNumberOfSeats(std::ifstream *fh, int flag){
         // Already read in number of seats.
         return 0;
     }
+    //Sets the number of Seats in the Election
     if (*fh){
         num_seats= std::stoi(input);    
         election.SetNumberOfSeats(num_seats);
@@ -275,6 +277,8 @@ int Driver::ReadInNumberOfSeats(std::ifstream *fh, int flag){
 
 int Driver::ProcessCSV(){
     int num_candidates = 0;
+
+    //gets information for each election using helper functions
     for (int i = 0; i < fileHandles.size(); i++){
         ReadInElectionType(fileHandles.at(i), i);    
         ReadInNumCandidates(fileHandles.at(i), i);
