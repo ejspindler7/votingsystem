@@ -52,6 +52,10 @@ TEST_F(DriverTests, ReadInElectionTypeTest){
 }
 
 TEST_F(DriverTests, ParseLineTest){
+	std::vector<std::string> files;
+	files.push_back("ir.csv");
+	Driver newDriver = Driver(files);
+	
 	std::string line = "one, two, three, four";
 	vector<std::string> words;
 	newDriver.ParseLine(line, words, ',');
@@ -63,6 +67,10 @@ TEST_F(DriverTests, ParseLineTest){
 }
 
 TEST_F(DriverTests, ParseLine2Test){
+	std::vector<std::string> files;
+	files.push_back("ir.csv");
+	Driver newDriver = Driver(files);
+
 	std::string line = "four, three, two, one";
 	vector<std::string> words;
 	newDriver.ParseLine2(line, words, ',');
