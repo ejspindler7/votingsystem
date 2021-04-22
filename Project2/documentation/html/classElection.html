@@ -128,8 +128,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a801b2068799d520e531da0dbfe7591a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for computing instant runoff election results Updates the audit and media file Calls the relevant helper functions to destermine the winning candidate.  <a href="classElection.html#a801b2068799d520e531da0dbfe7591a1">More...</a><br /></td></tr>
 <tr class="separator:a801b2068799d520e531da0dbfe7591a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a148e04470e2376ec193ea8aff4dc4800"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a148e04470e2376ec193ea8aff4dc4800">ComputeOPLElection</a> ()</td></tr>
-<tr class="memdesc:a148e04470e2376ec193ea8aff4dc4800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for computing instant runoff election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates.  <a href="classElection.html#a148e04470e2376ec193ea8aff4dc4800">More...</a><br /></td></tr>
+<tr class="memdesc:a148e04470e2376ec193ea8aff4dc4800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for computing OPL election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates.  <a href="classElection.html#a148e04470e2376ec193ea8aff4dc4800">More...</a><br /></td></tr>
 <tr class="separator:a148e04470e2376ec193ea8aff4dc4800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b4699e452e8c8b6ad738724363e1efd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a2b4699e452e8c8b6ad738724363e1efd">ComputePOElection</a> ()</td></tr>
+<tr class="memdesc:a2b4699e452e8c8b6ad738724363e1efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for computing popularity only election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates.  <a href="classElection.html#a2b4699e452e8c8b6ad738724363e1efd">More...</a><br /></td></tr>
+<tr class="separator:a2b4699e452e8c8b6ad738724363e1efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49184557b9fa575a40918e6b0a15010c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a49184557b9fa575a40918e6b0a15010c">AddCandidate</a> (<a class="el" href="classCandidate.html">Candidate</a> &amp;candidate)</td></tr>
 <tr class="memdesc:a49184557b9fa575a40918e6b0a15010c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given candidate to the election.  <a href="classElection.html#a49184557b9fa575a40918e6b0a15010c">More...</a><br /></td></tr>
 <tr class="separator:a49184557b9fa575a40918e6b0a15010c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a35582feb03505a8350c79fa76e7e4bb8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a35582feb03505a8350c79fa76e7e4bb8">AddParty</a> (string party_name)</td></tr>
 <tr class="memdesc:a35582feb03505a8350c79fa76e7e4bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given party to the election.  <a href="classElection.html#a35582feb03505a8350c79fa76e7e4bb8">More...</a><br /></td></tr>
 <tr class="separator:a35582feb03505a8350c79fa76e7e4bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98174a3f9cb668a075417aeccb253c2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#a98174a3f9cb668a075417aeccb253c2e">GetNumberParties</a> ()</td></tr>
+<tr class="memdesc:a98174a3f9cb668a075417aeccb253c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of parties participating in the election.  <a href="classElection.html#a98174a3f9cb668a075417aeccb253c2e">More...</a><br /></td></tr>
+<tr class="separator:a98174a3f9cb668a075417aeccb253c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abae2e31f8c8a9132786c8c907962588d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classElection.html#abae2e31f8c8a9132786c8c907962588d">CheckForMajority</a> ()</td></tr>
 <tr class="memdesc:abae2e31f8c8a9132786c8c907962588d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if any candidate has the majority of votes, and if so, returns their ID.  <a href="classElection.html#abae2e31f8c8a9132786c8c907962588d">More...</a><br /></td></tr>
 <tr class="separator:abae2e31f8c8a9132786c8c907962588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -325,8 +331,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Main function for computing instant runoff election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates. </p>
+<p>Main function for computing OPL election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates. </p>
 <dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure </dd></dl>
+
+</div>
+</div>
+<a id="a2b4699e452e8c8b6ad738724363e1efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b4699e452e8c8b6ad738724363e1efd">&#9670;&nbsp;</a></span>ComputePOElection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Election::ComputePOElection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main function for computing popularity only election results Updates the audit and media file Calls the relevant helper functions to destermine the winning parties and candidates. </p>
+<p><em>Currently stubbed for agile scrum to just display ballots read into memory</em> </p><dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success or 1 for failure </dd></dl>
 
 </div>
 </div>
@@ -474,6 +500,26 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the number of seats to be assigned. </p>
 <dl class="section return"><dt>Returns</dt><dd>int indicating the number of seats to be assigned between all candidates in this election </dd></dl>
+
+</div>
+</div>
+<a id="a98174a3f9cb668a075417aeccb253c2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98174a3f9cb668a075417aeccb253c2e">&#9670;&nbsp;</a></span>GetNumberParties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Election::GetNumberParties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of parties participating in the election. </p>
+<dl class="section return"><dt>Returns</dt><dd>integer of the number of parties in the election </dd></dl>
 
 </div>
 </div>
@@ -902,8 +948,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/palme885/csci5801/repo-Team11/Project1/src/<a class="el" href="election_8h_source.html">election.h</a></li>
-<li>/home/palme885/csci5801/repo-Team11/Project1/src/election.cpp</li>
+<li>/home/palme885/csci5801/repo-Team11/Project2/src/<a class="el" href="election_8h_source.html">election.h</a></li>
+<li>/home/palme885/csci5801/repo-Team11/Project2/src/election.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

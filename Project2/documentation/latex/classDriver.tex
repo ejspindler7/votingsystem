@@ -12,26 +12,22 @@ The main class for processing the C\+SV file for information.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDriver_ad9f6cc425be803811bba2f03eb13ad95}{Driver}} (std\+::string file\+Name=\char`\"{}N\+O\+NE\char`\"{})
+\mbox{\hyperlink{classDriver_ad89617cbc6027a3b1a6c2034ee01bd19}{Driver}} (std\+::vector$<$ std\+::string $>$ file\+Names)
 \begin{DoxyCompactList}\small\item\em The constructor for the \mbox{\hyperlink{classDriver}{Driver}} class. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_ae3306edcc79387c3c1a1eb3dc8e0c795}{Read\+In\+Election\+Type}} (void)
+int \mbox{\hyperlink{classDriver_a59193320b4698f395a90d12bc6fb2bc3}{Read\+In\+Election\+Type}} (std\+::ifstream $\ast$fh, int flag)
 \begin{DoxyCompactList}\small\item\em Sets the election type to either IR or O\+PL based on the data in the C\+SV file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_a9a6dc33dbaf65f882db40ddc16b2db26}{Read\+In\+Num\+Candidates}} (void)
+int \mbox{\hyperlink{classDriver_a06ec21b89b1199c8ec5dee93061695dd}{Read\+In\+Num\+Candidates}} (std\+::ifstream $\ast$fh, int flag)
 \begin{DoxyCompactList}\small\item\em Sets the number of candidates in the election based on the data in the C\+SV file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_a6416aa7333fa6140ce57e43504f887e1}{Read\+In\+Candidates}} (void)
+int \mbox{\hyperlink{classDriver_a0402d624e0d7ec5cad0919dd97ac29e9}{Read\+In\+Candidates}} (std\+::ifstream $\ast$fh, int flag)
 \begin{DoxyCompactList}\small\item\em Sets the list of candidates in the election based on the data in the C\+SV file. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classDriver_a8ec981b652d9ac11bca3d66cbe1db134}{Read\+In\+Ballots}} (void)
 \begin{DoxyCompactList}\small\item\em Sets the list of ballots in the election based on the data in the C\+SV file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_a29e90b172d9aec0c85acc0feb7cc5624}{Read\+In\+Number\+Of\+Ballots}} (void)
+int \mbox{\hyperlink{classDriver_abfa2558d75daba80cd6eeb894c796f2c}{Read\+In\+Number\+Of\+Ballots}} (std\+::ifstream $\ast$fh, int flag)
 \begin{DoxyCompactList}\small\item\em Sets the number of ballots in the election based on the data in the C\+SV file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_a28f1fa7bd074a6e6f79609740a00049e}{Read\+In\+Number\+Of\+Seats}} (void)
+int \mbox{\hyperlink{classDriver_a5178de87cd6551d3db2636d4712ee04e}{Read\+In\+Number\+Of\+Seats}} (std\+::ifstream $\ast$fh, int flag)
 \begin{DoxyCompactList}\small\item\em Sets the number of seats in the election based on the data in the C\+SV file. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classDriver_add99b6b550e508a634489de781a3629d}{Process\+C\+SV}} (void)
 \begin{DoxyCompactList}\small\item\em Calls all of the above Read\+In functions to read in all of the data from the C\+SV file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classDriver_aa3d81bbef085d35a31987ca222176fca}{Set\+File\+Name}} (std\+::string string)
-\begin{DoxyCompactList}\small\item\em Sets the name of the C\+SV file to a new string. \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classDriver_a22b919c9742d0129ecd6414e80956cfc}{Get\+File\+Name}} (void)
-\begin{DoxyCompactList}\small\item\em Returns the string indicating the filename for the C\+SV file being read from. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDriver_aabffa0f857a65a8f1d80a710eebfc9b2}{Parse\+Line}} (std\+::string line, std\+::vector$<$ std\+::string $>$ \&words, char delim)
 \begin{DoxyCompactList}\small\item\em Reads the data from the given line into the given vector of strings, splitting based on the delim character passed Does not delete lines after reading them. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDriver_a2650ac1fe52587a006230ba7a4f4d893}{Parse\+Line2}} (std\+::string line, std\+::vector$<$ std\+::string $>$ \&words, char delim)
@@ -39,7 +35,13 @@ void \mbox{\hyperlink{classDriver_a2650ac1fe52587a006230ba7a4f4d893}{Parse\+Line
 int \mbox{\hyperlink{classDriver_a61cf2f77a4987adfc0a5b82037ab7042}{Get\+O\+P\+L\+Vote}} (std\+::string line)
 \begin{DoxyCompactList}\small\item\em Reads the data from the given line to determine which candidate a ballot is voting for. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}{Compute\+Election}} ()
-\begin{DoxyCompactList}\small\item\em Passes control to the election class by calling election.\+Run\+Election(), then closes reports after the election simulation has finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Passes control to the election class by calling election.\+Run\+Election(), then closes reports after the election simulation has finished. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDriver_acc15d4651d1f74928a8599cc6e741511}{Append\+To\+Ballot\+File}} (std\+::ifstream $\ast$fh, int num\+Ballots)
+\begin{DoxyCompactList}\small\item\em Adds ballots to one large ballot file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}{Get\+Num\+Input\+Files}} (void)
+\begin{DoxyCompactList}\small\item\em Retrieves number of files inputted. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDriver_a68e54a78a40504c32c604cffb7b53bb4}{Check\+If\+I\+R\+Ballot\+Valid}} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
+\begin{DoxyCompactList}\small\item\em Check if the provided IR ballot ranks at least half of the candidates. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -48,11 +50,11 @@ The main class for processing the C\+SV file for information.
 Uses its various functions to read in the values of variables from each line of the C\+SV file 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classDriver_ad9f6cc425be803811bba2f03eb13ad95}\label{classDriver_ad9f6cc425be803811bba2f03eb13ad95}} 
+\mbox{\Hypertarget{classDriver_ad89617cbc6027a3b1a6c2034ee01bd19}\label{classDriver_ad89617cbc6027a3b1a6c2034ee01bd19}} 
 \index{Driver@{Driver}!Driver@{Driver}}
 \index{Driver@{Driver}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{Driver()}{Driver()}}
-{\footnotesize\ttfamily Driver\+::\+Driver (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Name = {\ttfamily \char`\"{}NONE\char`\"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Driver\+::\+Driver (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{file\+Names }\end{DoxyParamCaption})}
 
 
 
@@ -64,7 +66,7 @@ The file is assumed to be formatted correctly, so there is no exception handling
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em file\+Name} & string indicating the name of the file to be read from\\
+\mbox{\texttt{ in}}  & {\em file\+Names} & strings indicating the name of the file to be read from.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -73,6 +75,32 @@ The file is assumed to be formatted correctly, so there is no exception handling
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDriver_acc15d4651d1f74928a8599cc6e741511}\label{classDriver_acc15d4651d1f74928a8599cc6e741511}} 
+\index{Driver@{Driver}!AppendToBallotFile@{AppendToBallotFile}}
+\index{AppendToBallotFile@{AppendToBallotFile}!Driver@{Driver}}
+\doxysubsubsection{\texorpdfstring{AppendToBallotFile()}{AppendToBallotFile()}}
+{\footnotesize\ttfamily int Driver\+::\+Append\+To\+Ballot\+File (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{num\+Ballots }\end{DoxyParamCaption})}
+
+
+
+Adds ballots to one large ballot file. 
+
+\begin{DoxyReturn}{Returns}
+int indicating 0 for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDriver_a68e54a78a40504c32c604cffb7b53bb4}\label{classDriver_a68e54a78a40504c32c604cffb7b53bb4}} 
+\index{Driver@{Driver}!CheckIfIRBallotValid@{CheckIfIRBallotValid}}
+\index{CheckIfIRBallotValid@{CheckIfIRBallotValid}!Driver@{Driver}}
+\doxysubsubsection{\texorpdfstring{CheckIfIRBallotValid()}{CheckIfIRBallotValid()}}
+{\footnotesize\ttfamily bool Driver\+::\+Check\+If\+I\+R\+Ballot\+Valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBallot}{Ballot}} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Check if the provided IR ballot ranks at least half of the candidates. 
+
+\begin{DoxyReturn}{Returns}
+bool indicating if the ballot is valid (true-\/ valid, flase-\/ invalid) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}\label{classDriver_a540a15c9ce20fa7265ee09cdfd304a91}} 
 \index{Driver@{Driver}!ComputeElection@{ComputeElection}}
 \index{ComputeElection@{ComputeElection}!Driver@{Driver}}
@@ -86,18 +114,18 @@ Passes control to the election class by calling election.\+Run\+Election(), then
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_a22b919c9742d0129ecd6414e80956cfc}\label{classDriver_a22b919c9742d0129ecd6414e80956cfc}} 
-\index{Driver@{Driver}!GetFileName@{GetFileName}}
-\index{GetFileName@{GetFileName}!Driver@{Driver}}
-\doxysubsubsection{\texorpdfstring{GetFileName()}{GetFileName()}}
-{\footnotesize\ttfamily std\+::string Driver\+::\+Get\+File\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}\label{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}} 
+\index{Driver@{Driver}!GetNumInputFiles@{GetNumInputFiles}}
+\index{GetNumInputFiles@{GetNumInputFiles}!Driver@{Driver}}
+\doxysubsubsection{\texorpdfstring{GetNumInputFiles()}{GetNumInputFiles()}}
+{\footnotesize\ttfamily int Driver\+::\+Get\+Num\+Input\+Files (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Returns the string indicating the filename for the C\+SV file being read from. 
+Retrieves number of files inputted. 
 
 \begin{DoxyReturn}{Returns}
-string indicating the name of the C\+SV file 
+int indicating the number of C\+SV files inputted. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classDriver_a61cf2f77a4987adfc0a5b82037ab7042}\label{classDriver_a61cf2f77a4987adfc0a5b82037ab7042}} 
 \index{Driver@{Driver}!GetOPLVote@{GetOPLVote}}
@@ -181,24 +209,24 @@ Sets the list of ballots in the election based on the data in the C\+SV file.
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_a6416aa7333fa6140ce57e43504f887e1}\label{classDriver_a6416aa7333fa6140ce57e43504f887e1}} 
+\mbox{\Hypertarget{classDriver_a0402d624e0d7ec5cad0919dd97ac29e9}\label{classDriver_a0402d624e0d7ec5cad0919dd97ac29e9}} 
 \index{Driver@{Driver}!ReadInCandidates@{ReadInCandidates}}
 \index{ReadInCandidates@{ReadInCandidates}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{ReadInCandidates()}{ReadInCandidates()}}
-{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Candidates (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Candidates (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{flag }\end{DoxyParamCaption})}
 
 
 
 Sets the list of candidates in the election based on the data in the C\+SV file. 
 
 \begin{DoxyReturn}{Returns}
-int indicating 0 for success. 
+number of candidates. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_ae3306edcc79387c3c1a1eb3dc8e0c795}\label{classDriver_ae3306edcc79387c3c1a1eb3dc8e0c795}} 
+\mbox{\Hypertarget{classDriver_a59193320b4698f395a90d12bc6fb2bc3}\label{classDriver_a59193320b4698f395a90d12bc6fb2bc3}} 
 \index{Driver@{Driver}!ReadInElectionType@{ReadInElectionType}}
 \index{ReadInElectionType@{ReadInElectionType}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{ReadInElectionType()}{ReadInElectionType()}}
-{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Election\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Election\+Type (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{flag }\end{DoxyParamCaption})}
 
 
 
@@ -207,11 +235,11 @@ Sets the election type to either IR or O\+PL based on the data in the C\+SV file
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_a29e90b172d9aec0c85acc0feb7cc5624}\label{classDriver_a29e90b172d9aec0c85acc0feb7cc5624}} 
+\mbox{\Hypertarget{classDriver_abfa2558d75daba80cd6eeb894c796f2c}\label{classDriver_abfa2558d75daba80cd6eeb894c796f2c}} 
 \index{Driver@{Driver}!ReadInNumberOfBallots@{ReadInNumberOfBallots}}
 \index{ReadInNumberOfBallots@{ReadInNumberOfBallots}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{ReadInNumberOfBallots()}{ReadInNumberOfBallots()}}
-{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Number\+Of\+Ballots (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Number\+Of\+Ballots (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{flag }\end{DoxyParamCaption})}
 
 
 
@@ -220,11 +248,11 @@ Sets the number of ballots in the election based on the data in the C\+SV file.
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_a28f1fa7bd074a6e6f79609740a00049e}\label{classDriver_a28f1fa7bd074a6e6f79609740a00049e}} 
+\mbox{\Hypertarget{classDriver_a5178de87cd6551d3db2636d4712ee04e}\label{classDriver_a5178de87cd6551d3db2636d4712ee04e}} 
 \index{Driver@{Driver}!ReadInNumberOfSeats@{ReadInNumberOfSeats}}
 \index{ReadInNumberOfSeats@{ReadInNumberOfSeats}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{ReadInNumberOfSeats()}{ReadInNumberOfSeats()}}
-{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Number\+Of\+Seats (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Number\+Of\+Seats (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{flag }\end{DoxyParamCaption})}
 
 
 
@@ -233,11 +261,11 @@ Sets the number of seats in the election based on the data in the C\+SV file.
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_a9a6dc33dbaf65f882db40ddc16b2db26}\label{classDriver_a9a6dc33dbaf65f882db40ddc16b2db26}} 
+\mbox{\Hypertarget{classDriver_a06ec21b89b1199c8ec5dee93061695dd}\label{classDriver_a06ec21b89b1199c8ec5dee93061695dd}} 
 \index{Driver@{Driver}!ReadInNumCandidates@{ReadInNumCandidates}}
 \index{ReadInNumCandidates@{ReadInNumCandidates}!Driver@{Driver}}
 \doxysubsubsection{\texorpdfstring{ReadInNumCandidates()}{ReadInNumCandidates()}}
-{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Num\+Candidates (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Driver\+::\+Read\+In\+Num\+Candidates (\begin{DoxyParamCaption}\item[{std\+::ifstream $\ast$}]{fh,  }\item[{int}]{flag }\end{DoxyParamCaption})}
 
 
 
@@ -246,27 +274,9 @@ Sets the number of candidates in the election based on the data in the C\+SV fil
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDriver_aa3d81bbef085d35a31987ca222176fca}\label{classDriver_aa3d81bbef085d35a31987ca222176fca}} 
-\index{Driver@{Driver}!SetFileName@{SetFileName}}
-\index{SetFileName@{SetFileName}!Driver@{Driver}}
-\doxysubsubsection{\texorpdfstring{SetFileName()}{SetFileName()}}
-{\footnotesize\ttfamily int Driver\+::\+Set\+File\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{string }\end{DoxyParamCaption})}
-
-
-
-Sets the name of the C\+SV file to a new string. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em string} & string indicating the new name of the file to be read from\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-int indicating 0 for success. 
-\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/\mbox{\hyperlink{driver_8h}{driver.\+h}}\item 
-/home/palme885/csci5801/repo-\/\+Team11/\+Project1/src/driver.\+cpp\end{DoxyCompactItemize}
+/home/palme885/csci5801/repo-\/\+Team11/\+Project2/src/\mbox{\hyperlink{driver_8h}{driver.\+h}}\item 
+/home/palme885/csci5801/repo-\/\+Team11/\+Project2/src/driver.\+cpp\end{DoxyCompactItemize}
