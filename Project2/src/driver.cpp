@@ -10,11 +10,11 @@
 #include <stdio.h>
 #include <cmath>
 
-
+// Creates a driver for the election
 Driver::Driver(std::vector<std::string> files){
     // Used to combine all balltos into one file
     ballotFileName = "ballotfile.csv";
-    remove(ballotFileName.c_str());
+    remove(ballotFileName.c_str());      // Removes ballotfile.csv if it already exists
 
     // Primes ifstream pointers        
     for (int i = 0; i < files.size(); i++){
@@ -22,9 +22,9 @@ Driver::Driver(std::vector<std::string> files){
     }
 
     // Opens all CSV files
-    for (int i = 0; i < files.size(); i++){
+    for (int i = 0; i < files.size(); i++){ // Iterates through all provided files
         fileHandles.at(i)->open(files.at(i));
-        if (!fileHandles.at(i)->is_open()){
+        if (!fileHandles.at(i)->is_open()){ // Ensures all files open properly, otherwise, error out
             std::cout << "File not valid. " << files.at(i) << std::endl;
             exit(0);
         }
@@ -32,16 +32,14 @@ Driver::Driver(std::vector<std::string> files){
   
 }
 
-
+// Reads in the election type
 int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     std::vector<std::string> words;
     std::string tmp = ""; 
     if (*fh){
-        getline(*fh, tmp);
-        if (!flag){
-            election.SetElectionType(tmp);
-
-
+        getline(*fh, tmp);                  // Reads line from CSV file
+        if (!flag){                         // Already read in the election type
+            election.SetElectionType(tmp);  // Updates the election type
         }
     }
     else{
@@ -51,23 +49,23 @@ int Driver::ReadInElectionType(std::ifstream *fh, int flag){
     return 0;
 }
 
-// Checks if IR ballot is valid
+// Checks if IR ballot ranked the required number of candidates
 bool Driver::CheckIfIRBallotValid(Ballot* ballot){
     int minValidNum =std::ceil(((double) election.GetNumberOfCandidates()) / 2);
-    return ((ballot->GetCandidatesSize()) >= minValidNum );
+    return ((ballot->GetCandidatesSize()) >= minValidNum ); // Bool indicating if the ballot properly ranked the required number of candidates
 }
 
+// Reads in the number of candidates from the csv file
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
     std::string input = "";
-    getline(*fh, input);
+    getline(*fh, input);    // Reads line from CSv file
     if (flag){
-        // Already read in candidates
-        return 0;
+        return 0;  // Already read in candidates
     }
     if (*fh){
-        num_candidates = std::stoi(input); 
-        election.SetNumberOfCandidates(num_candidates);   
+        num_candidates = std::stoi(input);             // Converts the sting to an int
+        election.SetNumberOfCandidates(num_candidates);// Updates the number of candidates in the election
     }
     return 0;
 }
@@ -75,19 +73,18 @@ int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
 // Parses and creates candidates from CSV file
 int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     std::string tmp = "";
-    getline(*fh, tmp);
+    getline(*fh, tmp); // Reads line from CSV file
 
-    if (flag){
-        // Already read in candidates
-        return 0;
+    if (flag){ 
+        return 0; // Already read in candidates
     }
 
-    if (election.GetElectionType() == "OPL" || election.GetElectionType() == "PO"){
+    if (election.GetElectionType() == "OPL" || election.GetElectionType() == "PO"){ // Determines if the election type is OPL or PO
         std::vector<std::string> candidates; 
-        if (*fh){
-            ParseLine(tmp, candidates, ',');
-            // Removefs '[' or ']' from word.
-            for (int i = 0; i < candidates.size(); i++){
+        if (*fh){ // Ensures file is opened properly
+            ParseLine(tmp, candidates, ','); // Parses line into candidates with delimeter ','
+            // Removefs '[' or ']' from word.   
+            for (int i = 0; i < candidates.size(); i++){    // Iterates throughout the line removing unnecessary characters
                 candidates.at(i).erase(remove(candidates.at(i).begin(), candidates.at(i).end(), '['), candidates.at(i).end());
                 candidates.at(i).erase(remove(candidates.at(i).begin(), candidates.at(i).end(), ']'), candidates.at(i).end());
             }
@@ -95,15 +92,15 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
             std::string name;
             std::string party;
             // Adding candidates to election
-            for(int i = 0; i < candidates.size(); i++){
-                if (i % 2 == 1){
+            for(int i = 0; i < candidates.size(); i++){ // Iterates throgh parsed line
+                if (i % 2 == 1){    // Determines if current work is the party or name of candidate
                     party = candidates.at(i);
-                    election.AddParty(party);
-                    Candidate* candidate = new Candidate(name, party);
-                    election.AddCandidate(*candidate);
+                    election.AddParty(party);                          // Adds the candidate's party to election if it is not present already
+                    Candidate* candidate = new Candidate(name, party); // Creates a new candidate
+                    election.AddCandidate(*candidate);                 // Adds new candidate to election
                 }
                 else{
-                    name = candidates.at(i);
+                    name = candidates.at(i);    // Updates candidates name
                 }
             }
 
@@ -113,17 +110,17 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
         }
         
     }
-    else if (election.GetElectionType() == "IR"){
+    else if (election.GetElectionType() == "IR"){ // Election type is IR
         std::vector<std::string> candidates; 
         if (*fh){
-            ParseLine(tmp, candidates, ',');
+            ParseLine(tmp, candidates, ',');   // Parses line into candidates with delimeter ',' 
             // Adds candidate to election
-            for(int i = 0; i < candidates.size(); i++){
-                std::vector<std::string> parts;
+            for(int i = 0; i < candidates.size(); i++){ // Iterates candidate information
+                std::vector<std::string> parts;         // Book keeping, creating candidate
                 ParseLine(candidates.at(i), parts, '(');
                 parts.at(1).erase(remove(parts.at(1).begin(), parts.at(1).end(), ')'), parts.at(1).end());
                 Candidate* candidate = new Candidate(parts.at(0), parts.at(1));
-                election.AddCandidate(*candidate);
+                election.AddCandidate(*candidate);  // Adds the candidate to the election
             }
         }
     }
@@ -131,7 +128,6 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
         std::cout << "Did not recognize election type: " << election.GetElectionType() << endl;
         return -1;
     }
-    
     return 0;
 }
 
