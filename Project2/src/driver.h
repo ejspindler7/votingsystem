@@ -43,17 +43,29 @@ class Driver{
         /**
         * @brief Sets the election type to either IR or OPL based on the data in the CSV file
         *
+        * @param[in] fh ifstream* pointer to the CSV file input stream
+        *
+        * @param[in] flag int indicating whether or not the election type has already been read in
+        *
         * @return int indicating 0 for success.
         */
         int ReadInElectionType(std::ifstream *fh, int flag);
         /**
         * @brief Sets the number of candidates in the election based on the data in the CSV file
         *
+        * @param[in] fh ifstream* pointer to the CSV file input stream
+        *
+        * @param[in] flag int indicating whether or not the number of candidates has already been read in
+        *
         * @return int indicating 0 for success.
         */
         int ReadInNumCandidates(std::ifstream *fh, int flag);
         /**
         * @brief Sets the list of candidates in the election based on the data in the CSV file
+        *
+        * @param[in] fh ifstream* pointer to the CSV file input stream
+        *
+        * @param[in] flag int indicating whether or not the number of candidates has already been read in
         *
         * @return number of candidates.
         */
@@ -67,11 +79,19 @@ class Driver{
         /**
         * @brief Sets the number of ballots in the election based on the data in the CSV file
         *
+        * @param[in] fh ifstream* pointer to the CSV file input stream
+        *
+        * @param[in] flag int indicating whether or not the number of ballots has already been read in
+        *
         * @return int indicating 0 for success.
         */
         int ReadInNumberOfBallots(std::ifstream *fh, int flag);
         /**
         * @brief Sets the number of seats in the election based on the data in the CSV file
+        *
+        * @param[in] fh ifstream* pointer to the CSV file input stream
+        *
+        * @param[in] flag int indicating whether or not the number of seats has already been read in
         *
         * @return int indicating 0 for success.
         */
@@ -122,14 +142,18 @@ class Driver{
 
         /**
          * @brief Adds ballots to one large ballot file.
-         * 
+         *
+         * @param[in] fh ifstream* pointer to the CSV file input stream
+         *
+         * @param[in] numBallots int indicating the number of ballots to be appended
+         *
          * @return int indicating 0 for success.
          */
         int AppendToBallotFile(std::ifstream *fh, int numBallots);
 
         /**
          * @brief Retrieves number of files inputted.
-         * 
+         *
          * @return int indicating the number of CSV files inputted.
          */
         int GetNumInputFiles(void);

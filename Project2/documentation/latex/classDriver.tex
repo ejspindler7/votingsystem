@@ -85,6 +85,13 @@ The file is assumed to be formatted correctly, so there is no exception handling
 
 Adds ballots to one large ballot file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em num\+Ballots} & int indicating the number of ballots to be appended\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
@@ -219,6 +226,13 @@ int indicating 0 for success.
 
 Sets the list of candidates in the election based on the data in the C\+SV file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em flag} & int indicating whether or not the number of candidates has already been read in\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 number of candidates. 
 \end{DoxyReturn}
@@ -232,6 +246,13 @@ number of candidates.
 
 Sets the election type to either IR or O\+PL based on the data in the C\+SV file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em flag} & int indicating whether or not the election type has already been read in\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
@@ -245,6 +266,13 @@ int indicating 0 for success.
 
 Sets the number of ballots in the election based on the data in the C\+SV file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em flag} & int indicating whether or not the number of ballots has already been read in\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
@@ -258,6 +286,13 @@ int indicating 0 for success.
 
 Sets the number of seats in the election based on the data in the C\+SV file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em flag} & int indicating whether or not the number of seats has already been read in\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}
@@ -271,6 +306,13 @@ int indicating 0 for success.
 
 Sets the number of candidates in the election based on the data in the C\+SV file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fh} & ifstream$\ast$ pointer to the C\+SV file input stream\\
+\hline
+\mbox{\texttt{ in}}  & {\em flag} & int indicating whether or not the number of candidates has already been read in\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
 \end{DoxyReturn}

@@ -89,37 +89,37 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classDriver.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDriver.html">Driver</a>{</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classDriver.html#ad89617cbc6027a3b1a6c2034ee01bd19">Driver</a>(std::vector&lt;std::string&gt; fileNames);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a59193320b4698f395a90d12bc6fb2bc3">ReadInElectionType</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a06ec21b89b1199c8ec5dee93061695dd">ReadInNumCandidates</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a0402d624e0d7ec5cad0919dd97ac29e9">ReadInCandidates</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a8ec981b652d9ac11bca3d66cbe1db134">ReadInBallots</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#abfa2558d75daba80cd6eeb894c796f2c">ReadInNumberOfBallots</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a5178de87cd6551d3db2636d4712ee04e">ReadInNumberOfSeats</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#add99b6b550e508a634489de781a3629d">ProcessCSV</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">ParseLine</a>(std::string line, std::vector&lt;std::string&gt; &amp;words, <span class="keywordtype">char</span> delim);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDriver.html#a2650ac1fe52587a006230ba7a4f4d893">ParseLine2</a>(std::string line, std::vector&lt;std::string&gt; &amp;words, <span class="keywordtype">char</span> delim);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042">GetOPLVote</a>(std::string line);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">ComputeElection</a>();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#acc15d4651d1f74928a8599cc6e741511">AppendToBallotFile</a>(std::ifstream *fh, <span class="keywordtype">int</span> numBallots);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a90fe94c736f8a6a634d9ffff9c6f80ab">GetNumInputFiles</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classDriver.html#a68e54a78a40504c32c604cffb7b53bb4">CheckIfIRBallotValid</a>(<a class="code" href="classBallot.html">Ballot</a>* ballot);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        std::string fileName;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        std::vector&lt;std::ifstream*&gt; fileHandles;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="classElection.html">Election</a> election;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        std::ofstream ballotFile;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        std::ifstream ballotFileCompleted;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        std::string ballotFileName;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;};</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a59193320b4698f395a90d12bc6fb2bc3">ReadInElectionType</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a06ec21b89b1199c8ec5dee93061695dd">ReadInNumCandidates</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a0402d624e0d7ec5cad0919dd97ac29e9">ReadInCandidates</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a8ec981b652d9ac11bca3d66cbe1db134">ReadInBallots</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#abfa2558d75daba80cd6eeb894c796f2c">ReadInNumberOfBallots</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a5178de87cd6551d3db2636d4712ee04e">ReadInNumberOfSeats</a>(std::ifstream *fh, <span class="keywordtype">int</span> flag);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#add99b6b550e508a634489de781a3629d">ProcessCSV</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">ParseLine</a>(std::string line, std::vector&lt;std::string&gt; &amp;words, <span class="keywordtype">char</span> delim);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classDriver.html#a2650ac1fe52587a006230ba7a4f4d893">ParseLine2</a>(std::string line, std::vector&lt;std::string&gt; &amp;words, <span class="keywordtype">char</span> delim);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a61cf2f77a4987adfc0a5b82037ab7042">GetOPLVote</a>(std::string line);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a540a15c9ce20fa7265ee09cdfd304a91">ComputeElection</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#acc15d4651d1f74928a8599cc6e741511">AppendToBallotFile</a>(std::ifstream *fh, <span class="keywordtype">int</span> numBallots);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDriver.html#a90fe94c736f8a6a634d9ffff9c6f80ab">GetNumInputFiles</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classDriver.html#a68e54a78a40504c32c604cffb7b53bb4">CheckIfIRBallotValid</a>(<a class="code" href="classBallot.html">Ballot</a>* ballot);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        std::string fileName;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        std::vector&lt;std::ifstream*&gt; fileHandles;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <a class="code" href="classElection.html">Election</a> election;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        std::ofstream ballotFile;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        std::ifstream ballotFileCompleted;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        std::string ballotFileName;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;};</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassDriver_html_add99b6b550e508a634489de781a3629d"><div class="ttname"><a href="classDriver.html#add99b6b550e508a634489de781a3629d">Driver::ProcessCSV</a></div><div class="ttdeci">int ProcessCSV(void)</div><div class="ttdoc">Calls all of the above ReadIn functions to read in all of the data from the CSV file.</div><div class="ttdef"><b>Definition:</b> driver.cpp:267</div></div>
 <div class="ttc" id="aclassDriver_html_aabffa0f857a65a8f1d80a710eebfc9b2"><div class="ttname"><a href="classDriver.html#aabffa0f857a65a8f1d80a710eebfc9b2">Driver::ParseLine</a></div><div class="ttdeci">void ParseLine(std::string line, std::vector&lt; std::string &gt; &amp;words, char delim)</div><div class="ttdoc">Reads the data from the given line into the given vector of strings, splitting based on the delim cha...</div><div class="ttdef"><b>Definition:</b> driver.cpp:330</div></div>
