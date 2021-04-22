@@ -1,0 +1,20 @@
+ ==== Ballot Distribution ====
+Ballot: 1 goes towards Pike (D)
+Ballot: 2 goes towards Pike (D)
+Ballot: 3 goes towards Foster (D)
+Ballot: 4 goes towards Jones (R)
+Ballot: 5 goes towards Smith (I)
+Ballot: 6 goes towards Borg (R)
+Ballot: 7 goes towards Borg (R)
+Ballot: 8 goes towards Pike (D)
+Ballot: 9 goes towards Foster (D)
+Compute PO election.
+Number of candidates: 6
+Number of ballots: 9
+** Candidates **
+Pike (D) 
+Foster (D) 
+Deutsch (R) 
+Borg (R) 
+Jones (R) 
+Smith (I) 
