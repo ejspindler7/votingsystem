@@ -1,0 +1,56 @@
+ ==== Ballot Distribution ====
+Ballot Id: 1 goes to Rosen
+Ballot Id: 2 goes to Rosen
+Ballot Id: 3 goes to Rosen
+Ballot Id: 4 goes to Chou
+Ballot Id: 5 goes to Chou
+Ballot Id: 6 goes to Royce
+Ballot Id: 7 goes to Kleinberg
+Ballot Id: 8 goes to Kleinberg
+Ballot Id: 9 goes to Kleinberg
+Ballot Id: 10 goes to Kleinberg
+Ballot Id: 11 goes to Rosen
+Ballot Id: 12 goes to Royce
+Ballot Id: 13 goes to Royce
+Ballot Id: 14 goes to Royce
+Ballot Id: 15 goes to Rosen
+Ballot Id: 16 goes to Royce
+Ballot Id: 17 goes to Chou
+Ballot Id: 18 goes to Royce
+Ballot Id: 19 goes to Chou
+Ballot Id: 20 goes to Chou
+Ballot Id: 21 goes to Kleinberg
+Compute IR election.
+Number of candidates: 4
+Number of ballots: 20
+** Candidates **
+Rosen (D) 
+Kleinberg (R) 
+Chou (I) 
+Royce (L) 
+=========== Round 1 =========== 
+Candidate Rosen now has 5 ballots.
+Candidate Kleinberg now has 5 ballots.
+Candidate Chou now has 5 ballots.
+Candidate Royce now has 5 ballots.
+-- Redistributing Ballots ---
+Ballot Id; 1 now goes to Royce
+Ballot Id; 2 now goes to Chou
+Ballot Id; 3 now goes to Kleinberg
+Ballot Id; 11 now goes to Chou
+Ballot Id; 15 now goes to Royce
+=========== Round 2 =========== 
+Candidate Kleinberg now has 6 ballots.
+Candidate Chou now has 7 ballots.
+Candidate Royce now has 7 ballots.
+-- Redistributing Ballots ---
+Ballot Id; 7 now goes to Royce
+Ballot Id; 8 now goes to Royce
+Ballot Id; 9 now goes to Royce
+Ballot Id; 10 now goes to Royce
+Ballot Id; 21 now goes to Chou
+Ballot Id; 3 now goes to Chou
+=========== Round 3 =========== 
+Candidate Chou now has 9 ballots.
+Candidate Royce now has 11 ballots.
+Winning Candidate: Royce (L).

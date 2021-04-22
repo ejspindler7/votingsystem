@@ -1,0 +1,22 @@
+Compute IR election.
+Number of candidates: 4
+Number of ballots: 20
+** Candidates **
+Rosen (D) 
+Kleinberg (R) 
+Chou (I) 
+Royce (L) 
+=========== Round 1 =========== 
+Candidate Rosen now has 5 ballots.
+Candidate Kleinberg now has 5 ballots.
+Candidate Chou now has 5 ballots.
+Candidate Royce now has 5 ballots.
+=========== Round 2 =========== 
+Candidate Rosen now has 5 ballots.
+Candidate Chou now has 6 ballots.
+Candidate Royce now has 9 ballots.
+=========== Round 3 =========== 
+Candidate Chou now has 9 ballots.
+Candidate Royce now has 11 ballots.
+============================================
+Winning Candidate: Royce (L).

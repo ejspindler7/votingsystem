@@ -2,89 +2,83 @@
 #include "../src/driver.h"
 #include "../src/candidate.h"
 #include "../src/ballot.h"
+#include "../src/election.h"
 #include <string>
 #include <vector>
 #include <iostream>
 
 class DriverTests : public ::testing::Test {
 protected:
-	Driver newDriver= Driver("ballots");
+
 };
 
-TEST_F(DriverTests, GetFileNameTest){
-	EXPECT_TRUE("ballots" == newDriver.GetFileName());
-	
-}
+TEST_F(DriverTests, ConstructorTest){
+	std::vector<std::string> fakeFiles;
+	fakeFiles.push_back("ballot1");
+	fakeFiles.push_back("ballot2");
+	fakeFiles.push_back("ballot3");
 
-TEST_F(DriverTests, ReadIRArgumentsTest){
-	Driver newDriver1= Driver("ir.csv");
-	//Reading in election type
+	std::vector<std::string> realFiles;
+	realFiles.push_back("ir.csv");
+
 	testing::internal::CaptureStdout();
-	newDriver1.ReadInElectionType();
-	std::string actualElection = testing::internal::GetCapturedStdout();
+	Driver fakeFilesDriver= Driver(fakeFiles);
+	std::string outPut = testing::internal::GetCapturedStdout();
 
-	EXPECT_EQ("Compute IR election.\n", actualElection);
+	EXPECT_EQ(fakeFilesDriver.GetNumInputFiles(), 3); //Testing first for-loop in the Driver constructor
 
-	//Reading in number of candidates
+	EXPECT_EQ("File not valid. \n", outPut);  	//Testing second for-loop when if-condition is met
+
 	testing::internal::CaptureStdout();
-	newDriver1.ReadInNumCandidates();
-	std::string actualNumOfCandidates = testing::internal::GetCapturedStdout();
-
-	EXPECT_EQ("Number of candidates: 4\n", actualNumOfCandidates);
-
-	//Reading in candidates
-	EXPECT_EQ(newDriver1.ReadInCandidates(),0);
-
-	//Reading in number of ballots
-	testing::internal::CaptureStdout();
-	newDriver1.ReadInNumberOfBallots();
-	std::string actualNumOfBallots = testing::internal::GetCapturedStdout();
-
-	EXPECT_EQ("Number of ballots: 9\n", actualNumOfBallots);
-
-	//Reading in ballots
-	EXPECT_EQ(newDriver1.ReadInBallots(), 0);
+	Driver realFilesDriver = Driver(realFiles);
+	std::string outPut2 = testing::internal::GetCapturedStdout();
+	EXPECT_EQ("", outPut2); 					//Testing second for-loop when if-condition isn't met
 
 }
 
-TEST_F(DriverTests, ReadOPLArgumentsTest){
-	Driver newDriver2= Driver("opl.csv");
-	//Reading in election type
+TEST_F(DriverTests, ReadInElectionTypeTest){
+	std::vector<std::string> files;
+	files.push_back("ir.csv");
+	Driver newDriver = Driver(files);
+
+	std::ifstream *nullPtr = NULL;
+
 	testing::internal::CaptureStdout();
-	newDriver2.ReadInElectionType();
-	std::string actualElection = testing::internal::GetCapturedStdout();
+	newDriver.ReadInElectionType(nullPtr, 1);
+	std::string outPut = testing::internal::GetCapturedStdout();
 
-	EXPECT_EQ("Compute OPL election.\n", actualElection);
+	EXPECT_EQ(outPut, "File Handle is not open for Election Type.\n");
 
-	//Reading in number of candidates
-	testing::internal::CaptureStdout();
-	newDriver2.ReadInNumCandidates();
-	std::string actualNumOfCandidates = testing::internal::GetCapturedStdout();
+}
 
-	EXPECT_EQ("Number of candidates: 6\n", actualNumOfCandidates);
+TEST_F(DriverTests, ParseLineTest){
+	std::string line = "one, two, three, four";
+	vector<std::string> words;
+	newDriver.ParseLine(line, words, ',');
 
-	//Reading in candidates
-	EXPECT_EQ(newDriver2.ReadInCandidates(),0);
+	EXPECT_EQ(words.at(0), "one");
+	EXPECT_EQ(words.at(1), "two");
+	EXPECT_EQ(words.at(2), "three");
+	EXPECT_EQ(words.at(3), "four");
+}
 
-	//Reading in number of seats
-	testing::internal::CaptureStdout();
-	newDriver2.ReadInNumberOfSeats();
-	std::string actualNumOfSeats = testing::internal::GetCapturedStdout();
+TEST_F(DriverTests, ParseLine2Test){
+	std::string line = "four, three, two, one";
+	vector<std::string> words;
+	newDriver.ParseLine2(line, words, ',');
 
-	EXPECT_EQ("Number of seats: 3\n", actualNumOfSeats);
-
-	//Reading in number of ballots
-	testing::internal::CaptureStdout();
-	newDriver2.ReadInNumberOfBallots();
-	std::string actualNumOfBallots = testing::internal::GetCapturedStdout();
-
-	EXPECT_EQ("Number of ballots: 9\n", actualNumOfBallots);
-
-	//Reading in ballots
-	EXPECT_EQ(newDriver2.ReadInBallots(), 0);
-	
+	EXPECT_EQ(words.at(0), "four");
+	EXPECT_EQ(words.at(1), "three");
+	EXPECT_EQ(words.at(2), "two");
+	EXPECT_EQ(words.at(3), "one");
 }
 
 TEST_F(DriverTests, GetOPLVoteTest){
+	std::vector<std::string> files;
+	files.push_back("ir.csv");
+	Driver newDriver = Driver(files);
 	EXPECT_EQ(newDriver.GetOPLVote(",,1"), 2);
 }
+
+
+

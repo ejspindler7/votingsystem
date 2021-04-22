@@ -1,0 +1,37 @@
+Compute OPL election.
+Number of candidates: 6
+Number of seats: 3
+Number of ballots: 9
+ === Ballot Distribution ====
+Ballot: 1 goes towards Pike (D)
+Ballot: 2 goes towards Pike (D)
+Ballot: 3 goes towards Foster (D)
+Ballot: 4 goes towards Jones (R)
+Ballot: 5 goes towards Smith (I)
+Ballot: 6 goes towards Borg (R)
+Ballot: 7 goes towards Borg (R)
+Ballot: 8 goes towards Pike (D)
+Ballot: 9 goes towards Foster (D)
+** Candidates **
+Pike (D) 
+Foster (D) 
+Deutsch (R) 
+Borg (R) 
+Jones (R) 
+Smith (I) 
+=== Whole Number Seats ===
+Party: D recieved 1 seats.
+Party: R recieved 1 seats.
+Party: I recieved 0 seats.
+=== Remainder Seat Number ===
+Party: D recieved 1 seats.
+Party: R recieved 0 seats.
+Party: I recieved 0 seats.
+=== Total Seat Number ===
+Party: D recieved 2 total seats.
+Party: R recieved 1 total seats.
+Party: I recieved 0 total seats.
+====== WINNERS  ======
+1. Pike (D) 
+2. Foster (D) 
+3. Borg (R) 
