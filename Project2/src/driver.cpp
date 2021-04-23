@@ -12,7 +12,7 @@
 
 // Creates a driver for the election
 Driver::Driver(std::vector<std::string> files){
-    // Used to combine all balltos into one file
+    // Used to combine all ballots into one file
     ballotFileName = "ballotfile.csv";
     remove(ballotFileName.c_str());      // Removes ballotfile.csv if it already exists
 

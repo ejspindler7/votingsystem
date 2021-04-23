@@ -337,7 +337,7 @@ int Election::ComputeIRElection(){
 int Election::ComputePOElection(){
     // Stubbed function where PO election would be computed.
     // Didn't have to compute PO election yet because not on Sprint Log
-    std::cout << "PO infromation read into memory." << std::endl;
+    std::cout << "PO information read into memory." << std::endl;
     return 0;
 }
 
