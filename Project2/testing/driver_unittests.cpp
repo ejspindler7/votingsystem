@@ -76,6 +76,27 @@ TEST_F(DriverTests, ReadInNumCandidatesTest){
         EXPECT_EQ(election2.GetNumberOfCandidates(), 4);
 }
 
+TEST_F(DriverTests, ReadInNumberOfBallots){
+        std::vector<std::string> files;
+        files.push_back("ir.csv");
+        Driver newDriver(files);
+
+        std::ifstream *nullPtr = NULL;
+        EXPECT_EQ(newDriver.ReadInNumCandidates(nullPtr, 1), 0);
+        std::ifstream *filePtr = new std::ifstream;
+        filePtr->open(files.at(0));
+        newDriver.ReadInNumCandidates(filePtr, 1);
+        Election& election = const_cast <Election&>(newDriver.GetElection());
+        EXPECT_EQ(election.GetNumberOfCandidates(), -1);
+        std::ifstream *filePtr2 = new std::ifstream;
+        filePtr2->open(files.at(0));
+        newDriver.ReadInElectionType(filePtr2, 0);
+        newDriver.ReadInNumCandidates(filePtr2, 0);
+        Election& election2 = const_cast <Election&>(newDriver.GetElection());
+        EXPECT_EQ(election2.GetNumberOfCandidates(), 4);
+}
+
+
 TEST_F(DriverTests, ParseLineTest){
 	std::vector<std::string> files;
 	files.push_back("ir.csv");

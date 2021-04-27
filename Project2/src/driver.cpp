@@ -131,7 +131,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     return 0;
 }
 
-// Loads ballots from ballot file into memroy (Joins multiple files into one big CSV and then process the combined CSV ballot file)
+// Loads ballots from ballot file into memory (Joins multiple files into one big CSV and then process the combined CSV ballot file)
 int Driver::ReadInBallots(){
     string ballDistribution = " ==== Ballot Distribution ====";
     election.WriteLineToAudit(ballDistribution); // Writes to audit file
