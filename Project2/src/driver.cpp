@@ -238,12 +238,10 @@ int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
     int num_ballots= -1;
     std::string input = "";
     getline(*fh, input);    // Reals line from CSV ballot file
-    if (flag){ 
-        return 0;   // Already read in number of ballots
-    }
     if (*fh){
-        num_ballots= std::stoi(input);            // Converts number of ballots to an int
-        election.SetNumberOfBallots(num_ballots); // Updates the number of ballots in the election 
+        num_ballots= std::stoi(input);                       // Converts number of ballots to an int
+        int curr_num = election.GetNumberOfBallots();        // Current number of ballots
+        election.SetNumberOfBallots(num_ballots + curr_num); // Updates the number of ballots in the election 
     }
     return 0;
 }
