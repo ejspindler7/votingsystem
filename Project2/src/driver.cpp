@@ -59,11 +59,11 @@ bool Driver::CheckIfIRBallotValid(Ballot* ballot){
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
     std::string input = "";
+	getline(*fh, input);    // Reads line from CSv file
     if (flag){
         return 0;  // Already read in candidates
     }
     if (fh){
-	getline(*fh, input);    // Reads line from CSv file
         num_candidates = std::stoi(input);             // Converts the sting to an int
         election.SetNumberOfCandidates(num_candidates);// Updates the number of candidates in the election
     }
@@ -74,6 +74,7 @@ int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
 int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     std::string tmp = "";
     getline(*fh, tmp); // Reads line from CSV file
+
 
     if (flag){ 
         return 0; // Already read in candidates
