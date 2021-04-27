@@ -9,11 +9,10 @@
 
 class DriverTests : public ::testing::Test {
 protected:
-  virtual void SetUp(){
-  }
+
 };
 
-/*TEST_F(DriverTests, ConstructorTest){
+TEST_F(DriverTests, ConstructorTest){
 	std::vector<std::string> fakeFiles;
 	fakeFiles.push_back("ballot1");
 	fakeFiles.push_back("ballot2");
@@ -21,59 +20,35 @@ protected:
 
 	std::vector<std::string> realFiles;
 	realFiles.push_back("ir.csv");
+
 	testing::internal::CaptureStdout();
-	Driver fakeFilesDriver(fakeFiles);
+	Driver fakeFilesDriver= Driver(fakeFiles);
 	std::string outPut = testing::internal::GetCapturedStdout();
+
 	EXPECT_EQ(fakeFilesDriver.GetNumInputFiles(), 3); //Testing first for-loop in the Driver constructor
+
 	EXPECT_EQ("File not valid. \n", outPut);  	//Testing second for-loop when if-condition is met
+
 	testing::internal::CaptureStdout();
-	Driver realFilesDriver(realFiles);
+	Driver realFilesDriver = Driver(realFiles);
 	std::string outPut2 = testing::internal::GetCapturedStdout();
 	EXPECT_EQ("", outPut2); 					//Testing second for-loop when if-condition isn't met
 
-}*/
+}
 
 TEST_F(DriverTests, ReadInElectionTypeTest){
 	std::vector<std::string> files;
 	files.push_back("ir.csv");
-	Driver newDriver(files);
+	Driver newDriver = Driver(files);
 
 	std::ifstream *nullPtr = NULL;
+
 	testing::internal::CaptureStdout();
 	newDriver.ReadInElectionType(nullPtr, 1);
 	std::string outPut = testing::internal::GetCapturedStdout();
 
 	EXPECT_EQ(outPut, "File Handle is not open for Election Type.\n");
-        std::ifstream *filePtr = new std::ifstream;
-	filePtr->open(files.at(0));
-        newDriver.ReadInElectionType(filePtr, 1);
-        Election& election = const_cast <Election&>(newDriver.GetElection());
-	EXPECT_EQ(election.GetElectionType(), "NONE");
-        std::ifstream *filePtr2 = new std::ifstream;
-        filePtr2->open(files.at(0));
-        newDriver.ReadInElectionType(filePtr2, 0);
-        Election& election2 = const_cast <Election&>(newDriver.GetElection());
-        EXPECT_EQ(election2.GetElectionType(), "IR");
-}
-
-TEST_F(DriverTests, ReadInNumCandidatesTest){
-        std::vector<std::string> files;
-        files.push_back("ir.csv");
-        Driver newDriver(files);
-
-        std::ifstream *nullPtr = NULL;
-        EXPECT_EQ(newDriver.ReadInNumCandidates(nullPtr, 1), 0);
-        std::ifstream *filePtr = new std::ifstream;
-        filePtr->open(files.at(0));
-        newDriver.ReadInNumCandidates(filePtr, 1);
-        Election& election = const_cast <Election&>(newDriver.GetElection());
-        EXPECT_EQ(election.GetNumberOfCandidates(), -1);
-        std::ifstream *filePtr2 = new std::ifstream;
-        filePtr2->open(files.at(0));
-        newDriver.ReadInElectionType(filePtr2, 0);
-        newDriver.ReadInNumCandidates(filePtr2, 0);
-        Election& election2 = const_cast <Election&>(newDriver.GetElection());
-        EXPECT_EQ(election2.GetNumberOfCandidates(), 4);
+	std::ifstream *fileHandle = 
 }
 
 TEST_F(DriverTests, ParseLineTest){

@@ -290,7 +290,9 @@ int Driver::ComputeElection(){
     return 0;
 }
 
-
+Election Driver::GetElection(){
+    return election;
+}
 
 
 

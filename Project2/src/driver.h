@@ -165,6 +165,13 @@ class Driver{
          */
         bool CheckIfIRBallotValid(Ballot* ballot);
 
+        /**
+        * @brief Getter function which returns the election for the driver
+        *
+        * @return Election variable of the driver's election with its current settings
+        */
+        const Election& GetElection();
+
     private:
         std::string fileName;
         std::vector<std::ifstream*> fileHandles;

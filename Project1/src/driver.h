@@ -131,6 +131,12 @@ class Driver{
         * @return int indicating 0 for success.
         */
         int ComputeElection();
+        /**
+        * @brief Getter function which returns the election for the driver
+        *
+        * @return Election variable of the driver's election with its current settings
+        */
+        Election GetElection();
 
     private:
         std::string fileName;
