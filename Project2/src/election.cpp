@@ -17,7 +17,7 @@ using namespace std;
 Election::Election(){
     electionType       = "NONE";
     numberOfCandidates = -1;
-    numberOfBallots    = -1;
+    numberOfBallots    = 0;
     numberOfSeats      = -1;
     quota              = -1;
     string time = GetDateAndTime();
@@ -490,7 +490,7 @@ int Election::ComputeOPLElection(){
     WriteLineToMedia(winners);// Writes winners to media file
     for (int winner = 0; winner < c_winners.size(); winner++){ // Iterate through all winners
         string line = to_string(winner + 1) + ". " + candidates.at(c_winners.at(winner)).GetName() + 
-            " (" + candidates.at(winner).GetParty() + ") ";
+            " (" + candidates.at(c_winners.at(winner)).GetParty() + ") ";
         cout << line << endl;   // Write line to stdout
         WriteLineToAudit(line); // Wrtie line to audit file
         WriteLineToMedia(line); // Write line to media file
