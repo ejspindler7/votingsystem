@@ -59,11 +59,11 @@ bool Driver::CheckIfIRBallotValid(Ballot* ballot){
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
     std::string input = "";
-	getline(*fh, input);    // Reads line from CSv file
     if (flag){
         return 0;  // Already read in candidates
     }
     if (fh){
+        getline(*fh, input);    // Reads line from CSv file
         num_candidates = std::stoi(input);             // Converts the sting to an int
         election.SetNumberOfCandidates(num_candidates);// Updates the number of candidates in the election
     }
@@ -73,8 +73,9 @@ int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
 // Parses and creates candidates from CSV file
 int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     std::string tmp = "";
-    getline(*fh, tmp); // Reads line from CSV file
-
+    if(fh){
+        getline(*fh, tmp); // Reads line from CSV file
+    }
 
     if (flag){ 
         return 0; // Already read in candidates
@@ -82,7 +83,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
 
     if (election.GetElectionType() == "OPL" || election.GetElectionType() == "PO"){ // Determines if the election type is OPL or PO
         std::vector<std::string> candidates; 
-        if (*fh){ // Ensures file is opened properly
+        if (fh){ // Ensures file is opened properly
             ParseLine(tmp, candidates, ','); // Parses line into candidates with delimeter ','
             // Removefs '[' or ']' from word.   
             for (int i = 0; i < candidates.size(); i++){    // Iterates throughout the line removing unnecessary characters
@@ -113,7 +114,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     }
     else if (election.GetElectionType() == "IR"){ // Election type is IR
         std::vector<std::string> candidates; 
-        if (*fh){
+        if (fh){
             ParseLine(tmp, candidates, ',');   // Parses line into candidates with delimeter ',' 
             // Adds candidate to election
             for(int i = 0; i < candidates.size(); i++){ // Iterates candidate information
@@ -132,7 +133,7 @@ int Driver::ReadInCandidates(std::ifstream *fh, int flag){
     return 0;
 }
 
-// Loads ballots from ballot file into memroy (Joins multiple files into one big CSV and then process the combined CSV ballot file)
+// Loads ballots from ballot file into memory (Joins multiple files into one big CSV and then process the combined CSV ballot file)
 int Driver::ReadInBallots(){
     string ballDistribution = " ==== Ballot Distribution ====";
     election.WriteLineToAudit(ballDistribution); // Writes to audit file
@@ -222,14 +223,15 @@ int Driver::ReadInBallots(){
 int Driver::AppendToBallotFile(std::ifstream *fh, int numBallots){
     ballotFile.open(ballotFileName, std::ios_base::app); // Opens the combined ballotfile.csv
     std::string tmp;
-    getline(*fh, tmp);  // Reads line from ballot file to append to ballotfile
-    
-    for (int i = 0; i < numBallots; i++){   // Iterates through all ballots in the provided ballot file (fh)
-        ballotFile <<tmp + "\n";                // Writes line to the combined ballotfile.csv
-        tmp = "";
-        getline(*fh, tmp);                      // Reads next line from the provieded ballot file (fh)
+    if(fh){
+        getline(*fh, tmp);  // Reads line from ballot file to append to ballotfile
+        for (int i = 0; i < numBallots; i++){   // Iterates through all ballots in the provided ballot file (fh)
+            ballotFile <<tmp + "\n";                // Writes line to the combined ballotfile.csv
+            tmp = "";
+            getline(*fh, tmp);                      // Reads next line from the provieded ballot file (fh)
+        }
+        ballotFile.close();                     // Saves the combined ballotfile.csv 
     }
-    ballotFile.close();                     // Saves the combined ballotfile.csv 
     return 0;
 }
 
@@ -237,8 +239,8 @@ int Driver::AppendToBallotFile(std::ifstream *fh, int numBallots){
 int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
     int num_ballots= -1;
     std::string input = "";
-    getline(*fh, input);    // Reals line from CSV ballot file
-    if (*fh){
+    if (fh){
+        getline(*fh, input);    // Reals line from CSV ballot file
         num_ballots= std::stoi(input);                       // Converts number of ballots to an int
         int curr_num = election.GetNumberOfBallots();        // Current number of ballots
         election.SetNumberOfBallots(num_ballots + curr_num); // Updates the number of ballots in the election 
@@ -250,11 +252,11 @@ int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
 int Driver::ReadInNumberOfSeats(std::ifstream *fh, int flag){
     int num_seats= -1;
     std::string input = "";
-    getline(*fh, input); // Reads line from CSV ballot file
     if (flag){ 
         return 0;  // Already read in number of seats.
     }
     if (*fh){
+	 getline(*fh, input); // Reads line from CSV ballot file
         num_seats= std::stoi(input);          // Converts number of seats to an int
         election.SetNumberOfSeats(num_seats); // Updates the number of seats in the election
 
