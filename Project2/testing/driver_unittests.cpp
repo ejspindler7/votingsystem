@@ -76,26 +76,76 @@ TEST_F(DriverTests, ReadInNumCandidatesTest){
         EXPECT_EQ(election2.GetNumberOfCandidates(), 4);
 }
 
-TEST_F(DriverTests, ReadInNumberOfBallots){
+TEST_F(DriverTests, ReadInCandidatesTest){
         std::vector<std::string> files;
         files.push_back("ir.csv");
         Driver newDriver(files);
 
         std::ifstream *nullPtr = NULL;
-        EXPECT_EQ(newDriver.ReadInNumCandidates(nullPtr, 1), 0);
-        std::ifstream *filePtr = new std::ifstream;
-        filePtr->open(files.at(0));
-        newDriver.ReadInNumCandidates(filePtr, 1);
-        Election& election = const_cast <Election&>(newDriver.GetElection());
-        EXPECT_EQ(election.GetNumberOfCandidates(), -1);
+        EXPECT_EQ(newDriver.ReadInCandidates(nullPtr, 1), 0);
         std::ifstream *filePtr2 = new std::ifstream;
         filePtr2->open(files.at(0));
         newDriver.ReadInElectionType(filePtr2, 0);
         newDriver.ReadInNumCandidates(filePtr2, 0);
+	newDriver.ReadInCandidates(filePtr2,0);
         Election& election2 = const_cast <Election&>(newDriver.GetElection());
-        EXPECT_EQ(election2.GetNumberOfCandidates(), 4);
+        EXPECT_EQ(election2.GetCandidate(2).GetName(), "Chou");
+        EXPECT_EQ(election2.GetCandidate(3).GetParty(), "L");
 }
 
+TEST_F(DriverTests, ReadInNumberOfSeatsTest){
+        std::vector<std::string> files;
+        files.push_back("opl.csv");
+        Driver newDriver(files);
+
+        std::ifstream *nullPtr = NULL;
+        EXPECT_EQ(newDriver.ReadInNumberOfSeats(nullPtr, 1), 0);
+        std::ifstream *filePtr2 = new std::ifstream;
+        filePtr2->open(files.at(0));
+        newDriver.ReadInElectionType(filePtr2, 0);
+        newDriver.ReadInNumCandidates(filePtr2, 0);
+        newDriver.ReadInCandidates(filePtr2,0);
+        newDriver.ReadInNumberOfSeats(filePtr2,0);
+        Election& election2 = const_cast <Election&>(newDriver.GetElection());
+        EXPECT_EQ(election2.GetNumberOfSeats(), 3);
+}
+
+TEST_F(DriverTests, ReadInNumBallotsTest){
+        std::vector<std::string> files;
+        files.push_back("ir.csv");
+        Driver newDriver(files);
+
+        std::ifstream *nullPtr = NULL;
+        EXPECT_EQ(newDriver.ReadInNumberOfBallots(nullPtr, 1), 0);
+        std::ifstream *filePtr2 = new std::ifstream;
+        filePtr2->open(files.at(0));
+        newDriver.ReadInElectionType(filePtr2, 0);
+        newDriver.ReadInNumCandidates(filePtr2, 0);
+        newDriver.ReadInCandidates(filePtr2,0);
+	newDriver.ReadInNumberOfBallots(filePtr2,0);
+        Election& election2 = const_cast <Election&>(newDriver.GetElection());
+        EXPECT_EQ(election2.GetNumberOfBallots(), 9);
+}
+
+TEST_F(DriverTests, ReadInBallotsTest){
+        std::vector<std::string> files;
+        files.push_back("ir.csv");
+        Driver newDriver(files);
+
+        std::ifstream *nullPtr = NULL;
+        EXPECT_EQ(newDriver.AppendToBallotFile(nullPtr, 1), 0);
+        std::ifstream *filePtr2 = new std::ifstream;
+        filePtr2->open(files.at(0));
+        newDriver.ReadInElectionType(filePtr2, 0);
+        newDriver.ReadInNumCandidates(filePtr2, 0);
+        newDriver.ReadInCandidates(filePtr2,0);
+        newDriver.ReadInNumberOfBallots(filePtr2,0);
+	newDriver.AppendToBallotFile(filePtr2,0);
+        testing::internal::CaptureStdout();
+        newDriver.ReadInBallots();
+        std::string outPut = testing::internal::GetCapturedStdout();
+        EXPECT_EQ(outPut, "Help help help");
+}
 
 TEST_F(DriverTests, ParseLineTest){
 	std::vector<std::string> files;
