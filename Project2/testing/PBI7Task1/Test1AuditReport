@@ -1,0 +1,24 @@
+ ==== Ballot Distribution ====
+Ballot Id: 1 goes to Royce
+Ballot Id: 2 goes to Royce
+Ballot Id: 3 goes to Royce
+Ballot Id: 4 goes to Royce
+Ballot Id: 5 goes to Royce
+Ballot Id: 6 goes to Royce
+Ballot Id: 7 goes to Royce
+Ballot Id: 8 goes to Royce
+Ballot Id: 9 goes to Royce
+Compute IR election.
+Number of candidates: 4
+Number of ballots: 9
+** Candidates **
+Rosen (D) 
+Kleinberg (R) 
+Chou (I) 
+Royce (L) 
+=========== Round 1 =========== 
+Candidate Rosen now has 0 ballots.
+Candidate Kleinberg now has 0 ballots.
+Candidate Chou now has 0 ballots.
+Candidate Royce now has 9 ballots.
+Winning Candidate: Royce (L).
