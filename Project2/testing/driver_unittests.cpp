@@ -13,7 +13,7 @@ protected:
   }
 };
 
-/*TEST_F(DriverTests, ConstructorTest){
+TEST_F(DriverTests, ConstructorTest){
 	std::vector<std::string> fakeFiles;
 	fakeFiles.push_back("ballot1");
 	fakeFiles.push_back("ballot2");
@@ -22,16 +22,11 @@ protected:
 	std::vector<std::string> realFiles;
 	realFiles.push_back("ir.csv");
 	testing::internal::CaptureStdout();
-	Driver fakeFilesDriver(fakeFiles);
-	std::string outPut = testing::internal::GetCapturedStdout();
-	EXPECT_EQ(fakeFilesDriver.GetNumInputFiles(), 3); //Testing first for-loop in the Driver constructor
-	EXPECT_EQ("File not valid. \n", outPut);  	//Testing second for-loop when if-condition is met
-	testing::internal::CaptureStdout();
 	Driver realFilesDriver(realFiles);
 	std::string outPut2 = testing::internal::GetCapturedStdout();
-	EXPECT_EQ("", outPut2); 					//Testing second for-loop when if-condition isn't met
+	EXPECT_EQ("", outPut2); 					//Testing second for-loop when if-condition isn't met*/
 
-}*/
+}
 
 TEST_F(DriverTests, ReadInElectionTypeTest){
 	std::vector<std::string> files;
@@ -141,10 +136,8 @@ TEST_F(DriverTests, ReadInBallotsTest){
         newDriver.ReadInCandidates(filePtr2,0);
         newDriver.ReadInNumberOfBallots(filePtr2,0);
 	newDriver.AppendToBallotFile(filePtr2,0);
-        testing::internal::CaptureStdout();
         newDriver.ReadInBallots();
-        std::string outPut = testing::internal::GetCapturedStdout();
-        EXPECT_EQ(outPut, "Help help help");
+        EXPECT_EQ(newDriver.ReadInBallots(), 0);
 }
 
 TEST_F(DriverTests, ParseLineTest){
