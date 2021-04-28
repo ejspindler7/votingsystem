@@ -17,10 +17,28 @@ Ballot: 15 goes towards Borg (R)
 Ballot: 16 goes towards Borg (R)
 Ballot: 17 goes towards Pike (D)
 Ballot: 18 goes towards Foster (D)
+Ballot: 19 goes towards Pike (D)
+Ballot: 20 goes towards Pike (D)
+Ballot: 21 goes towards Foster (D)
+Ballot: 22 goes towards Jones (R)
+Ballot: 23 goes towards Smith (I)
+Ballot: 24 goes towards Borg (R)
+Ballot: 25 goes towards Borg (R)
+Ballot: 26 goes towards Pike (D)
+Ballot: 27 goes towards Foster (D)
+Ballot: 28 goes towards Pike (D)
+Ballot: 29 goes towards Pike (D)
+Ballot: 30 goes towards Foster (D)
+Ballot: 31 goes towards Jones (R)
+Ballot: 32 goes towards Smith (I)
+Ballot: 33 goes towards Borg (R)
+Ballot: 34 goes towards Borg (R)
+Ballot: 35 goes towards Pike (D)
+Ballot: 36 goes towards Foster (D)
 Compute OPL election.
 Number of candidates: 6
 Number of seats: 3
-Number of ballots: 9
+Number of ballots: 35
 ** Candidates **
 Pike (D) 
 Foster (D) 
@@ -29,20 +47,18 @@ Borg (R)
 Jones (R) 
 Smith (I) 
 === Whole Number Seats ===
-Party: D recieved 3 seats.
-Party: R recieved 2 seats.
+Party: D recieved 1 seats.
+Party: R recieved 1 seats.
 Party: I recieved 0 seats.
 === Remainder Seat Number ===
-Party: D recieved 0 seats.
+Party: D recieved 1 seats.
 Party: R recieved 0 seats.
 Party: I recieved 0 seats.
 === Total Seat Number ===
-Party: D recieved 3 total seats.
-Party: R recieved 2 total seats.
+Party: D recieved 2 total seats.
+Party: R recieved 1 total seats.
 Party: I recieved 0 total seats.
 ====== WINNERS  ======
 1. Pike (D) 
 2. Foster (D) 
-3. Pike (R) 
-4. Borg (R) 
-5. Jones (R) 
+3. Borg (R) 
