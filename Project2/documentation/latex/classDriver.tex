@@ -41,7 +41,9 @@ int \mbox{\hyperlink{classDriver_acc15d4651d1f74928a8599cc6e741511}{Append\+To\+
 int \mbox{\hyperlink{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}{Get\+Num\+Input\+Files}} (void)
 \begin{DoxyCompactList}\small\item\em Retrieves number of files inputted. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDriver_a68e54a78a40504c32c604cffb7b53bb4}{Check\+If\+I\+R\+Ballot\+Valid}} (\mbox{\hyperlink{classBallot}{Ballot}} $\ast$ballot)
-\begin{DoxyCompactList}\small\item\em Check if the provided IR ballot ranks at least half of the candidates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Check if the provided IR ballot ranks at least half of the candidates. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classElection}{Election}} \& \mbox{\hyperlink{classDriver_a84a968e5e4940e35833b860642ab46e6}{Get\+Election}} ()
+\begin{DoxyCompactList}\small\item\em Getter function which returns the election for the driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -120,6 +122,19 @@ Passes control to the election class by calling election.\+Run\+Election(), then
 
 \begin{DoxyReturn}{Returns}
 int indicating 0 for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDriver_a84a968e5e4940e35833b860642ab46e6}\label{classDriver_a84a968e5e4940e35833b860642ab46e6}} 
+\index{Driver@{Driver}!GetElection@{GetElection}}
+\index{GetElection@{GetElection}!Driver@{Driver}}
+\doxysubsubsection{\texorpdfstring{GetElection()}{GetElection()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classElection}{Election}} \& Driver\+::\+Get\+Election (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter function which returns the election for the driver. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classElection}{Election}} variable of the driver\textquotesingle{}s election with its current settings 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}\label{classDriver_a90fe94c736f8a6a634d9ffff9c6f80ab}} 
 \index{Driver@{Driver}!GetNumInputFiles@{GetNumInputFiles}}
@@ -320,5 +335,5 @@ int indicating 0 for success.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/palme885/csci5801/repo-\/\+Team11/\+Project2/src/\mbox{\hyperlink{driver_8h}{driver.\+h}}\item 
-/home/palme885/csci5801/repo-\/\+Team11/\+Project2/src/driver.\+cpp\end{DoxyCompactItemize}
+/home/ryanmower/\+Academia/\+College/spring2021/csci5801/repo-\/\+Team11/\+Project2/src/\mbox{\hyperlink{driver_8h}{driver.\+h}}\item 
+/home/ryanmower/\+Academia/\+College/spring2021/csci5801/repo-\/\+Team11/\+Project2/src/driver.\+cpp\end{DoxyCompactItemize}

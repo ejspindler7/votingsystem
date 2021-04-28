@@ -1,0 +1,37 @@
+digraph "/home/ryanmower/Academia/College/spring2021/csci5801/repo-Team11/Project2/src/driver.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/ryanmower/Academia\l/College/spring2021/csci5801\l/repo-Team11/Project2/src/driver.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="This file describes the Driver class, which reads in election information from a CSV file."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="election.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$election_8h.html",tooltip="This file describes the Election class, which stores and updates election information and runs simula..."];
+  Node3 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="candidate.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$candidate_8h.html",tooltip="This file describes the Candidate class, which stores and updates information about each candidate."];
+  Node5 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="ballot.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ballot_8h.html",tooltip="This file describes the Ballot class, which stores and updates ballot information."];
+  Node6 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="report.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$report_8h.html",tooltip="This files describes the Report class, which generates the election reports and writes information to..."];
+  Node8 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="iostream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="fstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+}

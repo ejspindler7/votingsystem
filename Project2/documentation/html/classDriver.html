@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a68e54a78a40504c32c604cffb7b53bb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a68e54a78a40504c32c604cffb7b53bb4">CheckIfIRBallotValid</a> (<a class="el" href="classBallot.html">Ballot</a> *ballot)</td></tr>
 <tr class="memdesc:a68e54a78a40504c32c604cffb7b53bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the provided IR ballot ranks at least half of the candidates.  <a href="classDriver.html#a68e54a78a40504c32c604cffb7b53bb4">More...</a><br /></td></tr>
 <tr class="separator:a68e54a78a40504c32c604cffb7b53bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84a968e5e4940e35833b860642ab46e6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classElection.html">Election</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriver.html#a84a968e5e4940e35833b860642ab46e6">GetElection</a> ()</td></tr>
+<tr class="memdesc:a84a968e5e4940e35833b860642ab46e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function which returns the election for the driver.  <a href="classDriver.html#a84a968e5e4940e35833b860642ab46e6">More...</a><br /></td></tr>
+<tr class="separator:a84a968e5e4940e35833b860642ab46e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main class for processing the CSV file for information. </p>
@@ -232,6 +235,26 @@ Public Member Functions</h2></td></tr>
 
 <p>Passes control to the election class by calling election.RunElection(), then closes reports after the election simulation has finished. </p>
 <dl class="section return"><dt>Returns</dt><dd>int indicating 0 for success. </dd></dl>
+
+</div>
+</div>
+<a id="a84a968e5e4940e35833b860642ab46e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84a968e5e4940e35833b860642ab46e6">&#9670;&nbsp;</a></span>GetElection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classElection.html">Election</a> &amp; Driver::GetElection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter function which returns the election for the driver. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classElection.html" title="The main class for tracking election information and running the election.">Election</a> variable of the driver's election with its current settings </dd></dl>
 
 </div>
 </div>
@@ -604,8 +627,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/palme885/csci5801/repo-Team11/Project2/src/<a class="el" href="driver_8h_source.html">driver.h</a></li>
-<li>/home/palme885/csci5801/repo-Team11/Project2/src/driver.cpp</li>
+<li>/home/ryanmower/Academia/College/spring2021/csci5801/repo-Team11/Project2/src/<a class="el" href="driver_8h_source.html">driver.h</a></li>
+<li>/home/ryanmower/Academia/College/spring2021/csci5801/repo-Team11/Project2/src/driver.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
