@@ -59,7 +59,9 @@ bool Driver::CheckIfIRBallotValid(Ballot* ballot){
 int Driver::ReadInNumCandidates(std::ifstream *fh, int flag){
     int num_candidates = -1;
     std::string input = "";
-    getline(*fh, input);    // Reads line from CSv file
+    if(fh){
+        getline(*fh, input);    // Reads line from CSv file
+    }
     if (flag){
         return 0;  // Already read in candidates
     }
@@ -240,8 +242,8 @@ int Driver::AppendToBallotFile(std::ifstream *fh, int numBallots){
 int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
     int num_ballots= -1;
     std::string input = "";
-    getline(*fh, input);    // Reals line from CSV ballot file
     if (fh){
+	getline(*fh, input);    // Reals line from CSV ballot file
         num_ballots= std::stoi(input);                       // Converts number of ballots to an int
         int curr_num = election.GetNumberOfBallots();        // Current number of ballots
         election.SetNumberOfBallots(num_ballots + curr_num); // Updates the number of ballots in the election 
