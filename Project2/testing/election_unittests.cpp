@@ -104,7 +104,7 @@ TEST_F(ElectionTests, SetNumberOfBallots){
 //GetNumberOfBallots
 TEST_F(ElectionTests, GetNumberOfBallots){
   //testing constructor
-  EXPECT_EQ(electionOPL.GetNumberOfBallots(), -1) << "Expecting -1";
+  EXPECT_EQ(electionOPL.GetNumberOfBallots(), 0) << "Expecting 0";
 
   electionOPL.SetNumberOfBallots(9);
   EXPECT_EQ(electionOPL.GetNumberOfBallots(), 9) << "Expecting OPL: 9";
