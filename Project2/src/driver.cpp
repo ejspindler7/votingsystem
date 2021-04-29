@@ -255,11 +255,13 @@ int Driver::ReadInNumberOfBallots(std::ifstream *fh, int flag){
 int Driver::ReadInNumberOfSeats(std::ifstream *fh, int flag){
     int num_seats= -1;
     std::string input = "";
+    if(fh){
+        getline(*fh, input); // Reads line from CSV ballot file
+    }
     if (flag){ 
         return 0;  // Already read in number of seats.
     }
-    if (*fh){
-	 getline(*fh, input); // Reads line from CSV ballot file
+    if (fh){
         num_seats= std::stoi(input);          // Converts number of seats to an int
         election.SetNumberOfSeats(num_seats); // Updates the number of seats in the election
 
