@@ -22,7 +22,7 @@ Ballot Id: 20 goes to Chou
 Ballot Id: 21 goes to Kleinberg
 Compute IR election.
 Number of candidates: 4
-Number of ballots: 20
+Number of ballots: 24
 ** Candidates **
 Rosen (D) 
 Kleinberg (R) 
@@ -53,4 +53,12 @@ Ballot Id; 3 now goes to Chou
 =========== Round 3 =========== 
 Candidate Chou now has 9 ballots.
 Candidate Royce now has 11 ballots.
+-- Redistributing Ballots ---
+Ballot Id; 4 now goes to Royce
+Ballot Id; 5 now goes to Royce
+Ballot Id; 17 now goes to Royce
+Ballot Id; 19 now goes to Royce
+Ballot Id; 20 now goes to Royce
+Ballot Id; 21 now goes to Royce
+=========== Round 4 =========== 
 Winning Candidate: Royce (L).
